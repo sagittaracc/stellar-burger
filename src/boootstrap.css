@@ -1,0 +1,23 @@
+/**
+ * We all need some bootstrap sometimes
+ * @author Yuriy Arutyunyan <sagittaracc@gmail.com>
+ */
+
+/* Text */
+.text-decoration-none {
+    text-decoration: none;
+}
+
+/* Vertical align */
+.align-middle {
+    vertical-align: middle;
+}
+
+/* Float */
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
