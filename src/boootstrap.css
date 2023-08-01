@@ -8,9 +8,17 @@
     text-decoration: none;
 }
 
+.text-left {
+    text-align: left;
+}
+
 /* Vertical align */
 .align-middle {
     vertical-align: middle;
+}
+
+.align-top {
+    vertical-align: top;
 }
 
 /* Float */
@@ -20,4 +28,17 @@
 
 .float-right {
     float: right;
+}
+
+/* Grid system */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.col {
+    flex: 1 0 0%;
+}
+
+.w-100 {
+    width: 100%!important;
 }

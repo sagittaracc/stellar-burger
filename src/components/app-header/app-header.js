@@ -27,7 +27,7 @@ const Navigation = () => {
 
 const AppHeader = () => {
     return (
-        <header style={{ width: '80%', margin: 'auto', border: '2px solid #4C4CFF', backgroundColor: '#1C1C21' }} className="pt-4 pb-4">
+        <header className="pt-4 pb-4">
             <Navigation />
 
             <Logo />
