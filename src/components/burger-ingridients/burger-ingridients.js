@@ -2,15 +2,6 @@ import React from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-const Grid = ({ cols, children, index }) => {
-    return (
-        <>
-            {children}
-            {(index + 1) % cols === 0 && <div class="w-100"></div>}
-        </>
-    );
-}
-
 const BurgerIngridients = ({ ingridients }) => {
     const [current, setCurrent] = React.useState('bun');
     const categories = [
@@ -20,10 +11,10 @@ const BurgerIngridients = ({ ingridients }) => {
     ];
 
     return (
-        <div style={{ width: "40%" }} className="text text_type_main-default">
+        <div className="text text_type_main-default">
             <h1>Соберите бургер</h1>
 
-            <div style={{ display: 'flex' }}>
+            <div className="flex">
                 <Tab value="bun" active={current === 'bun'} onClick={setCurrent}>
                     Булки
                 </Tab>
@@ -35,24 +26,22 @@ const BurgerIngridients = ({ ingridients }) => {
                 </Tab>
             </div>
 
-            <div className="custom-scroll" style={{ height: 635, overflow: "hidden", overflowY: "auto" }}>
+            <div className="custom-scroll" style={{ height: 1040, overflow: "hidden", overflowY: "auto" }}>
                 {categories.map(
                     category =>
                         <>
                             <h1 className="text-left pt-10">{category.name}</h1>
-                            <div className="row">
+                            <div className="flex wrap">
                                 {ingridients[category.type] && ingridients[category.type].map(
                                     (ingridient, index) =>
-                                        <Grid cols="2" index={index}>
-                                            <div class="col">
-                                                <img src={ingridient.image} />
-                                                <div>
-                                                    <span className="mr-2 align-top">{ingridient.price}</span>
-                                                    <CurrencyIcon type="primary" />
-                                                </div>
-                                                <div>{ingridient.name}</div>
+                                        <div class="col">
+                                            <img src={ingridient.image} />
+                                            <div>
+                                                <span className="mr-2 align-top">{ingridient.price}</span>
+                                                <CurrencyIcon type="primary" />
                                             </div>
-                                        </Grid>
+                                            <div>{ingridient.name}</div>
+                                        </div>
                                 )}
                             </div>
                         </>

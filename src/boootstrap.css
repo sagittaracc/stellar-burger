@@ -3,6 +3,12 @@
  * @author Yuriy Arutyunyan <sagittaracc@gmail.com>
  */
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 /* Text */
 .text-decoration-none {
     text-decoration: none;
@@ -39,22 +45,17 @@
     margin-left: auto;
 }
 
-.row {
+/* Flex */
+.flex {
     display: flex;
+}
+
+.wrap {
     flex-wrap: wrap;
 }
 
 .col {
-    flex: 1 0 0%;
-}
-
-.w-100 {
-    width: 100% !important;
-}
-
-/* Flex */
-.flex {
-    display: flex;
+    flex: 1;
 }
 
 .space-between {

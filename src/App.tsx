@@ -25,8 +25,11 @@ function App() {
                     <AppHeader />
                 </div>
             </div>
-            <div className="container">
-                <BurgerIngridients ingridients={ingridients} />
+            <div className="pt-10 App-content container flex">
+                <div className="col">
+                    <BurgerIngridients ingridients={ingridients} />
+                </div>
+                <div className="col"></div>
             </div>
         </>
     );
