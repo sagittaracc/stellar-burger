@@ -31,7 +31,7 @@ function App() {
                     <BurgerIngridients ingridients={ingridients} />
                 </div>
                 <div className="col">
-                    <BurgerConstructor />
+                    <BurgerConstructor ingridients={ingridients} />
                 </div>
             </div>
         </>
