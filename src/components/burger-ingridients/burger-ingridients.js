@@ -2,6 +2,20 @@ import React from "react";
 import { Counter, Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
+const CartIngridient = ({ ingridient }) => {
+    return (
+        <div class="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
+            <Counter count={1} size="default" extraClass="m-4" />
+            <img src={ingridient.image} />
+            <div>
+                <span className="mr-2 align-top text_type_main-medium">{ingridient.price}</span>
+                <CurrencyIcon type="primary" />
+            </div>
+            <div>{ingridient.name}</div>
+        </div>
+    );
+}
+
 const BurgerIngridients = ({ ingridients }) => {
     const [current, setCurrent] = React.useState('bun');
     const categories = [
@@ -32,18 +46,10 @@ const BurgerIngridients = ({ ingridients }) => {
                         <>
                             <h1 className="text-left pt-10">{category.name}</h1>
                             <div className="flex wrap">
-                                {ingridients[category.type] && ingridients[category.type].map(
-                                    ingridient =>
-                                        <div class="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
-                                            <Counter count={1} size="default" extraClass="m-4" />
-                                            <img src={ingridient.image} />
-                                            <div>
-                                                <span className="mr-2 align-top text_type_main-medium">{ingridient.price}</span>
-                                                <CurrencyIcon type="primary" />
-                                            </div>
-                                            <div>{ingridient.name}</div>
-                                        </div>
-                                )}
+                                {
+                                    ingridients[category.type] &&
+                                        ingridients[category.type].map(ingridient => <CartIngridient ingridient={ingridient}/>)
+                                }
                             </div>
                         </>
                 )}
