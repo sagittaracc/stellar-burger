@@ -19,10 +19,16 @@ function App() {
     }, []);
 
     return (
-        <div className="App" style={{width: "80%", margin: "auto"}}>
-            <AppHeader />
-            <BurgerIngridients ingridients={ingridients} />
-        </div>
+        <>
+            <div className="App-header container-fluid">
+                <div className="container">
+                    <AppHeader />
+                </div>
+            </div>
+            <div className="container">
+                <BurgerIngridients ingridients={ingridients} />
+            </div>
+        </>
     );
 }
 
