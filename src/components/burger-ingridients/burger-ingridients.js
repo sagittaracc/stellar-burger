@@ -45,7 +45,7 @@ const BurgerIngridients = ({ ingridients }) => {
                     category =>
                         <>
                             <h1 className="text-left pt-10">{category.name}</h1>
-                            <div className="flex wrap">
+                            <div className="flex wrap pr-7">
                                 {
                                     ingridients[category.type] &&
                                         ingridients[category.type].map(ingridient => <CartIngridient ingridient={ingridient}/>)
