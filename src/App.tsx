@@ -3,6 +3,7 @@ import './App.css';
 import AppHeader from './components/app-header/app-header';
 import BurgerIngridients from './components/burger-ingridients/burger-ingridients';
 import { groupData } from './utils/groupData';
+import BurgerConstructor from './components/burger-constructor/burger-constructor';
 
 function App() {
 
@@ -29,7 +30,9 @@ function App() {
                 <div className="col">
                     <BurgerIngridients ingridients={ingridients} />
                 </div>
-                <div className="col"></div>
+                <div className="col">
+                    <BurgerConstructor />
+                </div>
             </div>
         </>
     );

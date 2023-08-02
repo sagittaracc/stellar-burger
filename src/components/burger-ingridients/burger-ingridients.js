@@ -1,5 +1,5 @@
 import React from "react";
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Counter, Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 const BurgerIngridients = ({ ingridients }) => {
@@ -11,7 +11,7 @@ const BurgerIngridients = ({ ingridients }) => {
     ];
 
     return (
-        <div className="text text_type_main-default">
+        <div className="flex columns text text_type_main-default h-100">
             <h1>Соберите бургер</h1>
 
             <div className="flex">
@@ -26,18 +26,19 @@ const BurgerIngridients = ({ ingridients }) => {
                 </Tab>
             </div>
 
-            <div className="custom-scroll" style={{ height: 1040, overflow: "hidden", overflowY: "auto" }}>
+            <div className="custom-scroll full-space overflow-auto">
                 {categories.map(
                     category =>
                         <>
                             <h1 className="text-left pt-10">{category.name}</h1>
                             <div className="flex wrap">
                                 {ingridients[category.type] && ingridients[category.type].map(
-                                    (ingridient, index) =>
-                                        <div class="col">
+                                    ingridient =>
+                                        <div class="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
+                                            <Counter count={1} size="default" extraClass="m-4" />
                                             <img src={ingridient.image} />
                                             <div>
-                                                <span className="mr-2 align-top">{ingridient.price}</span>
+                                                <span className="mr-2 align-top text_type_main-medium">{ingridient.price}</span>
                                                 <CurrencyIcon type="primary" />
                                             </div>
                                             <div>{ingridient.name}</div>
