@@ -2,6 +2,15 @@ import React from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
+const Grid = ({ cols, children, index }) => {
+    return (
+        <>
+            {children}
+            {(index + 1) % cols === 0 && <div class="w-100"></div>}
+        </>
+    );
+}
+
 const BurgerIngridients = ({ ingridients }) => {
     const [current, setCurrent] = React.useState('bun');
     const categories = [
@@ -26,22 +35,24 @@ const BurgerIngridients = ({ ingridients }) => {
                 </Tab>
             </div>
 
-            <div className="custom-scroll" style={{height: 635, overflow: "hidden", overflowY: "auto"}}>
+            <div className="custom-scroll" style={{ height: 635, overflow: "hidden", overflowY: "auto" }}>
                 {categories.map(
                     category =>
                         <>
-                            <h1 class="text-left pt-10">{category.name}</h1>
-                            <div class="row">
+                            <h1 className="text-left pt-10">{category.name}</h1>
+                            <div className="row">
                                 {ingridients[category.type] && ingridients[category.type].map(
                                     (ingridient, index) =>
-                                        <>
+                                        <Grid cols="2" index={index}>
                                             <div class="col">
                                                 <img src={ingridient.image} />
-                                                <div><span className="mr-2 align-top">{ingridient.price}</span><CurrencyIcon type="primary" /></div>
+                                                <div>
+                                                    <span className="mr-2 align-top">{ingridient.price}</span>
+                                                    <CurrencyIcon type="primary" />
+                                                </div>
                                                 <div>{ingridient.name}</div>
                                             </div>
-                                            {(index + 1) % 2 === 0 && <div class="w-100"></div>}
-                                        </>
+                                        </Grid>
                                 )}
                             </div>
                         </>
