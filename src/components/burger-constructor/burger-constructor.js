@@ -1,6 +1,8 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
+import { ingridientPropTypes } from "../types/ingridient";
 
-const CartIngridient = ({ ingridient }) => {
+const Cart = ({ ingridient }) => {
     return (
         <div className="flex align-center pb-4">
             <span className="mr-4"><DragIcon type="primary" /></span>
@@ -9,6 +11,17 @@ const CartIngridient = ({ ingridient }) => {
                 price={ingridient.price}
                 thumbnail={ingridient.image}
             />
+        </div>
+    );
+}
+
+const Ingridients = ({ data }) => {
+    return (
+        <div className="full-space ml-8 custom-scroll overflow-auto">
+            {
+                data.main &&
+                data.main.map(ingridient => <Cart ingridient={ingridient} />)
+            }
         </div>
     );
 }
@@ -33,10 +46,7 @@ const BurgerConstructor = ({ data }) => {
                 </div>
             </div>
 
-            <div className="full-space ml-8 custom-scroll overflow-auto">
-                {data.main && data.main.map(ingridient =>
-                    <CartIngridient ingridient={ingridient} />)}
-            </div>
+            <Ingridients data={data} />
 
             <div className="ml-8">
                 <div className="ml-9">
@@ -62,5 +72,25 @@ const BurgerConstructor = ({ data }) => {
         </div>
     );
 }
+
+Cart.propTypes = {
+    ingridient: ingridientPropTypes.isRequired
+}
+
+Ingridients.propTypes = {
+    data: PropTypes.shape({
+        bun: PropTypes.arrayOf(ingridientPropTypes),
+        sauce: PropTypes.arrayOf(ingridientPropTypes),
+        main: PropTypes.arrayOf(ingridientPropTypes),
+    })
+};
+
+BurgerConstructor.propTypes = {
+    data: PropTypes.shape({
+        bun: PropTypes.arrayOf(ingridientPropTypes),
+        sauce: PropTypes.arrayOf(ingridientPropTypes),
+        main: PropTypes.arrayOf(ingridientPropTypes),
+    })
+};
 
 export default BurgerConstructor;
