@@ -1,36 +1,10 @@
-import { Button, ConstructorElement, CurrencyIcon, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from 'prop-types';
-import { ingridientPropTypes } from "../types/ingridient";
-
-const Cart = ({ ingridient }) => {
-    return (
-        <div className="flex align-center pb-4">
-            <span className="mr-4"><DragIcon type="primary" /></span>
-            <ConstructorElement
-                text={ingridient.name}
-                price={ingridient.price}
-                thumbnail={ingridient.image}
-            />
-        </div>
-    );
-}
-
-const Ingridients = ({ data }) => {
-    return (
-        <div className="full-space ml-8 custom-scroll overflow-auto">
-            {
-                data.main &&
-                data.main.map(ingridient => <Cart ingridient={ingridient} />)
-            }
-        </div>
-    );
-}
+import { ingredientPropTypes } from "../types/ingredient";
+import Ingredients from "./ingredients/ingredients";
 
 const BurgerConstructor = ({ data }) => {
-    let sum = 0;
-    data.main && data.main.forEach(ingridient => {
-        sum += ingridient.price
-    });
+    let sum = data.main.reduce((total, ingredient) => total + ingredient.price, 0);
 
     return (
         <div className="flex columns h-100">
@@ -46,7 +20,7 @@ const BurgerConstructor = ({ data }) => {
                 </div>
             </div>
 
-            <Ingridients data={data} />
+            <Ingredients data={data} />
 
             <div className="ml-8">
                 <div className="ml-9">
@@ -65,7 +39,7 @@ const BurgerConstructor = ({ data }) => {
                     <span className="mr-2 text_type_main-large">{1255 + 1255 + sum}</span>
                     <CurrencyIcon type="primary" />
                     <Button extraClass="ml-6" htmlType="button" type="primary" size="large">
-                        Нажми на меня
+                        Оформить заказ
                     </Button>
                 </div>
             </div>
@@ -73,23 +47,11 @@ const BurgerConstructor = ({ data }) => {
     );
 }
 
-Cart.propTypes = {
-    ingridient: ingridientPropTypes.isRequired
-}
-
-Ingridients.propTypes = {
-    data: PropTypes.shape({
-        bun: PropTypes.arrayOf(ingridientPropTypes),
-        sauce: PropTypes.arrayOf(ingridientPropTypes),
-        main: PropTypes.arrayOf(ingridientPropTypes),
-    })
-};
-
 BurgerConstructor.propTypes = {
     data: PropTypes.shape({
-        bun: PropTypes.arrayOf(ingridientPropTypes),
-        sauce: PropTypes.arrayOf(ingridientPropTypes),
-        main: PropTypes.arrayOf(ingridientPropTypes),
+        bun: PropTypes.arrayOf(ingredientPropTypes),
+        sauce: PropTypes.arrayOf(ingredientPropTypes),
+        main: PropTypes.arrayOf(ingredientPropTypes),
     })
 };
 

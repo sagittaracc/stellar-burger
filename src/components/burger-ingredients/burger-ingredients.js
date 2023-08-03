@@ -1,24 +1,12 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Counter, Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ingridientPropTypes } from "../types/ingridient";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ingredientPropTypes } from "../types/ingredient";
+import Cart from "./cart/cart";
 
-const Cart = ({ ingridient }) => {
-    return (
-        <div class="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
-            <Counter count={1} size="default" extraClass="m-4" />
-            <img src={ingridient.image} />
-            <div>
-                <span className="mr-2 align-top text_type_main-medium">{ingridient.price}</span>
-                <CurrencyIcon type="primary" />
-            </div>
-            <div>{ingridient.name}</div>
-        </div>
-    );
-}
 
-const BurgerIngridients = ({ data }) => {
+
+const BurgerIngredients = ({ data }) => {
     const [tab, setTab] = React.useState('bun');
     const categories = [
         { name: "bun", caption: "Булки" },
@@ -45,31 +33,26 @@ const BurgerIngridients = ({ data }) => {
             <div className="custom-scroll full-space overflow-auto">
                 {categories.map(
                     category =>
-                        <>
+                        <React.Fragment key={category.name}>
                             <h1 className="text-left pt-10">{category.caption}</h1>
                             <div className="flex wrap pr-7">
                                 {
-                                    data[category.name] &&
-                                    data[category.name].map(ingridient => <Cart ingridient={ingridient}/>)
+                                    data[category.name].map(ingredient => <Cart key={ingredient._id} ingredient={ingredient}/>)
                                 }
                             </div>
-                        </>
+                        </React.Fragment>
                 )}
             </div>
         </div>
     );
 }
 
-Cart.propTypes = {
-    ingridient: ingridientPropTypes.isRequired
-}
-
-BurgerIngridients.propTypes = {
+BurgerIngredients.propTypes = {
     data: PropTypes.shape({
-        bun: PropTypes.arrayOf(ingridientPropTypes),
-        sauce: PropTypes.arrayOf(ingridientPropTypes),
-        main: PropTypes.arrayOf(ingridientPropTypes),
+        bun: PropTypes.arrayOf(ingredientPropTypes),
+        sauce: PropTypes.arrayOf(ingredientPropTypes),
+        main: PropTypes.arrayOf(ingredientPropTypes),
     })
 };
 
-export default BurgerIngridients;
+export default BurgerIngredients;
