@@ -1,4 +1,5 @@
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
 import { BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 
 const NavLink = ({ link, text, type, children }) => {
@@ -41,5 +42,12 @@ const AppHeader = () => {
         </header>
     );
 }
+
+NavLink.propTypes = {
+    link: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    children: PropTypes.node
+};
 
 export default AppHeader;
