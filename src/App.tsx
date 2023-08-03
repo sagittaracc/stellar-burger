@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import './App.css';
 import AppHeader from './components/app-header/app-header';
 import BurgerIngridients from './components/burger-ingridients/burger-ingridients';
-import { groupData } from './utils/groupData';
+import { group } from './utils/group';
 import BurgerConstructor from './components/burger-constructor/burger-constructor';
 
 function App() {
 
-    const [ingridients, setIngridients] = useState({});
+    const [data, setData] = useState({});
 
     React.useEffect(() => {
         fetch("https://norma.nomoreparties.space/api/ingredients")
@@ -15,7 +15,7 @@ function App() {
                 return response.json();
             })
             .then(data => {
-                setIngridients(groupData(data.data, 'type'));
+                setData(group(data.data, 'type'));
             })
     }, []);
 
@@ -28,10 +28,10 @@ function App() {
             </div>
             <div className="pt-10 App-content container flex">
                 <div className="col">
-                    <BurgerIngridients ingridients={ingridients} />
+                    <BurgerIngridients data={data} />
                 </div>
                 <div className="col">
-                    <BurgerConstructor ingridients={ingridients} />
+                    <BurgerConstructor data={data} />
                 </div>
             </div>
         </>

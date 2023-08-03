@@ -1,4 +1,4 @@
-export const groupData = (data, key) => {
+export const group = (data, key) => {
     return data.reduce(function (r, a) {
         r[a.type] = r[a.type] || [];
         r[a.type].push(a);

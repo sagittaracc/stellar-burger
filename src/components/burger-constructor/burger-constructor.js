@@ -13,9 +13,9 @@ const CartIngridient = ({ ingridient }) => {
     );
 }
 
-const BurgerConstructor = ({ ingridients }) => {
+const BurgerConstructor = ({ data }) => {
     let sum = 0;
-    ingridients.main && ingridients.main.forEach(ingridient => {
+    data.main && data.main.forEach(ingridient => {
         sum += ingridient.price
     });
 
@@ -34,7 +34,7 @@ const BurgerConstructor = ({ ingridients }) => {
             </div>
 
             <div className="full-space ml-8 custom-scroll overflow-auto">
-                {ingridients.main && ingridients.main.map(ingridient =>
+                {data.main && data.main.map(ingridient =>
                     <CartIngridient ingridient={ingridient} />)}
             </div>
 
