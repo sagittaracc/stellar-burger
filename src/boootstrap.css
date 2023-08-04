@@ -1,0 +1,112 @@
+/**
+ * We all need some bootstrap sometimes
+ * @author Yuriy Arutyunyan <sagittaracc@gmail.com>
+ */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Text */
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Float */
+.float-right {
+    float: right;
+}
+
+/* Vertical align */
+.align-middle {
+    vertical-align: middle;
+}
+
+.align-top {
+    vertical-align: top;
+}
+
+/* Grid system */
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+    width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+/* Flex */
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* 2 * 5 = 10 */
+.gap-2 {
+    gap: 10px;
+}
+
+.columns {
+    flex-direction: column;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.full-space {
+    flex-grow: 1;
+}
+
+/* Spaces */
+.between-5>* {
+    margin-right: 20px;
+}
+
+.between-5>*:last-child {
+    margin-right: 0;
+}
+
+/* Overflow */
+.overflow-x-hidden {
+    overflow-x: hidden;
+}
+
+.overflow-auto {
+    overflow-y: auto;
+}
+
+/* Position */
+.position-relative {
+    position: relative;
+}

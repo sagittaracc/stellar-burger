@@ -1,0 +1,1 @@
+export const STELLAR_BURGER_API = 'https://norma.nomoreparties.space/api';
