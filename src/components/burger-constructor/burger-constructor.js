@@ -9,7 +9,7 @@ import OrderDetails from "./order-details/order-details";
 const BurgerConstructor = ({ data }) => {
     let sum = data.main.reduce((total, ingredient) => total + ingredient.price, 0);
 
-    const [orderDetailsShown, setOrderDetailsShown] = useState(false);
+    const [modalShown, setModalShown] = useState(false);
 
     return (
         <div className="flex columns h-100">
@@ -43,14 +43,14 @@ const BurgerConstructor = ({ data }) => {
                 <div className="float-right">
                     <span className="mr-2 text_type_main-large">{1255 + 1255 + sum}</span>
                     <CurrencyIcon type="primary" />
-                    <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={() => setOrderDetailsShown(true)}>
+                    <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={() => setModalShown(true)}>
                         Оформить заказ
                     </Button>
                 </div>
             </div>
             {
-                orderDetailsShown &&
-                <Modal onClose={() => setOrderDetailsShown(false)}>
+                modalShown &&
+                <Modal onClose={() => setModalShown(false)}>
                     <OrderDetails />
                 </Modal>
             }

@@ -1,9 +1,10 @@
 import { ingredientPropTypes } from '../../types/ingredient';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
-const Cart = ({ ingredient }) => {
+const Cart = ({ onClick, ingredient }) => {
     return (
-        <div className="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
+        <div onClick={() => onClick(ingredient)} className="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
             <Counter count={1} size="default" extraClass="m-4" />
             <img src={ingredient.image} />
             <div>
@@ -16,6 +17,7 @@ const Cart = ({ ingredient }) => {
 }
 
 Cart.propTypes = {
+    onClick: PropTypes.func,
     ingredient: ingredientPropTypes.isRequired
 }
 
