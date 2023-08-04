@@ -14,7 +14,7 @@ const Modal = ({ header, onClose, children }) => {
                     <Header header={header} onClose={onClose} />
                     {children}
                 </div>
-                <Overlay />
+                <Overlay onClose={onClose} />
             </>
         ),
         modalRoot
