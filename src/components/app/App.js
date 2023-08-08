@@ -1,11 +1,11 @@
 import React, { useState, useReducer } from 'react';
 import './App.css';
 import AppHeader from '../app-header/app-header';
-import { api } from '../../utils/api';
 import { group } from '../../utils/group';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import { IngredientsContext } from '../../services/ingredientsContext';
+import { get } from '../../utils/api';
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
     const [ingredients, setIngredients] = useState([]);
 
     React.useEffect(() => {
-        api(`/ingredients`)
+        get('/ingredients')
             .then(data => {
                 setLoading(false);
                 const menu = group(data.data, 'type');
