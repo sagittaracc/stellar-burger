@@ -10,7 +10,7 @@ import Bun from "./bun/bun";
 const BurgerConstructor = ({ bun, ingredients }) => {
     const [modalShown, setModalShown] = useState(false);
 
-    let sum = ingredients.reduce((total, ingredient) => total + ingredient.price, bun ? bun.price * 2 : 0);
+    let cost = ingredients.reduce((total, ingredient) => total + ingredient.price, bun ? bun.price * 2 : 0);
 
     return (
         <div className="flex columns h-100">
@@ -20,7 +20,7 @@ const BurgerConstructor = ({ bun, ingredients }) => {
 
             <div className="ml-8 mb-4">
                 <div className="float-right">
-                    <span className="mr-2 text_type_main-large">{sum}</span>
+                    <span className="mr-2 text_type_main-large">{cost}</span>
                     <CurrencyIcon type="primary" />
                     <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={() => setModalShown(true)}>
                         Оформить заказ

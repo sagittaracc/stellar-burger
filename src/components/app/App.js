@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import './App.css';
 import AppHeader from '../app-header/app-header';
 import { api } from '../../utils/api';
