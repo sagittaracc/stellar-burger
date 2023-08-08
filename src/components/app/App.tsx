@@ -15,6 +15,7 @@ function App() {
     React.useEffect(() => {
         fetch(`${STELLAR_BURGER_API}/ingredients`)
             .then(response => {
+                // TODO: Можно лучше: имеет смысл вынести в отдельную функцию проверку res.ok и сам запрос вместе с ним. В компоненте останется, только устанавливать все в state
                 if (response.ok) {
                     return response.json();
                 }
