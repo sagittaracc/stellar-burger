@@ -7,17 +7,10 @@ import { useState } from "react";
 import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
 
-const BurgerConstructor = ({ data }) => {
+const BurgerConstructor = ({ bun, ingredients }) => {
     const [modalShown, setModalShown] = useState(false);
 
-    // ***
-    const bunStubIndex = 1;
-    const bun = data.bun[bunStubIndex];
-
-    // ***
-    const ingredients = data.sauce.concat(data.main);
-
-    let sum = ingredients.reduce((total, ingredient) => total + ingredient.price, bun.price * 2);
+    let sum = ingredients.reduce((total, ingredient) => total + ingredient.price, bun ? bun.price * 2 : 0);
 
     return (
         <div className="flex columns h-100">
@@ -45,11 +38,8 @@ const BurgerConstructor = ({ data }) => {
 }
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.shape({
-        bun: PropTypes.arrayOf(ingredientPropTypes),
-        sauce: PropTypes.arrayOf(ingredientPropTypes),
-        main: PropTypes.arrayOf(ingredientPropTypes),
-    })
+    bun: ingredientPropTypes,
+    ingredients: PropTypes.arrayOf(ingredientPropTypes)
 };
 
 export default BurgerConstructor;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import './App.css';
 import AppHeader from '../app-header/app-header';
 import { api } from '../../utils/api';
@@ -12,11 +12,19 @@ function App() {
     const [error, setError] = useState(false);
     const [data, setData] = useState({});
 
+    const [bun, setBun] = useState(null);
+    const [ingredients, setIngredients] = useState([]);
+
     React.useEffect(() => {
         api(`/ingredients`)
             .then(data => {
                 setLoading(false);
-                setData(group(data.data, 'type'));
+                const menu = group(data.data, 'type');
+                setData(menu);
+
+                // MOCK
+                setBun(menu.bun[1]);
+                setIngredients(menu.sauce.concat(menu.main));
             })
             .catch(error => {
                 setError(true);
@@ -38,7 +46,7 @@ function App() {
                             <BurgerIngredients data={data} />
                         </div>
                         <div className="col mt-25">
-                            <BurgerConstructor data={data} />
+                            <BurgerConstructor bun={bun} ingredients={ingredients} />
                         </div>
                     </div>
                 </>

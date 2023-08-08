@@ -3,7 +3,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import { ingredientPropTypes } from '../../types/ingredient';
 
 const Bun = ({ position, data }) => {
-    return (
+    return data && (
         <div className="ml-8 mb-4">
             <div className="ml-9">
                 <ConstructorElement
@@ -20,7 +20,7 @@ const Bun = ({ position, data }) => {
 
 Bun.propTypes = {
     position: PropTypes.string.isRequired,
-    data: ingredientPropTypes.isRequired
+    data: ingredientPropTypes
 }
 
 export default Bun;
