@@ -5,6 +5,7 @@ import { api } from '../../utils/api';
 import { group } from '../../utils/group';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
+import { IngredientsContext } from '../../services/ingredientsContext';
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
                 const menu = group(data.data, 'type');
                 setData(menu);
 
-                // MOCK
+                // MOCK: Выбрали флюоресцентную булку и все соусы и начинки
                 setBun(menu.bun[1]);
                 setIngredients(menu.sauce.concat(menu.main));
             })
@@ -41,14 +42,16 @@ function App() {
                             <AppHeader />
                         </div>
                     </div>
-                    <div className="pt-10 App-content container flex">
-                        <div className="col">
-                            <BurgerIngredients data={data} />
+                    <IngredientsContext.Provider value={{ bun, ingredients }}>
+                        <div className="pt-10 App-content container flex">
+                            <div className="col">
+                                <BurgerIngredients data={data} />
+                            </div>
+                            <div className="col mt-25">
+                                <BurgerConstructor />
+                            </div>
                         </div>
-                        <div className="col mt-25">
-                            <BurgerConstructor bun={bun} ingredients={ingredients} />
-                        </div>
-                    </div>
+                    </IngredientsContext.Provider>
                 </>
             }
         </>

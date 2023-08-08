@@ -1,14 +1,14 @@
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from 'prop-types';
-import { ingredientPropTypes } from "../types/ingredient";
 import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
+import { IngredientsContext } from "../../services/ingredientsContext";
 
-const BurgerConstructor = ({ bun, ingredients }) => {
+const BurgerConstructor = ({  }) => {
     const [modalShown, setModalShown] = useState(false);
+    const {bun, ingredients} = useContext(IngredientsContext);
 
     let cost = ingredients.reduce((total, ingredient) => total + ingredient.price, bun ? bun.price * 2 : 0);
 
@@ -36,10 +36,5 @@ const BurgerConstructor = ({ bun, ingredients }) => {
         </div>
     );
 }
-
-BurgerConstructor.propTypes = {
-    bun: ingredientPropTypes,
-    ingredients: PropTypes.arrayOf(ingredientPropTypes)
-};
 
 export default BurgerConstructor;
