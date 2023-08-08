@@ -13,11 +13,7 @@ const Ingredients = ({ data }) => {
 }
 
 Ingredients.propTypes = {
-    data: PropTypes.shape({
-        bun: PropTypes.arrayOf(ingredientPropTypes),
-        sauce: PropTypes.arrayOf(ingredientPropTypes),
-        main: PropTypes.arrayOf(ingredientPropTypes),
-    })
+    data: PropTypes.arrayOf(ingredientPropTypes)
 };
 
 export default Ingredients;
