@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import AppHeader from '../app-header/app-header';
-import { STELLAR_BURGER_API } from '../../constants/api';
+import { api } from '../../utils/api';
 import { group } from '../../utils/group';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
@@ -13,16 +13,7 @@ function App() {
     const [data, setData] = useState({});
 
     React.useEffect(() => {
-        fetch(`${STELLAR_BURGER_API}/ingredients`)
-            .then(response => {
-                // TODO: Можно лучше: имеет смысл вынести в отдельную функцию проверку res.ok и сам запрос вместе с ним. В компоненте останется, только устанавливать все в state
-                if (response.ok) {
-                    return response.json();
-                }
-                else {
-                    throw new Error();
-                }
-            })
+        api(`/ingredients`)
             .then(data => {
                 setLoading(false);
                 setData(group(data.data, 'type'));
