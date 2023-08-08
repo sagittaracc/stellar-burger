@@ -2,9 +2,14 @@ import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-de
 import PropTypes from 'prop-types';
 import { ingredientPropTypes } from "../types/ingredient";
 import Ingredients from "./ingredients/ingredients";
+import Modal from "../modal/modal";
+import { useState } from "react";
+import OrderDetails from "./order-details/order-details";
 
 const BurgerConstructor = ({ data }) => {
     let sum = data.main.reduce((total, ingredient) => total + ingredient.price, 0);
+
+    const [modalShown, setModalShown] = useState(false);
 
     return (
         <div className="flex columns h-100">
@@ -38,11 +43,17 @@ const BurgerConstructor = ({ data }) => {
                 <div className="float-right">
                     <span className="mr-2 text_type_main-large">{1255 + 1255 + sum}</span>
                     <CurrencyIcon type="primary" />
-                    <Button extraClass="ml-6" htmlType="button" type="primary" size="large">
+                    <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={() => setModalShown(true)}>
                         Оформить заказ
                     </Button>
                 </div>
             </div>
+            {
+                modalShown &&
+                <Modal onClose={() => setModalShown(false)}>
+                    <OrderDetails />
+                </Modal>
+            }
         </div>
     );
 }
