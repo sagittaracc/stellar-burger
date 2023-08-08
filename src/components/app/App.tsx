@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import AppHeader from './components/app-header/app-header';
-import { STELLAR_BURGER_API } from './constants/api';
-import { group } from './utils/group';
-import BurgerConstructor from './components/burger-constructor/burger-constructor';
-import BurgerIngredients from './components/burger-ingredients/burger-ingredients';
+import AppHeader from '../app-header/app-header';
+import { STELLAR_BURGER_API } from '../../constants/api';
+import { group } from '../../utils/group';
+import BurgerConstructor from '../burger-constructor/burger-constructor';
+import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 
 function App() {
 
