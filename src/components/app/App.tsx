@@ -37,7 +37,7 @@ function App() {
                         <div className="col">
                             <BurgerIngredients data={data} />
                         </div>
-                        <div className="col">
+                        <div className="col mt-25">
                             <BurgerConstructor data={data} />
                         </div>
                     </div>
