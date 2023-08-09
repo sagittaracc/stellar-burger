@@ -6,9 +6,10 @@ import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
 import { IngredientsContext } from "../../services/ingredientsContext";
 import { post } from "../../utils/api";
+import useModal from "../../hooks/useModal";
 
 const BurgerConstructor = ({  }) => {
-    const [modalShown, setModalShown] = useState(false);
+    const [modalShown, openModal, closeModal] = useModal();
     const [order, setOrder] = useState(null);
     const {bun, ingredients} = useContext(IngredientsContext);
 
@@ -20,7 +21,7 @@ const BurgerConstructor = ({  }) => {
         post('/orders', {ingredients: ids})
             .then(data => {
                 setOrder(data.order);
-                setModalShown(true);
+                openModal();
             });
     }
 
@@ -40,8 +41,8 @@ const BurgerConstructor = ({  }) => {
                 </div>
             </div>
             {
-                modalShown &&
-                <Modal onClose={() => setModalShown(false)}>
+                modalShown && order &&
+                <Modal onClose={closeModal}>
                     <OrderDetails order={order} />
                 </Modal>
             }
