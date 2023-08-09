@@ -9,8 +9,10 @@ import { post } from "../../utils/api";
 import useModal from "../../hooks/useModal";
 
 const BurgerConstructor = ({  }) => {
-    const [modalShown, openModal, closeModal] = useModal();
+    const [error, setError] = useState(false);
     const [order, setOrder] = useState(null);
+
+    const [modalShown, openModal, closeModal] = useModal();
     const {bun, ingredients} = useContext(IngredientsContext);
 
     let cost = ingredients.reduce((total, ingredient) => total + ingredient.price, bun ? bun.price * 2 : 0);
@@ -20,8 +22,12 @@ const BurgerConstructor = ({  }) => {
 
         post('/orders', {ingredients: ids})
             .then(data => {
+                setError(false);
                 setOrder(data.order);
                 openModal();
+            })
+            .catch(error => {
+                setError(true);
             });
     }
 
@@ -41,7 +47,7 @@ const BurgerConstructor = ({  }) => {
                 </div>
             </div>
             {
-                modalShown && order &&
+                !error && order && modalShown &&
                 <Modal onClose={closeModal}>
                     <OrderDetails order={order} />
                 </Modal>
