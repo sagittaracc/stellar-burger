@@ -43,14 +43,14 @@ function App() {
                         </div>
                     </div>
                     <IngredientsContext.Provider value={{ bun, ingredients }}>
-                        <div className={`${styles.content} pt-10 container flex`}>
+                        <main className={`${styles.content} pt-10 container flex`}>
                             <div className="col">
                                 <BurgerIngredients data={data} />
                             </div>
                             <div className="col mt-25">
                                 <BurgerConstructor />
                             </div>
-                        </div>
+                        </main>
                     </IngredientsContext.Provider>
                 </>
             }
