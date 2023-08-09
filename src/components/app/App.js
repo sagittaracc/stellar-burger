@@ -1,5 +1,5 @@
-import React, { useState, useReducer } from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import styles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import { group } from '../../utils/group';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
@@ -37,13 +37,13 @@ function App() {
             {
                 !loading && !error && data &&
                 <>
-                    <div className="App-header container-fluid">
+                    <div className={`${styles.header} container-fluid`}>
                         <div className="container">
                             <AppHeader />
                         </div>
                     </div>
                     <IngredientsContext.Provider value={{ bun, ingredients }}>
-                        <div className="pt-10 App-content container flex">
+                        <div className={`${styles.content} pt-10 container flex`}>
                             <div className="col">
                                 <BurgerIngredients data={data} />
                             </div>
