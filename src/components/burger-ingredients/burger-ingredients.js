@@ -30,11 +30,6 @@ const BurgerIngredients = ({ data }) => {
     const [mainRef, mainInView] = useInView({threshold: 0});
 
     useEffect(() => {
-        console.log({
-            "булки": bunsInView,
-            "соусы": saucesInView,
-            "начинки": mainInView
-        })
         if (bunsInView) {
             setTab('bun');
         }
@@ -51,9 +46,9 @@ const BurgerIngredients = ({ data }) => {
             <h1>Соберите бургер</h1>
 
             <div className="flex">
-                <Tab value="bun" active={tab === 'bun'} onClick={setTab}>Булки</Tab>
-                <Tab value="sauce" active={tab === 'sauce'} onClick={setTab}>Соусы</Tab>
-                <Tab value="main" active={tab === 'main'} onClick={setTab}>Начинки</Tab>
+                <Tab value="bun" active={tab === 'bun'}>Булки</Tab>
+                <Tab value="sauce" active={tab === 'sauce'}>Соусы</Tab>
+                <Tab value="main" active={tab === 'main'}>Начинки</Tab>
             </div>
 
             <div className="custom-scroll full-space overflow-auto">
