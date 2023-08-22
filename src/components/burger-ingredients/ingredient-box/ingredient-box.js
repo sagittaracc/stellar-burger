@@ -3,10 +3,10 @@ import Cart from "../cart/cart";
 import PropTypes from 'prop-types';
 import { ingredientPropTypes } from "../../types/ingredient";
 
-const IngredientBox = ({onClick, title, data, category}) => {
+const IngredientBox = ({tab, onClick, title, data, category}) => {
     return (
         <React.Fragment>
-            <h1 className="text-left pt-10">{title}</h1>
+            <h1 ref={tab} className="text-left pt-10">{title}</h1>
             <div className="flex wrap pr-7">
                 {
                     data[category].map(ingredient => <Cart onClick={() => onClick(ingredient)} key={ingredient._id} ingredient={ingredient} />)
