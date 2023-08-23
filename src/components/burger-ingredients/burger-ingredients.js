@@ -14,10 +14,10 @@ const BurgerIngredients = ({ data }) => {
     const [tab, setTab] = useState('bun');
     const [current, setCurrent] = useState(null);
 
-    const THRESHOLD = 0.5;
-    const [bunsRef, bunsInView] = useInView({threshold: THRESHOLD});
-    const [saucesRef, saucesInView] = useInView({threshold: THRESHOLD});
-    const [mainRef, mainInView] = useInView({threshold: THRESHOLD});
+    const threshold = 0.5;
+    const [bunsRef, bunsInView] = useInView({threshold});
+    const [saucesRef, saucesInView] = useInView({threshold});
+    const [mainRef, mainInView] = useInView({threshold});
 
     useEffect(() => {
         let tab = null;
