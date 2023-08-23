@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from 'prop-types';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredientPropTypes } from "../types/ingredient";
@@ -12,8 +12,30 @@ import { useInView } from 'react-intersection-observer';
 
 const BurgerIngredients = ({ data }) => {
     const [tab, setTab] = useState('bun');
-    const [modalShown, openModal, closeModal] = useModal();
     const [current, setCurrent] = useState(null);
+
+    const THRESHOLD = 0.5;
+    const [bunsRef, bunsInView] = useInView({threshold: THRESHOLD});
+    const [saucesRef, saucesInView] = useInView({threshold: THRESHOLD});
+    const [mainRef, mainInView] = useInView({threshold: THRESHOLD});
+
+    useEffect(() => {
+        let tab = null;
+
+        if (bunsInView) {
+            tab = 'bun';
+        }
+        else if (saucesInView) {
+            tab = 'sauce';
+        }
+        else if (mainInView) {
+            tab = 'main';
+        }
+
+        setTab(tab);
+    }, [bunsInView, saucesInView, mainInView])
+
+    const [modalShown, openModal, closeModal] = useModal();
 
     const showIngredient = (ingredient) => {
         setCurrent(ingredient);
@@ -24,22 +46,6 @@ const BurgerIngredients = ({ data }) => {
         closeModal();
         setCurrent(null);
     }
-
-    const [bunsRef, bunsInView] = useInView({threshold: 0});
-    const [saucesRef, saucesInView] = useInView({threshold: 0});
-    const [mainRef, mainInView] = useInView({threshold: 0});
-
-    useEffect(() => {
-        if (bunsInView) {
-            setTab('bun');
-        }
-        else if (saucesInView) {
-            setTab('sauce');
-        }
-        else if (mainInView) {
-            setTab('main');
-        }
-    }, [bunsInView, saucesInView, mainInView])
 
     return (
         <div className="flex columns text text_type_main-default h-100">

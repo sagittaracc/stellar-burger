@@ -5,14 +5,14 @@ import { ingredientPropTypes } from "../../types/ingredient";
 
 const IngredientBox = ({tab, onClick, title, data, category}) => {
     return (
-        <React.Fragment>
-            <h1 ref={tab} className="text-left pt-10">{title}</h1>
+        <div ref={tab}>
+            <h1 className="text-left pt-10">{title}</h1>
             <div className="flex wrap pr-7">
                 {
                     data[category].map(ingredient => <Cart onClick={() => onClick(ingredient)} key={ingredient._id} ingredient={ingredient} />)
                 }
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 
