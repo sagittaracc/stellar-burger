@@ -2,8 +2,8 @@ import {
     GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_SUCCESS,
     GET_INGREDIENTS_FAIL,
-    SHOW_INGREDIENT,
-    CLOSE_INGREDIENT
+    OPEN_PREVIEW,
+    CLOSE_PREVIEW
 } from './actions';
 
 const initialState = {
@@ -36,13 +36,13 @@ export const ingredientsReducer = (state = initialState, action) => {
                 loading: false,
                 error: true
             };
-        case SHOW_INGREDIENT:
+        case OPEN_PREVIEW:
             return {
                 ...state,
                 ingredientInfo: action.payload,
                 preview: true
             };
-        case CLOSE_INGREDIENT:
+        case CLOSE_PREVIEW:
             return {
                 ...state,
                 ingredientPreview: null,

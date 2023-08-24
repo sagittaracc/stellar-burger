@@ -7,7 +7,7 @@ import Modal from "../modal/modal";
 import IngredientDetails from "./ingredient-details/ingredient-details";
 import IngredientBox from "./ingredient-box/ingredient-box";
 import { useInView } from 'react-intersection-observer';
-import { closeIngredient } from "../../services/ingredients/actions";
+import { closePreview } from "../../services/ingredients/actions";
 import { ingredientPreview } from "../../services/ingredients/selectors";
 
 
@@ -39,8 +39,8 @@ const BurgerIngredients = ({ data }) => {
     const [preview, ingredient] = useSelector(ingredientPreview);
     const dispath = useDispatch();
 
-    const close = () => {
-        dispath(closeIngredient());
+    const closeModal = () => {
+        dispath(closePreview());
     }
 
     return (
@@ -60,7 +60,7 @@ const BurgerIngredients = ({ data }) => {
             </div>
             {
                 preview && ingredient &&
-                <Modal header="Детали ингредиента" onClose={close}>
+                <Modal header="Детали ингредиента" onClose={closeModal}>
                     <IngredientDetails ingredient={ingredient} />
                 </Modal>
             }

@@ -5,8 +5,8 @@ export const GET_INGREDIENTS_REQUEST = 'INGREDIENTS/GET';
 export const GET_INGREDIENTS_SUCCESS = 'INGREDIENTS/SUCCESS';
 export const GET_INGREDIENTS_FAIL = 'INGREDIENTS/FAIL';
 
-export const SHOW_INGREDIENT = 'INGREDIENT/SHOW';
-export const CLOSE_INGREDIENT = 'INGREDIENT/CLOSE';
+export const OPEN_PREVIEW = 'INGREDIENT/OPEN_PREVIEW';
+export const CLOSE_PREVIEW = 'INGREDIENT/CLOSE_PREVIEW';
 
 export const getIngredients = () => (dispath) => {
     dispath({ type: GET_INGREDIENTS_REQUEST });
@@ -21,15 +21,15 @@ export const getIngredients = () => (dispath) => {
         })
 };
 
-export const showIngredient = (ingredient) => {
+export const openPreview = (ingredient) => {
     return {
-        type: SHOW_INGREDIENT,
+        type: OPEN_PREVIEW,
         payload: ingredient
     };
 };
 
-export const closeIngredient = () => {
+export const closePreview = () => {
     return {
-        type: CLOSE_INGREDIENT
+        type: CLOSE_PREVIEW
     }
 }
