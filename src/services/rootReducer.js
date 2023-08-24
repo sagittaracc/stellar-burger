@@ -4,7 +4,7 @@ import { constructorReducer } from "./constructor/reducer";
 
 const rootReducer = combineReducers({
     ingredients: ingredientsReducer,
-    // constructor: constructorReducer
+    construct: constructorReducer
 });
 
 export default rootReducer;

@@ -1,34 +1,25 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
-import { useState } from "react";
 import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
-import { post } from "../../utils/api";
-import useModal from "../../hooks/useModal";
+import { getBun, getIngredients, orderHasItemsSelector, orderReadySelector } from '../../services/constructor/selectors';
+import { createOrder } from '../../services/constructor/actions';
 
 const BurgerConstructor = ({  }) => {
-    const [error, setError] = useState(false);
-    const [order, setOrder] = useState(null);
+    const bun = useSelector(getBun);
+    const ingredients = useSelector(getIngredients);
+    const orderHasItems = useSelector(orderHasItemsSelector);
+    const orderReady = useSelector(orderReadySelector);
 
-    const [modalShown, openModal, closeModal] = useModal();
+    const dispatch = useDispatch();
 
-    let bun = null;
-    let ingredients = [];
-    let cost = ingredients.reduce((total, ingredient) => total + ingredient.price, bun ? bun.price * 2 : 0);
+    let cost = 0;
 
-    const doOrder = () => {
-        const ids = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat([bun._id]);
-
-        post('/orders', {ingredients: ids})
-            .then(data => {
-                setError(false);
-                setOrder(data.order);
-                openModal();
-            })
-            .catch(error => {
-                setError(true);
-            });
+    const order = () => {
+        const ids = [];
+        dispatch(createOrder(ids));
     }
 
     return (
@@ -36,19 +27,21 @@ const BurgerConstructor = ({  }) => {
             <Bun position="top" data={bun} />
             <Ingredients data={ingredients} />
             <Bun position="bottom" data={bun} />
-
-            <div className="ml-8 mb-4">
-                <div className="float-right">
-                    <span className="mr-2 text_type_main-large">{cost}</span>
-                    <CurrencyIcon type="primary" />
-                    <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={doOrder}>
-                        Оформить заказ
-                    </Button>
-                </div>
-            </div>
             {
-                !error && order && modalShown &&
-                <Modal onClose={closeModal}>
+                orderHasItems &&
+                <div className="ml-8 mb-4">
+                    <div className="float-right">
+                        <span className="mr-2 text_type_main-large">{cost}</span>
+                        <CurrencyIcon type="primary" />
+                        <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={order}>
+                            Оформить заказ
+                        </Button>
+                    </div>
+                </div>
+            }
+            {
+                orderReady &&
+                <Modal>
                     <OrderDetails order={order} />
                 </Modal>
             }
