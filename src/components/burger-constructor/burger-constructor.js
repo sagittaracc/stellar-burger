@@ -1,10 +1,9 @@
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
-import { IngredientsContext } from "../../services/ingredientsContext";
 import { post } from "../../utils/api";
 import useModal from "../../hooks/useModal";
 
@@ -13,8 +12,9 @@ const BurgerConstructor = ({  }) => {
     const [order, setOrder] = useState(null);
 
     const [modalShown, openModal, closeModal] = useModal();
-    const {bun, ingredients} = useContext(IngredientsContext);
 
+    let bun = null;
+    let ingredients = [];
     let cost = ingredients.reduce((total, ingredient) => total + ingredient.price, bun ? bun.price * 2 : 0);
 
     const doOrder = () => {
