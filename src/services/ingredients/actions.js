@@ -5,6 +5,9 @@ export const GET_INGREDIENTS_REQUEST = 'INGREDIENTS/GET';
 export const GET_INGREDIENTS_SUCCESS = 'INGREDIENTS/SUCCESS';
 export const GET_INGREDIENTS_FAIL = 'INGREDIENTS/FAIL';
 
+export const SHOW_INGREDIENT = 'INGREDIENT/SHOW';
+export const CLOSE_INGREDIENT = 'INGREDIENT/CLOSE';
+
 export const getIngredients = () => (dispath) => {
     dispath({ type: GET_INGREDIENTS_REQUEST });
 
@@ -16,4 +19,17 @@ export const getIngredients = () => (dispath) => {
         .catch(error => {
             dispath({ type: GET_INGREDIENTS_FAIL });
         })
+};
+
+export const showIngredient = (ingredient) => {
+    return {
+        type: SHOW_INGREDIENT,
+        payload: ingredient
+    };
+};
+
+export const closeIngredient = () => {
+    return {
+        type: CLOSE_INGREDIENT
+    }
 }

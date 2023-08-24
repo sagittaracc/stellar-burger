@@ -1,13 +1,16 @@
 import {
     GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_SUCCESS,
-    GET_INGREDIENTS_FAIL
+    GET_INGREDIENTS_FAIL,
+    SHOW_INGREDIENT,
+    CLOSE_INGREDIENT
 } from './actions';
 
 const initialState = {
     data: null,
     loading: false,
-    error: false
+    error: false,
+    preview: null
 };
 
 export const ingredientsReducer = (state = initialState, action) => {
@@ -30,6 +33,16 @@ export const ingredientsReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: true
+            };
+        case SHOW_INGREDIENT:
+            return {
+                ...state,
+                preview: action.payload
+            };
+        case CLOSE_INGREDIENT:
+            return {
+                ...state,
+                preview: null
             };
         default:
             return state;

@@ -9,7 +9,7 @@ const IngredientBox = ({tab, onClick, title, data, category}) => {
             <h1 className="text-left pt-10">{title}</h1>
             <div className="flex wrap pr-7">
                 {
-                    data[category].map(ingredient => <Cart onClick={() => onClick(ingredient)} key={ingredient._id} ingredient={ingredient} />)
+                    data[category].map(ingredient => <Cart onClick={onClick} key={ingredient._id} ingredient={ingredient} />)
                 }
             </div>
         </div>
