@@ -5,11 +5,11 @@ import AppHeader from '../app-header/app-header';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import { getIngredients } from '../../services/ingredients/actions';
-import { getIngredientsData } from '../../services/ingredients/selectors';
+import { ingredientsData } from '../../services/ingredients/selectors';
 
 function App()
 {
-    const {data, loading, error} = useSelector(getIngredientsData);
+    const [hasData, data] = useSelector(ingredientsData);
     const dispath = useDispatch();
 
     useEffect(() => {
@@ -19,7 +19,7 @@ function App()
     return (
         <>
             {
-                !loading && !error && data &&
+                hasData &&
                 <>
                     <div className={`${styles.header} container-fluid`}>
                         <div className="container">
