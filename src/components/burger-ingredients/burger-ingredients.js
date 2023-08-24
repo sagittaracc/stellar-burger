@@ -8,7 +8,7 @@ import IngredientDetails from "./ingredient-details/ingredient-details";
 import IngredientBox from "./ingredient-box/ingredient-box";
 import { useInView } from 'react-intersection-observer';
 import { closeIngredient } from "../../services/ingredients/actions";
-import { preview } from "../../services/ingredients/selectors";
+import { ingredientPreview } from "../../services/ingredients/selectors";
 
 
 
@@ -36,7 +36,7 @@ const BurgerIngredients = ({ data }) => {
         setTab(tab);
     }, [bunsInView, saucesInView, mainInView])
 
-    const [hasPreview, ingredient] = useSelector(preview);
+    const [preview, ingredient] = useSelector(ingredientPreview);
     const dispath = useDispatch();
 
     const close = () => {
@@ -59,7 +59,7 @@ const BurgerIngredients = ({ data }) => {
                 <IngredientBox tab={mainRef} title="Начинки" category="main" data={data} />
             </div>
             {
-                hasPreview &&
+                preview && ingredient &&
                 <Modal header="Детали ингредиента" onClose={close}>
                     <IngredientDetails ingredient={ingredient} />
                 </Modal>

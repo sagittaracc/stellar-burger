@@ -10,7 +10,9 @@ const initialState = {
     data: null,
     loading: false,
     error: false,
-    preview: null
+
+    ingredientInfo: null,
+    preview: false
 };
 
 export const ingredientsReducer = (state = initialState, action) => {
@@ -37,12 +39,14 @@ export const ingredientsReducer = (state = initialState, action) => {
         case SHOW_INGREDIENT:
             return {
                 ...state,
-                preview: action.payload
+                ingredientInfo: action.payload,
+                preview: true
             };
         case CLOSE_INGREDIENT:
             return {
                 ...state,
-                preview: null
+                ingredientPreview: null,
+                preview: false
             };
         default:
             return state;
