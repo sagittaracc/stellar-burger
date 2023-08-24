@@ -1,10 +1,17 @@
+import { useDispatch } from 'react-redux';
 import { ingredientPropTypes } from '../../types/ingredient';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
+import { showIngredient } from '../../../services/ingredients/actions';
 
-const Cart = ({ onClick, ingredient }) => {
+const Cart = ({ ingredient }) => {
+    const dispath = useDispatch();
+
+    const open = () => {
+        dispath(showIngredient(ingredient));
+    };
+
     return (
-        <div onClick={() => onClick(ingredient)} className="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
+        <div onClick={open} className="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
             <Counter count={1} size="default" extraClass="m-4" />
             <img src={ingredient.image} />
             <div>
@@ -17,7 +24,6 @@ const Cart = ({ onClick, ingredient }) => {
 }
 
 Cart.propTypes = {
-    onClick: PropTypes.func,
     ingredient: ingredientPropTypes.isRequired
 }
 

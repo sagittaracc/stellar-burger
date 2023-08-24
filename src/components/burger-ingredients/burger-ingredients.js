@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredientPropTypes } from "../types/ingredient";
 import Modal from "../modal/modal";
 import IngredientDetails from "./ingredient-details/ingredient-details";
-import useModal from "../../hooks/useModal";
 import IngredientBox from "./ingredient-box/ingredient-box";
 import { useInView } from 'react-intersection-observer';
+import { closeIngredient } from "../../services/ingredients/actions";
+import { preview } from "../../services/ingredients/selectors";
 
 
 
 const BurgerIngredients = ({ data }) => {
     const [tab, setTab] = useState('bun');
-    const [current, setCurrent] = useState(null);
 
     const threshold = 0.5;
     const [bunsRef, bunsInView] = useInView({threshold});
@@ -35,16 +36,11 @@ const BurgerIngredients = ({ data }) => {
         setTab(tab);
     }, [bunsInView, saucesInView, mainInView])
 
-    const [modalShown, openModal, closeModal] = useModal();
+    const [hasPreview, ingredient] = useSelector(preview);
+    const dispath = useDispatch();
 
-    const showIngredient = (ingredient) => {
-        setCurrent(ingredient);
-        openModal();
-    }
-
-    const closeIngredient = () => {
-        closeModal();
-        setCurrent(null);
+    const close = () => {
+        dispath(closeIngredient());
     }
 
     return (
@@ -58,14 +54,14 @@ const BurgerIngredients = ({ data }) => {
             </div>
 
             <div className="custom-scroll full-space overflow-auto">
-                <IngredientBox tab={bunsRef} onClick={showIngredient} title="Булки" category="bun" data={data} />
-                <IngredientBox tab={saucesRef} onClick={showIngredient} title="Соусы" category="sauce" data={data} />
-                <IngredientBox tab={mainRef} onClick={showIngredient} title="Начинки" category="main" data={data} />
+                <IngredientBox tab={bunsRef} title="Булки" category="bun" data={data} />
+                <IngredientBox tab={saucesRef} title="Соусы" category="sauce" data={data} />
+                <IngredientBox tab={mainRef} title="Начинки" category="main" data={data} />
             </div>
             {
-                modalShown && current &&
-                <Modal header="Детали ингредиента" onClose={closeIngredient}>
-                    <IngredientDetails ingredient={current} />
+                hasPreview &&
+                <Modal header="Детали ингредиента" onClose={close}>
+                    <IngredientDetails ingredient={ingredient} />
                 </Modal>
             }
         </div>
