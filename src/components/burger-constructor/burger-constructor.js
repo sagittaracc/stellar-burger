@@ -5,16 +5,18 @@ import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
 import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
-import { getBun, getIngredients, orderHasItemsSelector, orderReadySelector } from '../../services/constructor/selectors';
+import { getBun, getIngredients, getOrder, orderHasItemsSelector, orderReadySelector } from '../../services/constructor/selectors';
 import { addIngredient, createOrder } from '../../services/constructor/actions';
 import { useDrop } from 'react-dnd';
+import useModal from '../../hooks/useModal';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
     const ingredients = useSelector(getIngredients);
+    const order = useSelector(getOrder);
     const orderHasItems = useSelector(orderHasItemsSelector);
     const orderReady = useSelector(orderReadySelector);
-
+    const [modalShown, openModal, closeModal] = useModal();
     const dispatch = useDispatch();
 
     let cost = useMemo(() => {
@@ -30,9 +32,10 @@ const BurgerConstructor = ({  }) => {
         }
     })
 
-    const order = () => {
-        const ids = [];
+    const doOrder = () => {
+        const ids = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
         dispatch(createOrder(ids));
+        openModal();
     }
 
     return (
@@ -46,15 +49,15 @@ const BurgerConstructor = ({  }) => {
                     <div className="float-right">
                         <span className="mr-2 text_type_main-large">{cost}</span>
                         <CurrencyIcon type="primary" />
-                        <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={order}>
+                        <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={doOrder}>
                             Оформить заказ
                         </Button>
                     </div>
                 </div>
             }
             {
-                orderReady &&
-                <Modal>
+                modalShown && orderReady &&
+                <Modal onClose={closeModal}>
                     <OrderDetails order={order} />
                 </Modal>
             }
