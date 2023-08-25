@@ -6,6 +6,8 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import { getIngredients } from '../../services/ingredients/actions';
 import { ingredientsData } from '../../services/ingredients/selectors';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function App()
 {
@@ -27,12 +29,14 @@ function App()
                         </div>
                     </div>
                     <main className={`${styles.content} pt-10 container flex`}>
-                        <div className="col">
-                            <BurgerIngredients data={data} />
-                        </div>
-                        <div className="col mt-25">
-                            <BurgerConstructor />
-                        </div>
+                        <DndProvider backend={HTML5Backend}>
+                            <div className="col">
+                                <BurgerIngredients data={data} />
+                            </div>
+                            <div className="col mt-25">
+                                <BurgerConstructor />
+                            </div>
+                        </DndProvider>
                     </main>
                 </>
             }

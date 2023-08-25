@@ -2,16 +2,20 @@ import { useDispatch } from 'react-redux';
 import { ingredientPropTypes } from '../../types/ingredient';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { openPreview } from '../../../services/ingredients/actions';
+import { useDrag } from 'react-dnd';
 
 const Cart = ({ ingredient }) => {
     const dispath = useDispatch();
+    const [, dragRef] = useDrag({
+        type: "ingredient"
+    });
 
     const openModal = () => {
         dispath(openPreview(ingredient));
     };
 
     return (
-        <div onClick={openModal} className="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
+        <div ref={dragRef} onClick={openModal} className="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
             <Counter count={1} size="default" extraClass="m-4" />
             <img src={ingredient.image} />
             <div>
