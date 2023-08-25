@@ -4,7 +4,8 @@ import {
     CONSTRUCTOR_RESET,
     CREATE_ORDER_REQUEST,
     CREATE_ORDER_SUCCESS,
-    CREATE_ORDER_FAIL
+    CREATE_ORDER_FAIL,
+    MOVE_INGREDIENT
 } from './actions';
 
 const initialState = {
@@ -43,6 +44,19 @@ export const constructorReducer = (state = initialState, action) => {
                 ingredients: [
                     ...state.ingredients.filter(ingredient => ingredient.id !== action.payload)
                 ]
+            }
+        case MOVE_INGREDIENT:
+            const ingredients = [...state.ingredients];
+            const oneIndex = ingredients.findIndex(ingredient => ingredient.id === action.payload.one);
+            const twoIndex = ingredients.findIndex(ingredient => ingredient.id === action.payload.two);
+
+            const buf = ingredients[oneIndex];
+            ingredients[oneIndex] = ingredients[twoIndex];
+            ingredients[twoIndex] = buf;
+
+            return {
+                ...state,
+                ingredients
             }
         case CONSTRUCTOR_RESET:
             return {

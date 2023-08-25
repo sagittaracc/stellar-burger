@@ -3,6 +3,7 @@ import { post } from "../../utils/api";
 
 export const ADD_INGREDIENT = 'CONSTRUCTOR/ADD';
 export const DEL_INGREDIENT = 'CONSTRUCTOR/DEL';
+export const MOVE_INGREDIENT = 'CONSTRUCTOR/MOVE';
 export const CONSTRUCTOR_RESET = 'CONSTRUCTOR/RESET';
 
 export const CREATE_ORDER_REQUEST = 'CONSTRUCTOR/ORDER_REQUEST';
@@ -23,6 +24,16 @@ export const delIngredient = (id) => {
     return {
         type: DEL_INGREDIENT,
         payload: id
+    }
+}
+
+export const moveIngredient = (one, two) => {
+    return {
+        type: MOVE_INGREDIENT,
+        payload: {
+            one,
+            two
+        }
     }
 }
 
