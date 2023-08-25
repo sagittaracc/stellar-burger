@@ -15,7 +15,7 @@ import { ingredientPreview } from "../../services/ingredients/selectors";
 const BurgerIngredients = ({ data }) => {
     const [tab, setTab] = useState('bun');
 
-    const threshold = 0.5;
+    const threshold = 0.45;
     const [bunsRef, bunsInView] = useInView({threshold});
     const [saucesRef, saucesInView] = useInView({threshold});
     const [mainRef, mainInView] = useInView({threshold});

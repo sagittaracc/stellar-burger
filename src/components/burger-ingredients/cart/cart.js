@@ -7,7 +7,8 @@ import { useDrag } from 'react-dnd';
 const Cart = ({ ingredient }) => {
     const dispath = useDispatch();
     const [, dragRef] = useDrag({
-        type: "ingredient"
+        type: "ingredient",
+        item: ingredient
     });
 
     const openModal = () => {
@@ -15,9 +16,9 @@ const Cart = ({ ingredient }) => {
     };
 
     return (
-        <div ref={dragRef} onClick={openModal} className="text-center col pt-6 pb-10 pl-4 pr-4 position-relative">
-            <Counter count={1} size="default" extraClass="m-4" />
-            <img src={ingredient.image} />
+        <div onClick={openModal} className="text-center col pt-10 pb-10 pl-4 pr-4 position-relative">
+            <img ref={dragRef} src={ingredient.image} />
+            <Counter count={1} size="default" extraClass="m-1" />
             <div>
                 <span className="mr-2 align-top text_type_main-medium">{ingredient.price}</span>
                 <CurrencyIcon type="primary" />

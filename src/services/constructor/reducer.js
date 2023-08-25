@@ -27,7 +27,7 @@ export const constructorReducer = (state = initialState, action) => {
             }
 
             if (state.bun === null) {
-                return;
+                return state;
             }
 
             return {
