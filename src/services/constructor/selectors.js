@@ -14,3 +14,9 @@ export const orderHasItemsSelector = createSelector(getBun, getIngredients, (bun
 export const orderReadySelector = createSelector(getOrderRequest, getOrderError, getOrder, (orderRequest, orderError, order) => {
     return !orderRequest && !orderError && order;
 });
+
+export const getCost = createSelector(getBun, getIngredients, (bun, ingredients) => {
+    return bun
+        ? bun.price * 2 + ingredients.reduce((total, ingredient) => total + ingredient.price, 0)
+        : 0;
+});

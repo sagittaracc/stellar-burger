@@ -5,7 +5,7 @@ import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
 import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
-import { getBun, getIngredients, getOrder, orderHasItemsSelector, orderReadySelector } from '../../services/constructor/selectors';
+import { getBun, getCost, getIngredients, getOrder, orderHasItemsSelector, orderReadySelector } from '../../services/constructor/selectors';
 import { addIngredient, createOrder } from '../../services/constructor/actions';
 import { useDrop } from 'react-dnd';
 import useModal from '../../hooks/useModal';
@@ -16,14 +16,9 @@ const BurgerConstructor = ({  }) => {
     const order = useSelector(getOrder);
     const orderHasItems = useSelector(orderHasItemsSelector);
     const orderReady = useSelector(orderReadySelector);
+    const cost = useSelector(getCost);
     const [modalShown, openModal, closeModal] = useModal();
     const dispatch = useDispatch();
-
-    let cost = useMemo(() => {
-        return bun
-            ? bun.price * 2 + ingredients.reduce((total, ingredient) => total + ingredient.price, 0)
-            : 0;
-    }, [bun, ingredients]);
 
     const [, dropTarget] = useDrop({
         accept: "ingredient",
