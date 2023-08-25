@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredients from "./ingredients/ingredients";
@@ -16,7 +17,11 @@ const BurgerConstructor = ({  }) => {
 
     const dispatch = useDispatch();
 
-    let cost = 0;
+    let cost = useMemo(() => {
+        return bun
+            ? bun.price * 2 + ingredients.reduce((total, ingredient) => total + ingredient.price, 0)
+            : 0;
+    }, [bun, ingredients]);
 
     const [, dropTarget] = useDrop({
         accept: "ingredient",
