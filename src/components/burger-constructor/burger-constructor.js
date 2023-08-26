@@ -9,6 +9,7 @@ import { getBun, getCost, getIngredients, getOrder, orderHasItemsSelector, order
 import { addIngredient, createOrder } from '../../services/constructor/actions';
 import { useDrop } from 'react-dnd';
 import useModal from '../../hooks/useModal';
+import Placeholder from './placeholder/placeholder';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
@@ -35,6 +36,10 @@ const BurgerConstructor = ({  }) => {
 
     return (
         <div ref={dropTarget} className="flex columns h-100">
+            {
+                !bun &&
+                <Placeholder />
+            }
             <Bun position="top" data={bun} />
             <Ingredients data={ingredients} />
             <Bun position="bottom" data={bun} />
