@@ -5,11 +5,13 @@ import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
 import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
-import { getBun, getCost, getIngredients, getOrder, orderHasItemsSelector, orderReadySelector } from '../../services/constructor/selectors';
-import { addIngredient, createOrder } from '../../services/constructor/actions';
+import { getBun, getCost, getIngredients, orderHasItemsSelector } from '../../services/constructor/selectors';
+import { addIngredient } from '../../services/constructor/actions';
 import { useDrop } from 'react-dnd';
 import useModal from '../../hooks/useModal';
 import Placeholder from './placeholder/placeholder';
+import { getOrder, orderReadySelector } from '../../services/order/selectors';
+import { createOrder } from '../../services/order/actions';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
