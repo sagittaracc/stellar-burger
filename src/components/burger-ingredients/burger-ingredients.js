@@ -7,8 +7,8 @@ import Modal from "../modal/modal";
 import IngredientDetails from "./ingredient-details/ingredient-details";
 import IngredientBox from "./ingredient-box/ingredient-box";
 import { useInView } from 'react-intersection-observer';
-import { closePreview } from "../../services/ingredients/actions";
-import { ingredientPreview } from "../../services/ingredients/selectors";
+import { ingredientPreview } from "../../services/preview/selectors";
+import { closePreview } from "../../services/preview/actions";
 
 
 

@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ingredientPropTypes } from '../../types/ingredient';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { openPreview } from '../../../services/ingredients/actions';
 import { useDrag } from 'react-dnd';
 import { getIngredientCounts } from '../../../services/ingredients/selectors';
+import { openPreview } from '../../../services/preview/actions';
 
 const Cart = ({ ingredient }) => {
     const ingredientCounts = useSelector(getIngredientCounts);
