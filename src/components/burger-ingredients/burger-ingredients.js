@@ -1,58 +1,67 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredientPropTypes } from "../types/ingredient";
-import Cart from "./cart/cart";
 import Modal from "../modal/modal";
 import IngredientDetails from "./ingredient-details/ingredient-details";
-import useModal from "../../hooks/useModal";
+import IngredientBox from "./ingredient-box/ingredient-box";
+import { useInView } from 'react-intersection-observer';
+import { ingredientPreview } from "../../services/preview/selectors";
+import { closePreview } from "../../services/preview/actions";
 
 
 
 const BurgerIngredients = ({ data }) => {
     const [tab, setTab] = useState('bun');
-    const categories = [
-        { name: "bun", caption: "Булки" },
-        { name: "sauce", caption: "Соусы" },
-        { name: "main", caption: "Начинки" },
-    ];
 
-    const [modalShown, openModal, closeModal] = useModal();
-    const [current, setCurrent] = useState(null);
+    const threshold = 0.45;
+    const [bunsRef, bunsInView] = useInView({threshold});
+    const [saucesRef, saucesInView] = useInView({threshold});
+    const [mainRef, mainInView] = useInView({threshold});
+
+    useEffect(() => {
+        let tab = null;
+
+        if (bunsInView) {
+            tab = 'bun';
+        }
+        else if (saucesInView) {
+            tab = 'sauce';
+        }
+        else if (mainInView) {
+            tab = 'main';
+        }
+
+        setTab(tab);
+    }, [bunsInView, saucesInView, mainInView])
+
+    const [preview, ingredient] = useSelector(ingredientPreview);
+    const dispath = useDispatch();
+
+    const closeModal = () => {
+        dispath(closePreview());
+    }
 
     return (
         <div className="flex columns text text_type_main-default h-100">
             <h1>Соберите бургер</h1>
 
             <div className="flex">
-                <Tab value="bun" active={tab === 'bun'} onClick={setTab}>
-                    Булки
-                </Tab>
-                <Tab value="sauce" active={tab === 'sauce'} onClick={setTab}>
-                    Соусы
-                </Tab>
-                <Tab value="main" active={tab === 'main'} onClick={setTab}>
-                    Начинки
-                </Tab>
+                <Tab value="bun" active={tab === 'bun'}>Булки</Tab>
+                <Tab value="sauce" active={tab === 'sauce'}>Соусы</Tab>
+                <Tab value="main" active={tab === 'main'}>Начинки</Tab>
             </div>
 
             <div className="custom-scroll full-space overflow-auto">
-                {categories.map(
-                    category =>
-                        <React.Fragment key={category.name}>
-                            <h1 className="text-left pt-10">{category.caption}</h1>
-                            <div className="flex wrap pr-7">
-                                {
-                                    data[category.name].map(ingredient => <Cart onClick={() => {setCurrent(ingredient); openModal();}} key={ingredient._id} ingredient={ingredient}/>)
-                                }
-                            </div>
-                        </React.Fragment>
-                )}
+                <IngredientBox tab={bunsRef} title="Булки" category="bun" data={data} />
+                <IngredientBox tab={saucesRef} title="Соусы" category="sauce" data={data} />
+                <IngredientBox tab={mainRef} title="Начинки" category="main" data={data} />
             </div>
             {
-                modalShown && current &&
-                <Modal header="Детали ингредиента" onClose={() => {closeModal(); setCurrent(null)}}>
-                    <IngredientDetails ingredient={current} />
+                preview && ingredient &&
+                <Modal header="Детали ингредиента" onClose={closeModal}>
+                    <IngredientDetails ingredient={ingredient} />
                 </Modal>
             }
         </div>
