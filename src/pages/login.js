@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from './login.module.css';
+import styles from './form.module.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     return (
-        <div className={`${styles.form} text-center`}>
+        <div className={`${styles.form}`}>
             <h1>Вход</h1>
 
             <Input
@@ -23,7 +23,8 @@ const Login = () => {
                 placeholder="Пароль"
                 name="password"
                 value={password}
-                extraClass="mt-6" />
+                extraClass="mt-6"
+                icon="HideIcon" />
             <Button htmlType="button" type="primary" size="medium" extraClass="mt-6">
                 Войти
             </Button>
