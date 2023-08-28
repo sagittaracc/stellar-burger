@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Link } from 'react-router-dom';
 import styles from './form.module.css';
 
 const Register = () => {
@@ -21,7 +22,7 @@ const Register = () => {
             <Input
                 onChange={e => setEmail(e.target.value)}
                 type="text"
-                placeholder="Email"
+                placeholder="E-mail"
                 name="email"
                 value={email}
                 extraClass="mt-6" />
@@ -38,7 +39,7 @@ const Register = () => {
             </Button>
 
             <p className="text text_type_main-default mt-20">
-                Уже зарегистрированы? <a href="#">Войти</a></p>
+                Уже зарегистрированы? <Link to="/login">Войти</Link></p>
         </div>
     );
 }
