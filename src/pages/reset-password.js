@@ -14,7 +14,7 @@ const ResetPassword = () => {
             <Input
                 onChange={e => setPassword(e.target.value)}
                 type="password"
-                placeholder="Пароль"
+                placeholder="Введите новый пароль"
                 name="password"
                 value={password}
                 extraClass="mt-6"
