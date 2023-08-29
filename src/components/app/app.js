@@ -8,6 +8,8 @@ import Profile from '../../pages/profile/profile';
 import Ingredient from '../../pages/ingredient';
 import Credentials from '../../pages/profile/credentials';
 import Constructor from '../../pages/constructor';
+import NotFound from '../../pages/not-found';
+import Orders from '../../pages/profile/orders';
 
 function App() {
     return (
@@ -21,9 +23,11 @@ function App() {
                     <Route path='reset-password' element={<ResetPassword />} />
                     <Route path='profile/*' element={<Profile />}>
                         <Route index element={<Credentials />} />
-                        <Route path='orders' element={<span>Orders</span>} />
+                        <Route path='orders' element={<Orders />} />
+                        <Route path='logout' element={<span>Logout</span>} />
                     </Route>
                     <Route path='ingredients/:id' element={<Ingredient />} />
+                    <Route path='*' element={<NotFound />} />
                 </Route>
             </Routes>
         </BrowserRouter>

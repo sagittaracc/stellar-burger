@@ -1,5 +1,5 @@
 import styles from './profile.module.css';
-import NavLink from '../../components/nav-link/nav-link';
+import CustomLink from '../../components/custom-link/custom-link';
 import { Outlet } from 'react-router-dom';
 
 const Profile = () => {
@@ -7,9 +7,9 @@ const Profile = () => {
         <div className={`${styles.profile} flex`}>
             <div className="col">
                 <ul className={`${styles.nav} m-0 p-0 pb-20`}>
-                    <li><NavLink to="" text="Профиль" size="medium" /></li>
-                    <li><NavLink to="orders" text="История заказов" size="medium" /></li>
-                    <li><NavLink to="logout" text="Выход" size="medium"/></li>
+                    <li><CustomLink end to="" text="Профиль" size="medium" /></li>
+                    <li><CustomLink to="orders" text="История заказов" size="medium" /></li>
+                    <li><CustomLink to="logout" text="Выход" size="medium"/></li>
                 </ul>
                 <p className="text text_color_inactive">В этом разделе вы можете изменить свои персональные данные</p>
             </div>
