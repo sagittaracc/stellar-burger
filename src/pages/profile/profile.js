@@ -8,7 +8,7 @@ const Profile = () => {
     const [password, setPassword] = useState('11111');
 
     return (
-        <div style={{ paddingTop: 100 }} className="flex">
+        <div className={`${styles.profile} flex`}>
             <div className="col">
                 <ul className={`${styles.nav} text text_type_main-medium pb-20`}>
                     <li>Профиль</li>
