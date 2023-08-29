@@ -9,6 +9,7 @@ import Ingredient from '../../pages/ingredient';
 import styles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import { Link } from 'react-router-dom';
+import Credentials from '../../pages/profile/credentials';
 
 function App() {
     return (
@@ -25,7 +26,10 @@ function App() {
                     <Route path='/register' element={<Register />} />
                     <Route path='/forgot-password' element={<ForgotPassword />} />
                     <Route path='/reset-password' element={<ResetPassword />} />
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/profile/*' element={<Profile />}>
+                        <Route path='' element={<Credentials />} />
+                        <Route path='orders' element={<p>Orders</p>} />
+                    </Route>
                     <Route path='/ingredients/:id' element={<Ingredient />} />
                 </Routes>
             </main>
