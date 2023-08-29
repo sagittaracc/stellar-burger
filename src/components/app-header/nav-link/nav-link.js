@@ -1,21 +1,25 @@
+import { cloneElement } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const NavLink = ({ link, text, type, children }) => {
-    var colorClass = type === 'active' ? 'text_color_primary' : 'text_color_inactive';
+const NvLink = ({to, active, text, icon}) => {
+    const textClass = active ? 'text_color_primary' : 'text_color_inactive';
+    const iconType = active ? 'primary' : 'secondary';
+    const iconElement = cloneElement(icon, {type: iconType});
 
     return (
-        <a href={link} className="text-decoration-none">
-            <span className="pr-2 align-middle">{children}</span>
-            <span className={`text text_type_main-default ${colorClass}`}>{text}</span>
-        </a>
+        <Link to={to} className="text-decoration-none">
+            <span className="pr-2 align-middle">{iconElement}</span>
+            <span className={`text text_type_main-default ${textClass}`}>{text}</span>
+        </Link>
     )
 }
 
-NavLink.propTypes = {
-    link: PropTypes.string,
+NvLink.propTypes = {
+    to: PropTypes.string,
+    active: PropTypes.bool,
     text: PropTypes.string.isRequired,
-    type: PropTypes.string,
-    children: PropTypes.node
+    icon: PropTypes.node
 };
 
-export default NavLink;
+export default NvLink;
