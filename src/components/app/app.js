@@ -21,7 +21,7 @@ function App() {
                     <Route path='reset-password' element={<ResetPassword />} />
                     <Route path='profile/*' element={<Profile />}>
                         <Route path='' element={<Credentials />} />
-                        <Route path='orders' element={<p>Orders</p>} />
+                        <Route path='orders' element={<span>Orders</span>} />
                     </Route>
                     <Route path='ingredients/:id' element={<Ingredient />} />
                 </Route>

@@ -1,19 +1,14 @@
 import { cloneElement, useEffect, useState } from "react";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const NavLink = ({to, text, icon, size, exact, starts}) => {
+const NavLink = ({to, text, icon, size}) => {
     const [active, setActive] = useState(false);
-    const location = useLocation();
+    const match = useMatch(to);
 
     useEffect(() => {
-        if (exact) {
-            setActive(location.pathname === to);
-        }
-        else if (starts) {
-            setActive(location.pathname.startsWith(to));
-        }
-    }, [location]);
+        setActive(match);
+    }, [match]);
 
     const textClass = active ? 'text_color_primary' : 'text_color_inactive';
     const textSize = size ? `text_type_main-${size}` : 'text_type_main-default';
@@ -37,8 +32,6 @@ NavLink.propTypes = {
     text: PropTypes.string.isRequired,
     icon: PropTypes.node,
     size: PropTypes.string,
-    exact: PropTypes.bool,
-    starts: PropTypes.bool
 };
 
 export default NavLink;
