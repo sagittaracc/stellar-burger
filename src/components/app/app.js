@@ -14,13 +14,13 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Main />}>
-                    <Route path='' element={<Constructor />} />
+                    <Route index element={<Constructor />} />
                     <Route path='login' element={<Login />} />
                     <Route path='register' element={<Register />} />
                     <Route path='forgot-password' element={<ForgotPassword />} />
                     <Route path='reset-password' element={<ResetPassword />} />
                     <Route path='profile/*' element={<Profile />}>
-                        <Route path='' element={<Credentials />} />
+                        <Route index element={<Credentials />} />
                         <Route path='orders' element={<span>Orders</span>} />
                     </Route>
                     <Route path='ingredients/:id' element={<Ingredient />} />
