@@ -1,8 +1,15 @@
-import { cloneElement } from "react";
-import { Link } from 'react-router-dom';
+import { cloneElement, useEffect, useState } from "react";
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const NvLink = ({to, active, text, icon}) => {
+const NavLink = ({to, text, icon}) => {
+    const [active, setActive] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        setActive(location.pathname === to);
+    }, [location]);
+
     const textClass = active ? 'text_color_primary' : 'text_color_inactive';
     const iconType = active ? 'primary' : 'secondary';
     const iconElement = cloneElement(icon, {type: iconType});
@@ -15,11 +22,10 @@ const NvLink = ({to, active, text, icon}) => {
     )
 }
 
-NvLink.propTypes = {
+NavLink.propTypes = {
     to: PropTypes.string,
-    active: PropTypes.bool,
     text: PropTypes.string.isRequired,
     icon: PropTypes.node
 };
 
-export default NvLink;
+export default NavLink;
