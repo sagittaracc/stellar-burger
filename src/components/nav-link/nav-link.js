@@ -3,19 +3,14 @@ import { Link, useMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const NavLink = ({to, text, icon, size}) => {
-    const [active, setActive] = useState(false);
     const match = useMatch(to);
 
-    useEffect(() => {
-        setActive(match);
-    }, [match]);
-
-    const textClass = active ? 'text_color_primary' : 'text_color_inactive';
+    const textClass = match ? 'text_color_primary' : 'text_color_inactive';
     const textSize = size ? `text_type_main-${size}` : 'text_type_main-default';
     let iconElement = null;
 
     if (icon) {
-        const iconType = active ? 'primary' : 'secondary';
+        const iconType = match ? 'primary' : 'secondary';
         iconElement = cloneElement(icon, {type: iconType});
     }
 
