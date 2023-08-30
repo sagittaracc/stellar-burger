@@ -1,40 +1,41 @@
-import { useState } from 'react';
-import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from 'react-router-dom';
 import styles from './form.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFormErrorSelector } from '../services/form/selectors';
+import useForm from '../hooks/useForm';
+import { login } from '../services/login/actions';
+import Alert from '../components/alert/alert';
+import FormInput from '../components/form/form-input';
+import SubmitButton from '../components/form/submit-button';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    const error = useSelector(getFormErrorSelector);
+
+    const { field, handleSubmit } = useForm();
+
+    const onSubmit = (form) => {
+        dispatch(login(form));
+    }
 
     return (
-        <div className={`${styles.form}`}>
-            <h1>Вход</h1>
+        <>
+            {error && <Alert message={error} type="danger" />}
 
-            <Input
-                onChange={e => setEmail(e.target.value)}
-                type="text"
-                placeholder="E-mail"
-                name="email"
-                value={email}
-                extraClass="mt-6" />
-            <Input
-                onChange={e => setPassword(e.target.value)}
-                type="password"
-                placeholder="Пароль"
-                name="password"
-                value={password}
-                extraClass="mt-6"
-                icon="HideIcon" />
-            <Button htmlType="button" type="primary" size="medium" extraClass="mt-6">
-                Войти
-            </Button>
+            <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form}`}>
+                <h1>Вход</h1>
 
-            <p className="text text_type_main-default mt-20">
-                Вы - новый пользователь? <Link to="/register">Зарегистрироваться</Link></p>
-            <p className="text text_type_main-default mt-4">
-                Забыли пароль? <Link to="/forgot-password">Восстановить пароль</Link></p>
-        </div>
+                <FormInput {...field('email')} type="email" placeholder="E-mail" />
+                <FormInput {...field('password')} type="password" placeholder="Пароль" icon="HideIcon" />
+
+                <SubmitButton type="primary">Войти</SubmitButton>
+
+                <p className="text text_type_main-default mt-20">
+                    Вы - новый пользователь? <Link to="/register">Зарегистрироваться</Link></p>
+                <p className="text text_type_main-default mt-4">
+                    Забыли пароль? <Link to="/forgot-password">Восстановить пароль</Link></p>
+            </form>
+        </>
     );
 }
 

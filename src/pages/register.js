@@ -12,7 +12,7 @@ const Register = () => {
     const dispatch = useDispatch();
     const error = useSelector(getFormErrorSelector);
 
-    const {field, handleSubmit} = useForm();
+    const { field, handleSubmit } = useForm();
 
     const onSubmit = (form) => {
         dispatch(register(form));
@@ -20,13 +20,15 @@ const Register = () => {
 
     return (
         <>
-            { error && <Alert message={error} type="danger" /> }
+            {error && <Alert message={error} type="danger" />}
 
             <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form}`}>
                 <h1>Регистрация</h1>
-                <FormInput {...field('name')} type="text" placeholder="Имя"  />
+
+                <FormInput {...field('name')} type="text" placeholder="Имя" />
                 <FormInput {...field('email')} type="email" placeholder="E-mail" />
                 <FormInput {...field('password')} type="password" placeholder="Пароль" icon="HideIcon" />
+
                 <SubmitButton type="primary">Зарегистрироваться</SubmitButton>
 
                 <p className="text text_type_main-default mt-20">
