@@ -7,15 +7,17 @@ import { login } from '../services/login/actions';
 import Alert from '../components/alert/alert';
 import FormInput from '../components/form/form-input';
 import SubmitButton from '../components/form/submit-button';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const error = useSelector(getFormErrorSelector);
 
     const { field, handleSubmit } = useForm();
 
     const onSubmit = (form) => {
-        dispatch(login(form));
+        dispatch(login(form, (home) => navigate(home)));
     }
 
     return (
