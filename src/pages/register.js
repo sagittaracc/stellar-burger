@@ -3,9 +3,9 @@ import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-component
 import { Link } from 'react-router-dom';
 import styles from './form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getErrorSelector, isRequestSelector } from '../services/register/selectors';
 import { register } from '../services/register/actions';
 import Alert from '../components/alert/alert';
+import { isRequestSelector, getErrorSelector } from '../services/form/selectors';
 
 const Register = () => {
     const dispatch = useDispatch();

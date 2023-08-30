@@ -4,7 +4,7 @@ import { constructorReducer } from "./constructor/reducer";
 import { orderReducer } from "./order/reducer";
 import { previewReducer } from "./preview/reducer";
 import { userReducer } from "./user/reducer";
-import { registerReducer } from "./register/reducer";
+import { formReducer } from "./form/reducer";
 
 const rootReducer = combineReducers({
     ingredients: ingredientsReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     construct: constructorReducer,
     order: orderReducer,
     user: userReducer,
-    register: registerReducer
+    form: formReducer,
 });
 
 export default rootReducer;

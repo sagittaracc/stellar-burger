@@ -1,7 +1,7 @@
 import {
-    REGISTER_REQUEST,
-    REGISTER_SUCCESS,
-    REGISTER_FAIL
+    FORM_REQUEST,
+    FORM_SUCCESS,
+    FORM_FAIL
 } from './actions';
 
 const initialState = {
@@ -9,21 +9,21 @@ const initialState = {
     error: false,
 }
 
-export const registerReducer = (state = initialState, action) => {
+export const formReducer = (state = initialState, action) => {
     switch (action.type) {
-        case REGISTER_REQUEST:
+        case FORM_REQUEST:
             return {
                 ...state,
                 isRequest: true,
                 error: null
             };
-        case REGISTER_SUCCESS:
+        case FORM_SUCCESS:
             return {
                 ...state,
                 isRequest: false,
                 error: null
             };
-        case REGISTER_FAIL:
+        case FORM_FAIL:
             return {
                 ...state,
                 isRequest: false,
