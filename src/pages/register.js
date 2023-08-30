@@ -30,43 +30,29 @@ const Register = () => {
     }
 
     return (
-        <div className={`${styles.form}`}>
-            {
-                error && <Alert message={error} type="danger" />
-            }
-            <h1>Регистрация</h1>
-            <Input
-                disabled={isRequest}
-                onChange={handleChange}
-                type="text"
-                placeholder="Имя"
-                name="name"
-                value={form.name}
-                extraClass="mt-6" />
-            <Input
-                disabled={isRequest}
-                onChange={handleChange}
-                type="text"
-                placeholder="E-mail"
-                name="email"
-                value={form.email}
-                extraClass="mt-6" />
-            <Input
-                disabled={isRequest}
-                onChange={handleChange}
-                type="password"
-                placeholder="Пароль"
-                name="password"
-                value={form.password}
-                extraClass="mt-6"
-                icon="HideIcon" />
-            <Button disabled={isRequest} onClick={doRegister} htmlType="button" type="primary" size="medium" extraClass="mt-6">
-                Зарегистрироваться
-            </Button>
+        <>
+            { error && <Alert message={error} type="danger" /> }
+            <div className={`${styles.form}`}>
+                <h1>Регистрация</h1>
+                <Input
+                    disabled={isRequest} onChange={handleChange} type="text" placeholder="Имя"
+                    name="name" value={form.name} extraClass="mt-6" />
+                <Input
+                    disabled={isRequest} onChange={handleChange} type="text" placeholder="E-mail"
+                    name="email" value={form.email} extraClass="mt-6" />
+                <Input
+                    disabled={isRequest} onChange={handleChange} type="password" placeholder="Пароль"
+                    name="password" value={form.password} extraClass="mt-6" icon="HideIcon" />
+                <Button
+                    disabled={isRequest} onClick={doRegister} htmlType="button" type="primary"
+                    size="medium" extraClass="mt-6">
+                    Зарегистрироваться
+                </Button>
 
-            <p className="text text_type_main-default mt-20">
-                Уже зарегистрированы? <Link to="/login">Войти</Link></p>
-        </div>
+                <p className="text text_type_main-default mt-20">
+                    Уже зарегистрированы? <Link to="/login">Войти</Link></p>
+            </div>
+        </>
     );
 }
 
