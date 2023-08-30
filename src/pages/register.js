@@ -4,13 +4,13 @@ import styles from './form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../services/register/actions';
 import Alert from '../components/alert/alert';
-import { isRequestSelector, getErrorSelector } from '../services/form/selectors';
 import useForm from '../hooks/useForm';
+import { getFormErrorSelector, isFormRequestSelector } from "../services/form/selectors";
 
 const Register = () => {
     const dispatch = useDispatch();
-    const isRequest = useSelector(isRequestSelector);
-    const error = useSelector(getErrorSelector);
+    const isRequest = useSelector(isFormRequestSelector);
+    const error = useSelector(getFormErrorSelector);
 
     const form = useForm();
     const {field, handleSubmit} = form;
