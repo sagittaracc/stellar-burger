@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     registerRequest: false,
-    registerError: false
+    registerError: false,
+    errorMessage: null
 }
 
 export const registerReducer = (state = initialState, action) => {
@@ -15,19 +16,22 @@ export const registerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 registerRequest: true,
-                registerError: false
+                registerError: false,
+                errorMessage: null
             };
         case REGISTER_SUCCESS:
             return {
                 ...state,
                 registerRequest: false,
-                registerError: false
+                registerError: false,
+                errorMessage: null
             };
         case REGISTER_FAIL:
             return {
                 ...state,
                 registerRequest: false,
-                registerError: true
+                registerError: true,
+                errorMessage: action.payload
             }
         default:
             return state;

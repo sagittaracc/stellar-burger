@@ -1,7 +1,14 @@
 import { STELLAR_BURGER_API } from '../constants/api';
 
+const responseError = (message) => {
+    return {
+        success: false,
+        message: message
+    }
+}
+
 export const request = (url, method, data) => {
-    return new Promise((resolve, rejects) => {
+    return new Promise((resolve, reject) => {
         fetch(
             STELLAR_BURGER_API + url,
             method === "POST"
@@ -12,13 +19,17 @@ export const request = (url, method, data) => {
                 }
                 : null
         )
+        .then(response => response.json())
         .then(response => {
-            if (response.ok) {
-                resolve(response.json());
+            if (response.success) {
+                resolve(response);
             }
             else {
-                throw new Error('Network failure!');
+                reject(response);
             }
+        })
+        .catch(() => {
+            reject(responseError("Network failure!"));
         })
     })
 }

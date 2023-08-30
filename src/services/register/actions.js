@@ -1,4 +1,5 @@
 import { post } from "../../utils/api";
+import { saveTokens } from "../../utils/token";
 import { setUser } from "../user/actions";
 
 export const REGISTER_REQUEST = 'REGISTER/REQUEST';
@@ -10,12 +11,11 @@ export const register = (email, password, name) => (dispatch) => {
 
     post('/auth/register', { email, password, name })
         .then(response => {
-            if (response.success) {
-                dispatch(setUser(response.user));
-                dispatch({ type: REGISTER_SUCCESS });
-            }
+            saveTokens(response.accessToken, response.refreshToken);
+            dispatch(setUser(response.user));
+            dispatch({ type: REGISTER_SUCCESS });
         })
-        .catch(error => {
-            dispatch({ type: REGISTER_FAIL });
+        .catch((response) => {
+            dispatch({ type: REGISTER_FAIL, payload: response.message });
         })
 }
