@@ -6,12 +6,12 @@ export const REGISTER_REQUEST = 'REGISTER/REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER/SUCCESS';
 export const REGISTER_FAIL = 'REGISTER/FAIL';
 
-export const register = (email, password, name) => (dispatch) => {
+export const register = ({email, password, name}) => (dispatch) => {
     dispatch({ type: REGISTER_REQUEST });
 
     post('/auth/register', { email, password, name })
         .then(response => {
-            saveTokens(response.accessToken, response.refreshToken);
+            saveTokens(response);
             dispatch(setUser(response.user));
             dispatch({ type: REGISTER_SUCCESS });
         })

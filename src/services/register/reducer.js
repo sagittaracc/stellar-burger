@@ -5,9 +5,8 @@ import {
 } from './actions';
 
 const initialState = {
-    registerRequest: false,
-    registerError: false,
-    errorMessage: null
+    isRequest: false,
+    error: false,
 }
 
 export const registerReducer = (state = initialState, action) => {
@@ -15,23 +14,20 @@ export const registerReducer = (state = initialState, action) => {
         case REGISTER_REQUEST:
             return {
                 ...state,
-                registerRequest: true,
-                registerError: false,
-                errorMessage: null
+                isRequest: true,
+                error: null
             };
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                registerRequest: false,
-                registerError: false,
-                errorMessage: null
+                isRequest: false,
+                error: null
             };
         case REGISTER_FAIL:
             return {
                 ...state,
-                registerRequest: false,
-                registerError: true,
-                errorMessage: action.payload
+                isRequest: false,
+                error: action.payload
             }
         default:
             return state;
