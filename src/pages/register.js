@@ -5,6 +5,7 @@ import styles from './form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getErrorSelector, isRequestSelector } from '../services/register/selectors';
 import { register } from '../services/register/actions';
+import Alert from '../components/alert/alert';
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Register = () => {
     return (
         <div className={`${styles.form}`}>
             {
-                error && <p className="alert alert-danger text_type_main-medium">{error}</p>
+                error && <Alert message={error} type="danger" />
             }
             <h1>Регистрация</h1>
             <Input

@@ -29,7 +29,7 @@ export const request = (url, method, data) => {
             }
         })
         .catch(() => {
-            reject(responseError("Network failure!"));
+            reject(responseError("Internal Server Error"));
         })
     })
 }
