@@ -64,3 +64,7 @@ export const secureRequest = (url, method, data) => {
 export const secureGet = (url) => {
     return secureRequest(url, "GET");
 }
+
+export const securePatch = (url) => {
+    return secureRequest(url, "PATCH");
+}
