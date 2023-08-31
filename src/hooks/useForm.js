@@ -8,10 +8,10 @@ const useForm = () => {
     const [form, setForm] = useState({});
     const [touched, setTouched] = useState(false);
 
-    const field = (name, value) => {
+    const field = (name) => {
         return {
             name,
-            value: form[name] || value || '',
+            value: form[name] || '',
             onChange: (e) => {
                 setForm({
                     ...form,
