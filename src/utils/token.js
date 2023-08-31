@@ -22,17 +22,20 @@ export const getRefreshToken = () => {
 }
 
 export const refreshToken = (callback) => {
-    post('/auth/token', { token: getRefreshToken() })
-        .then(response => {
-            saveTokens(response);
-            callback();
-        });
+    return new Promise(resolve => {
+        post('/auth/token', { token: getRefreshToken() })
+            .then(response => {
+                saveTokens(response);
+                resolve();
+            });
+    })
 }
 
 export const refreshTokenIfExpired = () => {
     return new Promise(resolve => {
         if (!getAccessToken()) {
-            refreshToken(() => (resolve()));
+            refreshToken()
+                .then(() => resolve());
         }
         else {
             resolve();

@@ -12,16 +12,14 @@ export const request = (url, method, data, headers) => {
     return new Promise((resolve, reject) => {
         fetch(
             STELLAR_BURGER_API + url,
-            method === "POST"
-                ? {
-                    method: method,
-                    headers: {
-                        ...headers,
-                        "Content-Type": "application/json"
-                    },
-                    body: data ? JSON.stringify(data) : null
-                }
-                : null
+            {
+                method,
+                headers: {
+                    ...headers,
+                    "Content-Type": "application/json"
+                },
+                body: data ? JSON.stringify(data) : null
+            }
         )
         .then(response => response.json())
         .then(response => {
@@ -39,19 +37,30 @@ export const request = (url, method, data, headers) => {
 }
 
 export const get = (url) => {
-    return request(url);
+    return request(url, "GET");
 }
 
 export const post = (url, data) => {
     return request(url, "POST", data);
 }
 
-export const secureRequest = (url, method, data, headers) => {
-    refreshTokenIfExpired()
-        .then(() => request(url, method, data,
-            {
-                ...headers,
-                "Authorization": getAccessToken()
-            }
-        ));
+export const secureRequest = (url, method, data) => {
+    return new Promise((resolve, reject) => {
+        refreshTokenIfExpired()
+            .then(() => request(url, method, data,
+                {
+                    authorization: getAccessToken()
+                }
+            ))
+            .then(response => {
+                resolve(response);
+            })
+            .catch(error => {
+                reject(responseError("Internal Server Error"));
+            })
+    })
+}
+
+export const secureGet = (url) => {
+    return secureRequest(url, "GET");
 }

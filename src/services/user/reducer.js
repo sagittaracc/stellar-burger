@@ -4,8 +4,8 @@ import {
 } from './actions';
 
 const initialState = {
-    email: null,
-    name: null
+    email: '',
+    name: ''
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -19,8 +19,8 @@ export const userReducer = (state = initialState, action) => {
         case UNSET_USER:
             return {
                 ...state,
-                email: null,
-                name: null
+                email: '',
+                name: ''
             }
         default:
             return state;
