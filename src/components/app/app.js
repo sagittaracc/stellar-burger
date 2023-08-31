@@ -24,7 +24,6 @@ function App() {
                     <Route path='profile/*' element={<Profile />}>
                         <Route index element={<Credentials />} />
                         <Route path='orders' element={<Orders />} />
-                        <Route path='logout' element={<span>Logout</span>} />
                     </Route>
                     <Route path='ingredients/:id' element={<Ingredient />} />
                     <Route path='*' element={<NotFound />} />
