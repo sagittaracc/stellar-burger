@@ -1,5 +1,5 @@
 import { STELLAR_BURGER_API } from '../constants/api';
-import { getAccessToken } from './token';
+import { getAccessToken, refreshTokenIfExpired } from './token';
 
 const responseError = (message) => {
     return {
@@ -8,14 +8,17 @@ const responseError = (message) => {
     }
 }
 
-export const request = (url, method, data) => {
+export const request = (url, method, data, headers) => {
     return new Promise((resolve, reject) => {
         fetch(
             STELLAR_BURGER_API + url,
             method === "POST"
                 ? {
                     method: method,
-                    headers: {"Content-Type": "application/json"},
+                    headers: {
+                        ...headers,
+                        "Content-Type": "application/json"
+                    },
                     body: data ? JSON.stringify(data) : null
                 }
                 : null
@@ -43,9 +46,12 @@ export const post = (url, data) => {
     return request(url, "POST", data);
 }
 
-export const secureRequest = (...args) => {
-    /**
-     * refreshTokenIfExpired()
-     *     .then(() => request(...args))
-     */
+export const secureRequest = (url, method, data, headers) => {
+    refreshTokenIfExpired()
+        .then(() => request(url, method, data,
+            {
+                ...headers,
+                "Authorization": getAccessToken()
+            }
+        ));
 }
