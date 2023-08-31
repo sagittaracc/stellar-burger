@@ -7,10 +7,10 @@ import { useState } from 'react';
 const useForm = () => {
     const [form, setForm] = useState({});
 
-    const field = (name) => {
+    const field = (name, value) => {
         return {
             name,
-            value: form[name] || '',
+            value: form[name] || value || '',
             onChange: (e) => {
                 setForm({
                     ...form,

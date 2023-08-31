@@ -18,9 +18,9 @@ const Credentials = () => {
 
     return (
         <>
-            <FormEditableInput {...field("name")} type="text" placeholder="Имя" value={name} />
-            <FormEditableInput {...field("email")} type="email" placeholder="E-mail" value={email} />
-            <FormEditableInput {...field("password")} type="password" placeholder="Пароль" value={password} />
+            <FormEditableInput {...field("name", name)} type="text" placeholder="Имя" />
+            <FormEditableInput {...field("email", email)} type="email" placeholder="E-mail" />
+            <FormEditableInput {...field("password", password)} type="password" placeholder="Пароль" />
         </>
     );
 }
