@@ -6,7 +6,7 @@ const SubmitButton = (props) => {
     const isRequest = useSelector(isFormRequestSelector);
 
     return (
-        <Button disabled={isRequest} htmlType="submit" size="medium" extraClass="mt-6" {...props}>
+        <Button disabled={isRequest} htmlType="submit" size="medium" extraClass="mb-6" {...props}>
             {props.children}
         </Button>
     );

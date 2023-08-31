@@ -65,6 +65,6 @@ export const secureGet = (url) => {
     return secureRequest(url, "GET");
 }
 
-export const securePatch = (url) => {
-    return secureRequest(url, "PATCH");
+export const securePatch = (url, data) => {
+    return secureRequest(url, "PATCH", data);
 }

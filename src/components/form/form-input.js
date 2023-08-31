@@ -6,7 +6,7 @@ const FormInput = (props) => {
     const isRequest = useSelector(isFormRequestSelector);
 
     return (
-        <Input disabled={isRequest} extraClass="mt-6" {...props} />
+        <Input disabled={isRequest} extraClass="mb-6" {...props} />
     );
 }
 

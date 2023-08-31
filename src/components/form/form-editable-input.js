@@ -9,7 +9,7 @@ const FormEditableInput = (props) => {
     }
 
     return (
-        <Input disabled={disabled} onIconClick={handleClick} icon="EditIcon" extraClass="mt-6" {...props} />
+        <Input disabled={disabled} onIconClick={handleClick} icon="EditIcon" extraClass="mb-6" {...props} />
     );
 }
 

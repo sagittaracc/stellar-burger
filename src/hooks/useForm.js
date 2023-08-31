@@ -6,6 +6,7 @@ import { useState } from 'react';
  */
 const useForm = () => {
     const [form, setForm] = useState({});
+    const [touched, setTouched] = useState(false);
 
     const field = (name, value) => {
         return {
@@ -15,16 +16,19 @@ const useForm = () => {
                 setForm({
                     ...form,
                     [e.target.name]: e.target.value
-                })
+                });
+                setTouched(true);
             }
         }
     }
 
     return {
+        touched,
         field,
         handleSubmit: (onSubmit) => (e) => {
             e.preventDefault();
             onSubmit(form);
+            setTouched(false);
         }
     };
 }
