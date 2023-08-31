@@ -15,3 +15,6 @@ export const getAccessToken = () => {
 export const getRefreshToken = () => {
     return localStorage.getItem('refreshToken');
 }
+
+export const refreshTokenIfExpired = () => {
+}

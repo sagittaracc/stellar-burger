@@ -1,4 +1,5 @@
 import { STELLAR_BURGER_API } from '../constants/api';
+import { getAccessToken } from './token';
 
 const responseError = (message) => {
     return {
@@ -40,4 +41,11 @@ export const get = (url) => {
 
 export const post = (url, data) => {
     return request(url, "POST", data);
+}
+
+export const secureRequest = (...args) => {
+    /**
+     * refreshTokenIfExpired()
+     *     .then(() => request(...args))
+     */
 }
