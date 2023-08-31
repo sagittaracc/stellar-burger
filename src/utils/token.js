@@ -21,21 +21,17 @@ export const getRefreshToken = () => {
     return localStorage.getItem('refreshToken');
 }
 
-export const refreshToken = (callback) => {
-    return new Promise(resolve => {
-        post('/auth/token', { token: getRefreshToken() })
-            .then(response => {
-                saveTokens(response);
-                resolve();
-            });
-    })
-}
-
 export const refreshTokenIfExpired = () => {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         if (!getAccessToken()) {
-            refreshToken()
-                .then(() => resolve());
+            post('/auth/token', { token: getRefreshToken() })
+                .then(response => {
+                    saveTokens(response);
+                    resolve();
+                })
+                .catch(error => {
+                    reject(error);
+                })
         }
         else {
             resolve();

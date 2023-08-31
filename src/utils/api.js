@@ -56,7 +56,7 @@ export const secureRequest = (url, method, data) => {
                 resolve(response);
             })
             .catch(error => {
-                reject(responseError("Internal Server Error"));
+                reject(error);
             })
     })
 }
