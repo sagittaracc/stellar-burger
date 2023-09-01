@@ -1,19 +1,17 @@
 import { post } from "../../utils/api";
 import { saveTokens } from "../../utils/token";
-import { FORM_FAIL, FORM_REQUEST, FORM_SUCCESS } from "../form/actions"
-import { setUser } from "../user/actions";
+import { AUTH_REQUEST, UNSET_AUTH, setUser } from "../auth/actions";
 
 export const login = ({ email, password }, gotoPage) => (dispatch) => {
-    dispatch({ type: FORM_REQUEST });
+    dispatch({ type: AUTH_REQUEST });
 
     post('/auth/login', { email, password })
         .then(response => {
             saveTokens(response);
             dispatch(setUser(response.user));
-            dispatch({ type: FORM_SUCCESS });
             gotoPage('/');
         })
         .catch(error => {
-            dispatch({ type: FORM_FAIL, payload: error.message });
+            dispatch({ type: UNSET_AUTH });
         })
 }

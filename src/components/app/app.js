@@ -23,8 +23,8 @@ function App() {
                     <Route path='forgot-password' element={<ForgotPassword />} />
                     <Route path='reset-password' element={<ResetPassword />} />
                     <Route path='profile/*' element={<ProtectedRoute><Profile /></ProtectedRoute>}>
-                        <Route index element={<ProtectedRoute><Credentials /></ProtectedRoute>} />
-                        <Route path='orders' element={<ProtectedRoute><Orders /></ProtectedRoute>} />
+                        <Route index element={<Credentials />} />
+                        <Route path='orders' element={<Orders />} />
                     </Route>
                     <Route path='ingredients/:id' element={<Ingredient />} />
                     <Route path='*' element={<NotFound />} />

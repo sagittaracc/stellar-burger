@@ -1,12 +1,25 @@
-import { useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
-import { isAuthSelector } from "../../services/user/selectors";
+import { getAuthCheckedSelector, getAuthSuccessSelector } from "../../services/auth/selectors";
+import { getUser } from '../../services/auth/actions';
 
 const ProtectedRoute = ({ anonymous = false, children }) => {
-    const isAuth = useSelector(isAuthSelector);
+    const dispatch = useDispatch();
     const location = useLocation();
 
-    if (!isAuth && !anonymous) {
+    const authChecked = useSelector(getAuthCheckedSelector);
+    const authSuccess = useSelector(getAuthSuccessSelector);
+
+    useEffect(() => {
+        dispatch(getUser());
+    }, [])
+
+    if (!authChecked) {
+        return null;
+    }
+
+    if (!authSuccess && !anonymous) {
         return <Navigate to="/login" state={{ from: location }} />
     }
 
