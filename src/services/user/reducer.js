@@ -5,7 +5,8 @@ import {
 
 const initialState = {
     email: '',
-    name: ''
+    name: '',
+    auth: false
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -14,13 +15,15 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 email: action.payload.email,
-                name: action.payload.name
+                name: action.payload.name,
+                auth: true
             }
         case UNSET_USER:
             return {
                 ...state,
                 email: '',
-                name: ''
+                name: '',
+                auth: false
             }
         default:
             return state;
