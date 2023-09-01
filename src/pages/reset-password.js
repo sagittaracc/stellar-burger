@@ -1,38 +1,41 @@
-import { useState } from 'react';
-import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import styles from './form.module.css';
+import useForm from '../hooks/useForm';
+import FormInput from '../components/form/form-input';
+import SubmitButton from '../components/form/submit-button';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFormErrorSelector } from '../services/form/selectors';
+import Alert from '../components/alert/alert';
+import { resetPassword } from '../services/reset-password/actions';
+import { useNavigate } from 'react-router-dom';
 
 const ResetPassword = () => {
-    const [password, setPassword] = useState('');
-    const [code, setCode] = useState('');
+    const dispatch = useDispatch();
+    const error = useSelector(getFormErrorSelector);
+    const navigate = useNavigate();
+
+    const { field, handleSubmit } = useForm();
+
+    const onSubmit = (form) => {
+        dispatch(resetPassword(form, () => navigate('/')));
+    }
 
     return (
-        <div className={`${styles.form}`}>
-            <h1>Восстановление пароля</h1>
+        <>
+            { error && <Alert message={error} type="danger" /> }
 
-            <Input
-                onChange={e => setPassword(e.target.value)}
-                type="password"
-                placeholder="Введите новый пароль"
-                name="password"
-                value={password}
-                extraClass="mt-6"
-                icon="HideIcon" />
-            <Input
-                onChange={e => setCode(e.target.value)}
-                type="text"
-                placeholder="Введите код из письма"
-                name="code"
-                value={code}
-                extraClass="mt-6" />
-            <Button htmlType="button" type="primary" size="medium" extraClass="mt-6">
-                Сохранить
-            </Button>
+            <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form}`}>
+                <h1>Восстановление пароля</h1>
 
-            <p className="text text_type_main-default mt-20">
-                Вспомнили пароль? <Link to="/login">Войти</Link></p>
-        </div>
+                <FormInput {...field('password')} type="password" placeholder="Введите новый пароль" icon="HideIcon" />
+                <FormInput {...field('token')} type="text" placeholder="Введите код из письма" />
+
+                <SubmitButton type="primary">Сохранить</SubmitButton>
+
+                <p className="text text_type_main-default mt-20">
+                    Вспомнили пароль? <Link to="/login">Войти</Link></p>
+            </form>
+        </>
     );
 }
 
