@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmail, getName } from '../../services/user/selectors';
 import useForm from '../../hooks/useForm';
 import { getUser, updUser } from '../../services/auth/actions';
 import FormEditableInput from '../../components/form/form-editable-input';
 import SubmitButton from '../../components/form/submit-button';
-import { isFormRequestSelector } from '../../services/form/selectors';
 
 const Credentials = () => {
     const dispatch = useDispatch();
