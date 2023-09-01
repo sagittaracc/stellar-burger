@@ -10,6 +10,7 @@ import Credentials from '../../pages/profile/credentials';
 import Constructor from '../../pages/constructor';
 import NotFound from '../../pages/not-found';
 import Orders from '../../pages/profile/orders';
+import ProtectedRoute from '../protected-route/protected-route';
 
 function App() {
     return (
@@ -21,9 +22,9 @@ function App() {
                     <Route path='register' element={<Register />} />
                     <Route path='forgot-password' element={<ForgotPassword />} />
                     <Route path='reset-password' element={<ResetPassword />} />
-                    <Route path='profile/*' element={<Profile />}>
-                        <Route index element={<Credentials />} />
-                        <Route path='orders' element={<Orders />} />
+                    <Route path='profile/*' element={<ProtectedRoute><Profile /></ProtectedRoute>}>
+                        <Route index element={<ProtectedRoute><Credentials /></ProtectedRoute>} />
+                        <Route path='orders' element={<ProtectedRoute><Orders /></ProtectedRoute>} />
                     </Route>
                     <Route path='ingredients/:id' element={<Ingredient />} />
                     <Route path='*' element={<NotFound />} />
