@@ -5,12 +5,13 @@ import useForm from '../../hooks/useForm';
 import { getUser, updUser } from '../../services/auth/actions';
 import FormEditableInput from '../../components/form/form-editable-input';
 import SubmitButton from '../../components/form/submit-button';
+import CancelButton from '../../components/form/cancel-button';
 
 const Credentials = () => {
     const dispatch = useDispatch();
     const name = useSelector(getName);
     const email = useSelector(getEmail);
-    const { form, setForm, touched, field, handleSubmit } = useForm();
+    const { form, setForm, touched, field, handleSubmit, handleReset } = useForm();
 
     useEffect(() => {
         dispatch(getUser());
@@ -21,7 +22,7 @@ const Credentials = () => {
             ...form,
             name,
             email,
-            password: '*****'
+            password: ''
         })
     }, [name, email]);
 
@@ -29,14 +30,26 @@ const Credentials = () => {
         dispatch(updUser(form));
     }
 
+    const onReset = () => {
+        setForm({
+            ...form,
+            name,
+            email,
+            password: ''
+        });
+    }
+
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} onReset={handleReset(onReset)}>
             <FormEditableInput {...field("name")} type="text" placeholder="Имя" />
             <FormEditableInput {...field("email")} type="email" placeholder="E-mail" />
             <FormEditableInput {...field("password")} type="password" placeholder="Пароль" />
             {
                 touched && (
-                    <SubmitButton>Сохранить</SubmitButton>
+                    <div className='text-right'>
+                        <SubmitButton>Сохранить</SubmitButton>
+                        <CancelButton>Отмена</CancelButton>
+                    </div>
                 )
             }
         </form>

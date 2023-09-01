@@ -31,6 +31,10 @@ const useForm = () => {
             e.preventDefault();
             onSubmit(form);
             setTouched(false);
+        },
+        handleReset: (onReset) => (e) => {
+            onReset();
+            setTouched(false);
         }
     };
 }
