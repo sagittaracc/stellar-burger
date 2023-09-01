@@ -5,7 +5,7 @@ const FormEditableInput = (props) => {
     const [disabled, setDisabled] = useState(true);
 
     const handleClick = () => {
-        setDisabled(false);
+        setDisabled(!disabled);
     }
 
     return (
