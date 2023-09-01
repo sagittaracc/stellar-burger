@@ -18,11 +18,11 @@ function App() {
             <Routes>
                 <Route path='/' element={<Main />}>
                     <Route index element={<Constructor />} />
-                    <Route path='login' element={<Login />} />
-                    <Route path='register' element={<Register />} />
-                    <Route path='forgot-password' element={<ForgotPassword />} />
-                    <Route path='reset-password' element={<ResetPassword />} />
-                    <Route path='profile/*' element={<ProtectedRoute><Profile /></ProtectedRoute>}>
+                    <Route path='login' element={<ProtectedRoute anonymous component={<Login />} />} />
+                    <Route path='register' element={<ProtectedRoute anonymous component={<Register />} />} />
+                    <Route path='forgot-password' element={<ProtectedRoute anonymous component={<ForgotPassword />} />} />
+                    <Route path='reset-password' element={<ProtectedRoute anonymous component={<ResetPassword />} />} />
+                    <Route path='profile/*' element={<ProtectedRoute component={<Profile />} />}>
                         <Route index element={<Credentials />} />
                         <Route path='orders' element={<Orders />} />
                     </Route>

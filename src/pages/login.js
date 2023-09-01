@@ -17,7 +17,7 @@ const Login = () => {
     const { field, handleSubmit } = useForm();
 
     const onSubmit = (form) => {
-        dispatch(login(form, (home) => navigate(home)));
+        dispatch(login(form));
     }
 
     return (
