@@ -1,29 +1,40 @@
-import { useState } from 'react';
-import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import styles from './form.module.css';
+import useForm from '../hooks/useForm';
+import FormInput from '../components/form/form-input';
+import SubmitButton from '../components/form/submit-button';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFormErrorSelector } from '../services/form/selectors';
+import Alert from '../components/alert/alert';
+import { forgotPassword } from '../services/forgot-password/actions';
+import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = () => {
-    const [email, setEmail] = useState('');
+    const dispatch = useDispatch();
+    const error = useSelector(getFormErrorSelector);
+    const navigate = useNavigate();
+
+    const { field, handleSubmit } = useForm();
+
+    const onSubmit = (form) => {
+        dispatch(forgotPassword(form, () => navigate('/reset-password')));
+    }
 
     return (
-        <div className={`${styles.form}`}>
-            <h1>Восстановление пароля</h1>
+        <>
+            {error && <Alert message={error} type="danger" />}
 
-            <Input
-                onChange={e => setEmail(e.target.value)}
-                type="text"
-                placeholder="Укажите e-mail"
-                name="email"
-                value={email}
-                extraClass="mt-6" />
-            <Button htmlType="button" type="primary" size="medium" extraClass="mt-6">
-                Восстановить
-            </Button>
+            <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form}`}>
+                <h1>Восстановление пароля</h1>
 
-            <p className="text text_type_main-default mt-20">
-                Вспомнили пароль? <Link to="/login">Войти</Link></p>
-        </div>
+                <FormInput {...field('email')} type="email" placeholder="Укажите e-mail" />
+
+                <SubmitButton type="primary">Восстановить</SubmitButton>
+
+                <p className="text text_type_main-default mt-20">
+                    Вспомнили пароль? <Link to="/login">Войти</Link></p>
+            </form>
+        </>
     );
 }
 
