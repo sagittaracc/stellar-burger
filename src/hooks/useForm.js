@@ -23,6 +23,8 @@ const useForm = () => {
     }
 
     return {
+        form,
+        setForm,
         touched,
         field,
         handleSubmit: (onSubmit) => (e) => {
