@@ -4,7 +4,6 @@ import {
 } from './actions';
 
 const initialState = {
-    ingredientInfo: null,
     preview: false
 };
 
@@ -13,13 +12,11 @@ export const previewReducer = (state = initialState, action) => {
         case OPEN_PREVIEW:
             return {
                 ...state,
-                ingredientInfo: action.payload,
                 preview: true
             };
         case CLOSE_PREVIEW:
             return {
                 ...state,
-                ingredientPreview: null,
                 preview: false
             };
         default:
