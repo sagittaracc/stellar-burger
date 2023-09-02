@@ -8,11 +8,19 @@ import { getFormErrorSelector } from '../services/form/selectors';
 import Alert from '../components/alert/alert';
 import { resetPassword } from '../services/reset-password/actions';
 import { useNavigate } from 'react-router-dom';
+import { isResetingPassword } from '../utils/password';
+import { useEffect } from 'react';
 
 const ResetPassword = () => {
     const dispatch = useDispatch();
     const error = useSelector(getFormErrorSelector);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isResetingPassword()) {
+            navigate('/forgot-password');
+        }
+    }, [])
 
     const { field, handleSubmit } = useForm();
 

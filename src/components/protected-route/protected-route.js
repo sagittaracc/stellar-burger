@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { getAuthCheckedSelector, getAuthSuccessSelector } from "../../services/auth/selectors";
 import { getUser } from '../../services/auth/actions';
-import { isResetingPassword } from '../../utils/password';
 
 const ProtectedRoute = ({ anonymous = false, component }) => {
     const dispatch = useDispatch();
@@ -15,12 +14,6 @@ const ProtectedRoute = ({ anonymous = false, component }) => {
     useEffect(() => {
         dispatch(getUser());
     }, []);
-
-    if (location.pathname === '/reset-password') {
-        if (!isResetingPassword()) {
-            return <Navigate to="/forgot-password" />;
-        }
-    }
 
     if (!authChecked) {
         return null;
