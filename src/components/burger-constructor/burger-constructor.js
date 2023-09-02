@@ -12,6 +12,7 @@ import useModal from '../../hooks/useModal';
 import Placeholder from './placeholder/placeholder';
 import { getOrder, orderReadySelector } from '../../services/order/selectors';
 import { createOrder } from '../../services/order/actions';
+import { useNavigate } from 'react-router-dom';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
@@ -22,6 +23,7 @@ const BurgerConstructor = ({  }) => {
     const cost = useSelector(getCost);
     const [modalShown, openModal, closeModal] = useModal();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [, dropTarget] = useDrop({
         accept: "ingredient",
@@ -32,7 +34,7 @@ const BurgerConstructor = ({  }) => {
 
     const doOrder = () => {
         const ids = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
-        dispatch(createOrder(ids));
+        dispatch(createOrder(ids, () => navigate('/login')));
         openModal();
     }
 
