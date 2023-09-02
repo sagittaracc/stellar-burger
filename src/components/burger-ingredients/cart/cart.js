@@ -4,6 +4,7 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import { useDrag } from 'react-dnd';
 import { getIngredientCounts } from '../../../services/ingredients/selectors';
 import { openPreview } from '../../../services/preview/actions';
+import { previewBegin } from '../../../utils/preview';
 
 const Cart = ({ ingredient }) => {
     const ingredientCounts = useSelector(getIngredientCounts);
@@ -17,6 +18,7 @@ const Cart = ({ ingredient }) => {
     });
 
     const openModal = () => {
+        previewBegin();
         dispath(openPreview(ingredient));
     };
 

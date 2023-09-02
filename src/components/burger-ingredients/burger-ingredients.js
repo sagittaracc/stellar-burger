@@ -9,6 +9,7 @@ import IngredientBox from "./ingredient-box/ingredient-box";
 import { useInView } from 'react-intersection-observer';
 import { ingredientPreview } from "../../services/preview/selectors";
 import { closePreview } from "../../services/preview/actions";
+import { previewFinish } from "../../utils/preview";
 
 
 
@@ -40,6 +41,7 @@ const BurgerIngredients = ({ data }) => {
     const dispath = useDispatch();
 
     const closeModal = () => {
+        previewFinish();
         dispath(closePreview());
     }
 
