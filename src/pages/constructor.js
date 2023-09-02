@@ -8,24 +8,19 @@ import BurgerIngredients from '../components/burger-ingredients/burger-ingredien
 import BurgerConstructor from '../components/burger-constructor/burger-constructor';
 
 const Constructor = () => {
-    const [loaded, ingredients] = useSelector(ingredientsSelector);
+    const [, ingredients] = useSelector(ingredientsSelector);
 
     return (
-        <>
-            {
-                loaded &&
-                <div className="h-100 pt-10 flex">
-                    <DndProvider backend={HTML5Backend}>
-                        <div className="col">
-                            <BurgerIngredients data={ingredients} />
-                        </div>
-                        <div className="col mt-25">
-                            <BurgerConstructor />
-                        </div>
-                    </DndProvider>
+        <div className="h-100 pt-10 flex">
+            <DndProvider backend={HTML5Backend}>
+                <div className="col">
+                    <BurgerIngredients data={ingredients} />
                 </div>
-            }
-        </>
+                <div className="col mt-25">
+                    <BurgerConstructor />
+                </div>
+            </DndProvider>
+        </div>
     );
 }
 

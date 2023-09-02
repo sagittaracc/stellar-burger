@@ -1,12 +1,14 @@
 import styles from './main.module.css';
 import AppHeader from '../components/app-header/app-header';
 import { Outlet } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getIngredients } from '../services/ingredients/actions';
+import { ingredientsSelector } from '../services/ingredients/selectors';
 
 const Main = () => {
     const dispatch = useDispatch();
+    const [loaded, ] = useSelector(ingredientsSelector);
 
     useEffect(() => {
         dispatch(getIngredients());
@@ -19,9 +21,12 @@ const Main = () => {
                     <AppHeader />
                 </div>
             </div>
-            <main className={`${styles.content} container`}>
-                <Outlet />
-            </main>
+            {
+                loaded &&
+                <main className={`${styles.content} container`}>
+                    <Outlet />
+                </main>
+            }
         </>
     );
 }
