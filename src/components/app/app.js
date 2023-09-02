@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Main from '../../pages/main';
 import Login from '../../pages/login';
 import Register from '../../pages/register';
@@ -11,8 +12,11 @@ import Constructor from '../../pages/constructor';
 import NotFound from '../../pages/not-found';
 import Orders from '../../pages/profile/orders';
 import { ProtectedRoute } from '../protected-route/protected-route';
+import { getPreview } from '../../services/preview/selectors';
 
 function App() {
+    const ingredientPreview = useSelector(getPreview);
+
     return (
         <BrowserRouter>
             <Routes>
@@ -26,7 +30,7 @@ function App() {
                         <Route index element={<Credentials />} />
                         <Route path='orders' element={<Orders />} />
                     </Route>
-                    <Route path='ingredients/:id' element={<Ingredient />} />
+                    <Route path='ingredients/:id' element={ingredientPreview ? 'preview' : <Ingredient />} />
                     <Route path='*' element={<NotFound />} />
                 </Route>
             </Routes>
