@@ -30,7 +30,3 @@ export const ProtectedRoute = ({ anonymous = false, component }) => {
 
     return component;
 }
-
-export const AnonymousRoute = ({ component }) => {
-    return <ProtectedRoute anonymous component={component} />;
-}
