@@ -19,7 +19,7 @@ const Cart = ({ ingredient }) => {
     });
 
     const openModal = (e) => {
-        previewBegin();
+        previewBegin(ingredient);
         dispath(openPreview(ingredient));
     };
 

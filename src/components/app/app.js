@@ -13,6 +13,7 @@ import NotFound from '../../pages/not-found';
 import Orders from '../../pages/profile/orders';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import { getPreview } from '../../services/preview/selectors';
+import { isPreview } from '../../utils/preview';
 
 function App() {
     const ingredientPreview = useSelector(getPreview);
@@ -30,7 +31,7 @@ function App() {
                         <Route index element={<Credentials />} />
                         <Route path='orders' element={<Orders />} />
                     </Route>
-                    <Route path='ingredients/:id' element={ingredientPreview ? 'preview' : <Ingredient />} />
+                    <Route path='ingredients/:id' element={ingredientPreview || isPreview() ? <Constructor /> : <Ingredient />} />
                     <Route path='*' element={<NotFound />} />
                 </Route>
             </Routes>

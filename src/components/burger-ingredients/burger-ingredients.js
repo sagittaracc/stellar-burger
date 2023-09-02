@@ -9,11 +9,11 @@ import IngredientBox from "./ingredient-box/ingredient-box";
 import { useInView } from 'react-intersection-observer';
 import { ingredientPreview } from "../../services/preview/selectors";
 import { closePreview } from "../../services/preview/actions";
-import { previewFinish } from "../../utils/preview";
-
-
+import { getPreviewIngredient, isPreview, previewFinish } from "../../utils/preview";
+import { useNavigate } from 'react-router-dom';
 
 const BurgerIngredients = ({ data }) => {
+    const navigate = useNavigate();
     const [tab, setTab] = useState('bun');
 
     const threshold = 0.45;
@@ -43,6 +43,7 @@ const BurgerIngredients = ({ data }) => {
     const closeModal = () => {
         previewFinish();
         dispath(closePreview());
+        navigate('/');
     }
 
     return (
@@ -61,9 +62,9 @@ const BurgerIngredients = ({ data }) => {
                 <IngredientBox tab={mainRef} title="Начинки" category="main" data={data} />
             </div>
             {
-                preview && ingredient &&
+                (preview || isPreview()) && (ingredient || getPreviewIngredient()) &&
                 <Modal header="Детали ингредиента" onClose={closeModal}>
-                    <IngredientDetails ingredient={ingredient} />
+                    <IngredientDetails ingredient={ingredient || getPreviewIngredient()} />
                 </Modal>
             }
         </div>
