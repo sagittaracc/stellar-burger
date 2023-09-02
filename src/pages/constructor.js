@@ -8,12 +8,7 @@ import BurgerIngredients from '../components/burger-ingredients/burger-ingredien
 import BurgerConstructor from '../components/burger-constructor/burger-constructor';
 
 const Constructor = () => {
-    const dispath = useDispatch();
     const [loaded, ingredients] = useSelector(ingredientsSelector);
-
-    useEffect(() => {
-        dispath(getIngredients());
-    }, []);
 
     return (
         <>
