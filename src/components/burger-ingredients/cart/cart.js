@@ -5,6 +5,7 @@ import { useDrag } from 'react-dnd';
 import { getIngredientCounts } from '../../../services/ingredients/selectors';
 import { openPreview } from '../../../services/preview/actions';
 import { previewBegin } from '../../../utils/preview';
+import { Link } from 'react-router-dom';
 
 const Cart = ({ ingredient }) => {
     const ingredientCounts = useSelector(getIngredientCounts);
@@ -17,13 +18,13 @@ const Cart = ({ ingredient }) => {
         item: ingredient
     });
 
-    const openModal = () => {
+    const openModal = (e) => {
         previewBegin();
         dispath(openPreview(ingredient));
     };
 
     return (
-        <div onClick={openModal} className="text-center col pt-10 pb-10 pl-4 pr-4 position-relative">
+        <Link to={`/ingredients/${ingredient._id}`} onClick={openModal} className="text-decoration-none text-center col pt-10 pb-10 pl-4 pr-4 position-relative">
             <img ref={dragRef} src={ingredient.image} />
             {
                 count &&
@@ -34,7 +35,7 @@ const Cart = ({ ingredient }) => {
                 <CurrencyIcon type="primary" />
             </div>
             <div>{ingredient.name}</div>
-        </div>
+        </Link>
     );
 }
 

@@ -13,6 +13,7 @@ body {
 /* Text */
 .text-decoration-none {
     text-decoration: none;
+    color: inherit;
 }
 
 .text-left {
