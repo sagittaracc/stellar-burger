@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredientPropTypes } from "../types/ingredient";
@@ -7,7 +7,6 @@ import Modal from "../modal/modal";
 import IngredientDetails from "./ingredient-details/ingredient-details";
 import IngredientBox from "./ingredient-box/ingredient-box";
 import { useInView } from 'react-intersection-observer';
-import { ingredientPreview } from "../../services/preview/selectors";
 import { closePreview } from "../../services/preview/actions";
 import { getPreviewIngredient, isPreview, previewFinish } from "../../utils/preview";
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +36,6 @@ const BurgerIngredients = ({ data }) => {
         setTab(tab);
     }, [bunsInView, saucesInView, mainInView])
 
-    const [preview, ingredient] = useSelector(ingredientPreview);
     const dispath = useDispatch();
 
     const closeModal = () => {
@@ -62,9 +60,9 @@ const BurgerIngredients = ({ data }) => {
                 <IngredientBox tab={mainRef} title="Начинки" category="main" data={data} />
             </div>
             {
-                (preview || isPreview()) && (ingredient || getPreviewIngredient()) &&
+                isPreview() && getPreviewIngredient() &&
                 <Modal header="Детали ингредиента" onClose={closeModal}>
-                    <IngredientDetails ingredient={ingredient || getPreviewIngredient()} />
+                    <IngredientDetails ingredient={getPreviewIngredient()} />
                 </Modal>
             }
         </div>

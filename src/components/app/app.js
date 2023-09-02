@@ -31,7 +31,7 @@ function App() {
                         <Route index element={<Credentials />} />
                         <Route path='orders' element={<Orders />} />
                     </Route>
-                    <Route path='ingredients/:id' element={ingredientPreview || isPreview() ? <Constructor /> : <Ingredient />} />
+                    <Route path='ingredients/:id' element={isPreview() ? <Constructor /> : <Ingredient />} />
                     <Route path='*' element={<NotFound />} />
                 </Route>
             </Routes>
