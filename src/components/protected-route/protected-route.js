@@ -4,7 +4,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { getAuthCheckedSelector, getAuthSuccessSelector } from "../../services/auth/selectors";
 import { getUser } from '../../services/auth/actions';
 
-const ProtectedRoute = ({ anonymous = false, component }) => {
+export const ProtectedRoute = ({ anonymous = false, component }) => {
     const dispatch = useDispatch();
     const location = useLocation();
 
@@ -31,4 +31,6 @@ const ProtectedRoute = ({ anonymous = false, component }) => {
     return component;
 }
 
-export default ProtectedRoute;
+export const AnonymousRoute = ({ component }) => {
+    return <ProtectedRoute anonymous component={component} />;
+}

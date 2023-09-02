@@ -10,7 +10,7 @@ import Credentials from '../../pages/profile/credentials';
 import Constructor from '../../pages/constructor';
 import NotFound from '../../pages/not-found';
 import Orders from '../../pages/profile/orders';
-import ProtectedRoute from '../protected-route/protected-route';
+import { AnonymousRoute, ProtectedRoute } from '../protected-route/protected-route';
 
 function App() {
     return (
@@ -18,10 +18,10 @@ function App() {
             <Routes>
                 <Route path='/' element={<Main />}>
                     <Route index element={<Constructor />} />
-                    <Route path='login' element={<ProtectedRoute anonymous component={<Login />} />} />
-                    <Route path='register' element={<ProtectedRoute anonymous component={<Register />} />} />
-                    <Route path='forgot-password' element={<ProtectedRoute anonymous component={<ForgotPassword />} />} />
-                    <Route path='reset-password' element={<ProtectedRoute anonymous component={<ResetPassword />} />} />
+                    <Route path='login' element={<AnonymousRoute component={<Login />} />} />
+                    <Route path='register' element={<AnonymousRoute component={<Register />} />} />
+                    <Route path='forgot-password' element={<AnonymousRoute component={<ForgotPassword />} />} />
+                    <Route path='reset-password' element={<AnonymousRoute component={<ResetPassword />} />} />
                     <Route path='profile/*' element={<ProtectedRoute component={<Profile />} />}>
                         <Route index element={<Credentials />} />
                         <Route path='orders' element={<Orders />} />
