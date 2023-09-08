@@ -19,7 +19,7 @@ const Cart = ({ ingredient }) => {
 
     const [, dropTarget] = useDrop({
         accept: "constructor-ingredient",
-        drop: (ingredientOne) => {
+        hover: (ingredientOne) => {
             const ingredientTwo = ingredient;
             dispatch(moveIngredient(ingredientOne.id, ingredientTwo.id));
         }
