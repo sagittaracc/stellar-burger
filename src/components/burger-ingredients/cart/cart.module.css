@@ -1,0 +1,7 @@
+.cart {
+    transition: transform 0.3s ease-in-out;
+}
+
+.cart:hover {
+    transform: translateY(-10px);
+}
