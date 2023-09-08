@@ -1,1 +1,0 @@
-export const getPreview = (store) => store.preview.preview;

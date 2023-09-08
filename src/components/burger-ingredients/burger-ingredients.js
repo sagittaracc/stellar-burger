@@ -1,18 +1,11 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredientPropTypes } from "../types/ingredient";
-import Modal from "../modal/modal";
-import IngredientDetails from "./ingredient-details/ingredient-details";
 import IngredientBox from "./ingredient-box/ingredient-box";
 import { useInView } from 'react-intersection-observer';
-import { closePreview } from "../../services/preview/actions";
-import { getPreviewIngredient, isPreview, previewFinish } from "../../utils/preview";
-import { useNavigate } from 'react-router-dom';
 
 const BurgerIngredients = ({ data }) => {
-    const navigate = useNavigate();
     const [tab, setTab] = useState('bun');
 
     const threshold = 0.45;
@@ -36,14 +29,6 @@ const BurgerIngredients = ({ data }) => {
         setTab(tab);
     }, [bunsInView, saucesInView, mainInView])
 
-    const dispath = useDispatch();
-
-    const closeModal = () => {
-        previewFinish();
-        dispath(closePreview());
-        navigate('/');
-    }
-
     return (
         <div className="flex columns text text_type_main-default h-100">
             <h1>Соберите бургер</h1>
@@ -59,12 +44,6 @@ const BurgerIngredients = ({ data }) => {
                 <IngredientBox tab={saucesRef} title="Соусы" category="sauce" data={data} />
                 <IngredientBox tab={mainRef} title="Начинки" category="main" data={data} />
             </div>
-            {
-                isPreview() && getPreviewIngredient() &&
-                <Modal header="Детали ингредиента" onClose={closeModal}>
-                    <IngredientDetails ingredient={getPreviewIngredient()} />
-                </Modal>
-            }
         </div>
     );
 }
