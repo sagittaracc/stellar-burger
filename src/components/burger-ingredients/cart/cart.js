@@ -4,6 +4,7 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import { useDrag } from 'react-dnd';
 import { getIngredientCounts } from '../../../services/ingredients/selectors';
 import { Link, useLocation } from 'react-router-dom';
+import styles from './cart.module.css';
 
 const Cart = ({ ingredient }) => {
     const location = useLocation();
@@ -16,7 +17,7 @@ const Cart = ({ ingredient }) => {
     });
 
     return (
-        <Link to={`/ingredients/${ingredient._id}`} state={{background: location}} className="text-decoration-none text-center col pt-10 pb-10 pl-4 pr-4 position-relative">
+        <Link to={`/ingredients/${ingredient._id}`} state={{background: location}} className={`${styles.cart} text-decoration-none text-center col pt-10 pb-10 pl-4 pr-4 position-relative`}>
             <img ref={dragRef} src={ingredient.image} />
             {
                 count &&
