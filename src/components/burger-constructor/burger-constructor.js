@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredients from "./ingredients/ingredients";
@@ -10,18 +9,21 @@ import { addIngredient } from '../../services/constructor/actions';
 import { useDrop } from 'react-dnd';
 import useModal from '../../hooks/useModal';
 import Placeholder from './placeholder/placeholder';
-import { getOrder, orderReadySelector } from '../../services/order/selectors';
+import { getOrder, getOrderRequest, orderReadySelector } from '../../services/order/selectors';
 import { createOrder } from '../../services/order/actions';
+import { useNavigate } from 'react-router-dom';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
     const ingredients = useSelector(getIngredients);
     const order = useSelector(getOrder);
     const orderHasItems = useSelector(orderHasItemsSelector);
+    const inProcess = useSelector(getOrderRequest);
     const orderReady = useSelector(orderReadySelector);
     const cost = useSelector(getCost);
     const [modalShown, openModal, closeModal] = useModal();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [, dropTarget] = useDrop({
         accept: "ingredient",
@@ -32,7 +34,7 @@ const BurgerConstructor = ({  }) => {
 
     const doOrder = () => {
         const ids = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
-        dispatch(createOrder(ids));
+        dispatch(createOrder(ids, () => navigate('/login')));
         openModal();
     }
 
@@ -51,8 +53,8 @@ const BurgerConstructor = ({  }) => {
                     <div className="float-right">
                         <span className="mr-2 text_type_main-large">{cost}</span>
                         <CurrencyIcon type="primary" />
-                        <Button extraClass="ml-6" htmlType="button" type="primary" size="large" onClick={doOrder}>
-                            Оформить заказ
+                        <Button extraClass="ml-6" htmlType="button" type="primary" size="large" disabled={inProcess} onClick={doOrder}>
+                            {inProcess ? 'Формируется...' : 'Оформить заказ'}
                         </Button>
                     </div>
                 </div>

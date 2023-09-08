@@ -1,27 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ingredientPropTypes } from '../../types/ingredient';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag } from 'react-dnd';
 import { getIngredientCounts } from '../../../services/ingredients/selectors';
-import { openPreview } from '../../../services/preview/actions';
+import { Link, useLocation } from 'react-router-dom';
 
 const Cart = ({ ingredient }) => {
+    const location = useLocation();
     const ingredientCounts = useSelector(getIngredientCounts);
     const count = ingredientCounts[ingredient._id];
-
-    const dispath = useDispatch();
 
     const [, dragRef] = useDrag({
         type: "ingredient",
         item: ingredient
     });
 
-    const openModal = () => {
-        dispath(openPreview(ingredient));
-    };
-
     return (
-        <div onClick={openModal} className="text-center col pt-10 pb-10 pl-4 pr-4 position-relative">
+        <Link to={`/ingredients/${ingredient._id}`} state={{background: location}} className="text-decoration-none text-center col pt-10 pb-10 pl-4 pr-4 position-relative">
             <img ref={dragRef} src={ingredient.image} />
             {
                 count &&
@@ -32,7 +27,7 @@ const Cart = ({ ingredient }) => {
                 <CurrencyIcon type="primary" />
             </div>
             <div>{ingredient.name}</div>
-        </div>
+        </Link>
     );
 }
 

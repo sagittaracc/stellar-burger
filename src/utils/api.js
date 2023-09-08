@@ -1,32 +1,80 @@
 import { STELLAR_BURGER_API } from '../constants/api';
+import { getAccessToken, refreshTokenIfExpired } from './token';
 
-export const request = (url, method, data) => {
-    return new Promise((resolve, rejects) => {
+const responseError = (message) => {
+    return {
+        success: false,
+        message: message
+    }
+}
+
+export const request = (url, method, data, headers) => {
+    return new Promise((resolve, reject) => {
         fetch(
             STELLAR_BURGER_API + url,
-            method === "POST"
-                ? {
-                    method: method,
-                    headers: {"Content-Type": "application/json"},
-                    body: data ? JSON.stringify(data) : null
-                }
-                : null
+            {
+                method,
+                headers: {
+                    ...headers,
+                    "Content-Type": "application/json"
+                },
+                body: data ? JSON.stringify(data) : null
+            }
         )
         .then(response => {
             if (response.ok) {
-                resolve(response.json());
+                return response.json();
+            }
+
+            return Promise.reject(`Error #${response.status}`);
+        })
+        .then(response => {
+            if (response.success) {
+                resolve(response);
             }
             else {
-                throw new Error('Network failure!');
+                reject(response);
             }
+        })
+        .catch(error => {
+            reject(responseError(error));
         })
     })
 }
 
 export const get = (url) => {
-    return request(url);
+    return request(url, "GET");
 }
 
 export const post = (url, data) => {
     return request(url, "POST", data);
+}
+
+export const secureRequest = (url, method, data) => {
+    return new Promise((resolve, reject) => {
+        refreshTokenIfExpired()
+            .then(() => request(url, method, data,
+                {
+                    authorization: getAccessToken()
+                }
+            ))
+            .then(response => {
+                resolve(response);
+            })
+            .catch(error => {
+                reject(error);
+            })
+    })
+}
+
+export const secureGet = (url) => {
+    return secureRequest(url, "GET");
+}
+
+export const securePost = (url, data) => {
+    return secureRequest(url, "POST", data);
+}
+
+export const securePatch = (url, data) => {
+    return secureRequest(url, "PATCH", data);
 }

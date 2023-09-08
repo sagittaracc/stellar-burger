@@ -3,7 +3,8 @@
  * @author Yuriy Arutyunyan <sagittaracc@gmail.com>
  */
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -12,6 +13,7 @@ html, body {
 /* Text */
 .text-decoration-none {
     text-decoration: none;
+    color: inherit;
 }
 
 .text-left {
@@ -20,6 +22,10 @@ html, body {
 
 .text-center {
     text-align: center;
+}
+
+.text-right {
+    text-align: right;
 }
 
 /* Float */
@@ -113,4 +119,29 @@ html, body {
 /* Position */
 .position-relative {
     position: relative;
+}
+
+/* Box */
+.p-0 {
+    padding: 0;
+}
+
+.m-0 {
+    margin: 0;
+}
+
+/* Alerts */
+.alert {
+    position: absolute;
+    right: 30px;
+    bottom: 0;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }

@@ -1,0 +1,19 @@
+.profile {
+    padding-top: 100px;
+}
+
+.nav {
+    list-style: none;
+}
+
+.nav li {
+    padding: 25px 0;
+}
+
+.nav li:first-child {
+    padding-top: 0;
+}
+
+.nav li:last-child {
+    padding-bottom: 0;
+}
