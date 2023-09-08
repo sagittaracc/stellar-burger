@@ -21,7 +21,13 @@ export const request = (url, method, data, headers) => {
                 body: data ? JSON.stringify(data) : null
             }
         )
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+
+            return Promise.reject(`Error #${response.status}`);
+        })
         .then(response => {
             if (response.success) {
                 resolve(response);
@@ -30,8 +36,8 @@ export const request = (url, method, data, headers) => {
                 reject(response);
             }
         })
-        .catch(() => {
-            reject(responseError("Internal Server Error"));
+        .catch(error => {
+            reject(responseError(error));
         })
     })
 }
