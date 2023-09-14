@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
+import Logout from '../../pages/profile/logout';
 
 function App() {
     const location = useLocation();
@@ -42,6 +43,7 @@ function App() {
                         <Route path='profile/*' element={<ProtectedRoute component={<Profile />} />}>
                             <Route index element={<Credentials />} />
                             <Route path='orders' element={<Orders />} />
+                            <Route path='logout' element={<Logout />} />
                         </Route>
                         <Route path='ingredients/:id' element={<Ingredient />} />
                         <Route path='*' element={<NotFound />} />
