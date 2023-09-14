@@ -10,7 +10,8 @@ const Profile = () => {
 
     return (
         <>
-            { error && <Alert message={error} type="danger" /> }
+            {error && <Alert message={error} type="danger" />}
+
             <div className={`${styles.profile} flex`}>
                 <div className="col">
                     <ul className={`${styles.nav} m-0 p-0 pb-20`}>
@@ -18,11 +19,14 @@ const Profile = () => {
                         <li><CustomLink to="orders" text="История заказов" size="medium" /></li>
                         <li><CustomLink to="logout" text="Выход" size="medium" /></li>
                     </ul>
+
                     <p className="text text_color_inactive">В этом разделе вы можете изменить свои персональные данные</p>
                 </div>
+
                 <div className="col">
                     <Outlet />
                 </div>
+
                 <div className="col"></div>
             </div>
         </>
