@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useForm from '../../hooks/useForm';
-import { getUser, updUser } from '../../services/auth/actions';
-import FormEditableInput from '../../components/form/form-editable-input';
+import { updUser } from '../../services/auth/actions';
 import SubmitButton from '../../components/form/submit-button';
 import CancelButton from '../../components/form/cancel-button';
 import { getEmailSelector, getNameSelector } from '../../services/auth/selectors';
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const Credentials = () => {
     const dispatch = useDispatch();
@@ -37,9 +37,9 @@ const Credentials = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} onReset={handleReset(onReset)}>
-            <FormEditableInput {...field("name")} type="text" placeholder="Имя" />
-            <FormEditableInput {...field("email")} type="email" placeholder="E-mail" />
-            <FormEditableInput {...field("password")} type="password" placeholder="Пароль" />
+            <Input {...field("name")} type="text" placeholder="Имя" icon="EditIcon" extraClass="mb-6" />
+            <Input {...field("email")} type="email" placeholder="E-mail" icon="EditIcon" extraClass="mb-6" />
+            <Input {...field("password")} type="password" placeholder="Пароль" icon="EditIcon" extraClass="mb-6" />
             {
                 touched && (
                     <div className='text-right'>
