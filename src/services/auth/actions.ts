@@ -1,3 +1,6 @@
+import { TDispatch } from "../../types";
+import { IAuthError, IAuthSuccess } from "../../types/auth";
+import { TUserCredentials, TUserInfo } from "../../types/user";
 import { secureGet, securePatch } from "../../utils/api";
 import { FORM_FAIL, FORM_REQUEST, FORM_SUCCESS } from "../form/actions";
 
@@ -5,23 +8,20 @@ export const AUTH_REQUEST = 'AUTH/REQUEST';
 export const SET_AUTH = 'AUTH/SET';
 export const UNSET_AUTH = 'AUTH/UNSET';
 
-export const setUser = ({ email, name }) => {
+export const setUser = (user: TUserInfo): IAuthSuccess => {
     return {
         type: SET_AUTH,
-        payload: {
-            email,
-            name
-        }
+        payload: user
     }
 }
 
-export const unsetUser = () => {
+export const unsetUser = (): IAuthError => {
     return {
         type: UNSET_AUTH
     }
 }
 
-export const getUser = () => (dispatch) => {
+export const getUser = () => (dispatch: TDispatch) => {
     dispatch({ type: AUTH_REQUEST });
 
     secureGet('/auth/user')
@@ -29,11 +29,11 @@ export const getUser = () => (dispatch) => {
             dispatch(setUser(response.user));
         })
         .catch(error => {
-            dispatch({ type: UNSET_AUTH });
+            dispatch(unsetUser());
         })
 }
 
-export const updUser = (data) => (dispatch) => {
+export const updUser = (data: TUserCredentials) => (dispatch: TDispatch) => {
     dispatch({ type: FORM_REQUEST });
 
     securePatch('/auth/user', data)
@@ -42,7 +42,7 @@ export const updUser = (data) => (dispatch) => {
             dispatch({ type: FORM_SUCCESS });
         })
         .catch(error => {
-            dispatch({ type: UNSET_AUTH });
+            dispatch(unsetUser());
             dispatch({ type: FORM_FAIL, payload: error.message });
         })
 }

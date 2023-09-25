@@ -1,10 +1,11 @@
+import { TAuthAction, TInitialAuth } from '../../types/auth';
 import {
     AUTH_REQUEST,
     SET_AUTH,
     UNSET_AUTH
 } from './actions';
 
-const initialState = {
+const initialAuth: TInitialAuth = {
     authRequest: false,
     authChecked: false,
     authSuccess: false,
@@ -12,7 +13,7 @@ const initialState = {
     name: ''
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialAuth, action: TAuthAction) => {
     switch (action.type) {
         case AUTH_REQUEST:
             return {
