@@ -1,15 +1,16 @@
+import { TFormAction, TInitialForm } from '../../types/form';
 import {
     FORM_REQUEST,
     FORM_SUCCESS,
     FORM_FAIL
 } from './actions';
 
-const initialState = {
+const initialState: TInitialForm = {
     isRequest: false,
     error: false,
 }
 
-export const formReducer = (state = initialState, action) => {
+export const formReducer = (state = initialState, action: TFormAction) => {
     switch (action.type) {
         case FORM_REQUEST:
             return {
