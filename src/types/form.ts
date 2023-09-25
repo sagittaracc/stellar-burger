@@ -4,6 +4,22 @@ export type TForgotPasswordForm = {
     email: string;
 };
 
+export type TLoginForm = {
+    email: string;
+    password: string;
+};
+
+export type TRegisterForm = {
+    email: string;
+    password: string;
+    name: string;
+};
+
+export type TResetPasswordForm = {
+    password: string;
+    token: string;
+};
+
 export type TInitialForm = {
     isRequest: boolean;
     error: boolean;
