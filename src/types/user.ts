@@ -1,8 +1,8 @@
-export interface TUserInfo {
+export type TUserInfo = {
     email: string;
     name: string;
 };
 
-export interface TUserCredentials extends TUserInfo {
+export type TUserCredentials = TUserInfo & {
     password: string;
 };

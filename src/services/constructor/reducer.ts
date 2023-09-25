@@ -1,3 +1,4 @@
+import { TConstructorAction, TInitialConstructor } from '../../types/constructor';
 import {
     ADD_INGREDIENT,
     DEL_INGREDIENT,
@@ -5,12 +6,12 @@ import {
     MOVE_INGREDIENT
 } from './actions';
 
-const initialState = {
+const initialState: TInitialConstructor = {
     bun: null,
     ingredients: [],
 };
 
-export const constructorReducer = (state = initialState, action) => {
+export const constructorReducer = (state = initialState, action: TConstructorAction) => {
     switch (action.type) {
         case ADD_INGREDIENT:
             if (action.payload.type === 'bun') {
