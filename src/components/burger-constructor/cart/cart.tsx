@@ -1,12 +1,16 @@
-import PropTypes from 'prop-types';
-import { ingredientPropTypes } from '../../types/ingredient';
 import { DragIcon, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch } from 'react-redux';
 import { delIngredient, moveIngredient } from '../../../services/constructor/actions';
 import { useDrag, useDrop } from 'react-dnd';
 import styles from './cart.module.css';
+import { TIngredientInfo } from '../../../types/ingredient';
+import { FC } from 'react';
 
-const Cart = ({ ingredient }) => {
+type TCart = {
+    ingredient: TIngredientInfo;
+};
+
+const Cart: FC<TCart> = ({ ingredient }) => {
     const dispatch = useDispatch();
 
     const [{isDragging}, dragRef] = useDrag({
@@ -19,7 +23,7 @@ const Cart = ({ ingredient }) => {
 
     const [, dropTarget] = useDrop({
         accept: "constructor-ingredient",
-        hover: (ingredientOne) => {
+        hover: (ingredientOne: TIngredientInfo) => {
             const ingredientTwo = ingredient;
             dispatch(moveIngredient(ingredientOne.id, ingredientTwo.id));
         }
@@ -47,10 +51,6 @@ const Cart = ({ ingredient }) => {
             }
         </div>
     );
-}
-
-Cart.propTypes = {
-    ingredient: ingredientPropTypes.isRequired
 }
 
 export default Cart;
