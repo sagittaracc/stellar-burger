@@ -1,5 +1,5 @@
 export const beginToResetPassword = () => {
-    localStorage.setItem('resetPassword', true);
+    localStorage.setItem('resetPassword', 'yes');
 }
 
 export const finishToResetPassword = () => {
