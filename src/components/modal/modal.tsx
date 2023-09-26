@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import Overlay from "./overlay/overlay";
 import styles from "./modal.module.css";
 import Header from "./header/header";
-import PropTypes from "prop-types";
+import { FC } from 'react';
+import { TModalWindow } from "../../types/modal";
 
-const modalRoot = document.getElementById("react-modals");
+const modalRoot = document.getElementById("react-modals") as HTMLElement;
 
-const Modal = ({ header, onClose, children }) => {
-    const handleKeyPress = (e) => {
+const Modal: FC<TModalWindow> = ({ header, onClose, children }) => {
+    const handleKeyPress = (e: KeyboardEvent) => {
         if (e.key === "Escape") {
             onClose();
         }
@@ -32,11 +33,5 @@ const Modal = ({ header, onClose, children }) => {
         modalRoot
     )
 }
-
-Modal.propTypes = {
-    header: PropTypes.string,
-    onClose: PropTypes.func,
-    children: PropTypes.node
-};
 
 export default Modal;

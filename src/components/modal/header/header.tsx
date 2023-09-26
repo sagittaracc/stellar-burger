@@ -1,8 +1,9 @@
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./header.module.css";
-import PropTypes from "prop-types";
+import { FC } from 'react';
+import { TModalHeader } from "../../../types/modal";
 
-const Header = ({header, onClose}) => {
+const Header: FC<TModalHeader> = ({header, onClose}) => {
     return (
         <div className={`mt-10 mr-10 ml-10 text text_type_main-large ${styles.header}`}>
             {header}
@@ -12,10 +13,5 @@ const Header = ({header, onClose}) => {
         </div>
     )
 }
-
-Header.propTypes = {
-    header: PropTypes.string,
-    onClose: PropTypes.func
-};
 
 export default Header;
