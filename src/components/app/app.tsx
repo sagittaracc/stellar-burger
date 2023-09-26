@@ -22,7 +22,7 @@ function App() {
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state.background;
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const [loaded,] = useSelector(ingredientsSelector);
 
     useEffect(() => {

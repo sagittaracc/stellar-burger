@@ -1,4 +1,4 @@
-import { TDispatch } from '../../types';
+import { AppThunk, TDispatch } from '../../types';
 import { TIngredientGroup } from '../../types/ingredient';
 import { TIngredientResponse } from '../../types/response';
 import { get } from '../../utils/api';
@@ -8,7 +8,7 @@ export const GET_INGREDIENTS_REQUEST = 'INGREDIENTS/GET';
 export const GET_INGREDIENTS_SUCCESS = 'INGREDIENTS/SUCCESS';
 export const GET_INGREDIENTS_FAIL = 'INGREDIENTS/FAIL';
 
-export const getIngredients = () => (dispath: TDispatch) => {
+export const getIngredients: AppThunk = () => (dispath: TDispatch) => {
     dispath({ type: GET_INGREDIENTS_REQUEST });
 
     get('/ingredients')
