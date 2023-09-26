@@ -56,3 +56,8 @@ export type TBunComponent = {
 export type TCartComponent = {
     ingredient: TIngredientInfo;
 };
+
+export type TIngredientComponent = {
+    data: Array<TIngredientInfo>;
+    bun: TIngredientInfo;
+};

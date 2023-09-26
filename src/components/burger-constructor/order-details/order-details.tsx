@@ -1,8 +1,9 @@
 import styles from './order-details.module.css';
 import checkMark from "../../../images/done.png";
-import PropTypes from 'prop-types';
+import { FC } from 'react';
+import { TOrderDetailsComponent } from '../../../types/order';
 
-const OrderDetails = ({ order }) => {
+const OrderDetails: FC<TOrderDetailsComponent> = ({ order }) => {
     return (
         <div className="text text-center">
             <div className={`text_type_digits-large ${styles.number}`}>{order.number}</div>
@@ -12,12 +13,6 @@ const OrderDetails = ({ order }) => {
             <div className="text_type_main-default text_color_inactive mt-2">Дождитесь готовности на орбитальной станции</div>
         </div>
     );
-}
-
-OrderDetails.propTypes = {
-    order: PropTypes.shape({
-        number: PropTypes.number.isRequired
-    })
 }
 
 export default OrderDetails;

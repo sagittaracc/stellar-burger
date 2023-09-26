@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import { ingredientPropTypes } from '../../types/ingredient';
 import Cart from "../cart/cart";
+import { FC, Key } from 'react';
+import { TIngredientComponent } from '../../../types/ingredient';
 
-const Ingredients = ({ data, bun }) => {
+const Ingredients: FC<TIngredientComponent> = ({ data, bun }) => {
     return (
         <div className="full-space ml-8 custom-scroll overflow-auto">
             {
@@ -12,14 +12,10 @@ const Ingredients = ({ data, bun }) => {
                     </div>
             }
             {
-                data.map(ingredient => <Cart key={ingredient.id} ingredient={ingredient} />)
+                data.map(ingredient => <Cart key={ingredient.id as unknown as Key} ingredient={ingredient} />)
             }
         </div>
     );
 }
-
-Ingredients.propTypes = {
-    data: PropTypes.arrayOf(ingredientPropTypes)
-};
 
 export default Ingredients;
