@@ -11,29 +11,31 @@ import useModal from '../../hooks/useModal';
 import { getOrder, getOrderRequest, orderReadySelector } from '../../services/order/selectors';
 import { createOrder } from '../../services/order/actions';
 import { useNavigate } from 'react-router-dom';
+import { TIngredientId, TIngredientInfo } from '../../types/ingredient';
+import { TModalHook } from '../../types/modal';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
-    const ingredients = useSelector(getIngredients);
+    const ingredients: Array<TIngredientInfo> = useSelector(getIngredients);
     const order = useSelector(getOrder);
     const orderHasItems = useSelector(orderHasItemsSelector);
     const inProcess = useSelector(getOrderRequest);
     const orderReady = useSelector(orderReadySelector);
     const cost = useSelector(getCost);
-    const [modalShown, openModal, closeModal] = useModal();
+    const {open: modalShown, openModal, closeModal}: TModalHook = useModal();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [, dropTarget] = useDrop({
         accept: "ingredient",
-        drop: (ingredient) => {
+        drop: (ingredient: TIngredientInfo) => {
             dispatch(addIngredient(ingredient));
         }
     })
 
     const doOrder = () => {
-        const ids = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
-        dispatch(createOrder(ids, () => navigate('/login')));
+        const ids: Array<TIngredientId> = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
+        createOrder(ids, () => navigate('/login'));
         openModal();
     }
 

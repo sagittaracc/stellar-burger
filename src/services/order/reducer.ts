@@ -1,16 +1,17 @@
+import { TInitialOrder, TOrderAction } from '../../types/order';
 import {
     CREATE_ORDER_REQUEST,
     CREATE_ORDER_SUCCESS,
     CREATE_ORDER_FAIL,
 } from './actions';
 
-const initialState = {
+const initialState: TInitialOrder = {
     orderRequest: false,
     orderError: false,
     order: null,
 };
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action: TOrderAction) => {
     switch (action.type) {
         case CREATE_ORDER_REQUEST:
             return {
