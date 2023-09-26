@@ -1,11 +1,17 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { getAuthCheckedSelector, getAuthSuccessSelector } from "../../services/auth/selectors";
 import { getUser } from '../../services/auth/actions';
+import { FC } from 'react';
 
-export const ProtectedRoute = ({ anonymous = false, component }) => {
-    const dispatch = useDispatch();
+type TProtectedRoute = {
+    anonymous?: boolean;
+    component: any;
+};
+
+export const ProtectedRoute: FC<TProtectedRoute> = ({ anonymous = false, component }) => {
+    const dispatch = useDispatch<any>();
     const location = useLocation();
 
     const authChecked = useSelector(getAuthCheckedSelector);

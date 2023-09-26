@@ -1,4 +1,4 @@
-import { TDispatch } from "../../types";
+import { AppThunk, TDispatch } from "../../types";
 import { IAuthError, IAuthSuccess } from "../../types/auth";
 import { TUserCredentials, TUserInfo } from "../../types/user";
 import { secureGet, securePatch } from "../../utils/api";
@@ -21,7 +21,7 @@ export const unsetUser = (): IAuthError => {
     }
 }
 
-export const getUser = () => (dispatch: TDispatch) => {
+export const getUser: AppThunk = () => (dispatch: TDispatch) => {
     dispatch({ type: AUTH_REQUEST });
 
     secureGet('/auth/user')
