@@ -4,6 +4,6 @@ export type TCustomLinkComponent = {
     to: string;
     text: string;
     icon: any;
-    size: string;
-    end: boolean;
+    size?: string;
+    end?: boolean;
 };
