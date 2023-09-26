@@ -1,4 +1,3 @@
-import { RefObject } from "react";
 import { GET_INGREDIENTS_FAIL, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS } from "../services/ingredients/actions";
 
 export type TIngredientId = () => string;
@@ -15,15 +14,12 @@ export type TIngredient = {
     readonly proteins      : number;
     readonly type          : string;
     readonly _id           : TIngredientId;
-};
-
-export type TIngredientInfo = TIngredient & {
-    id: TIngredientId;
+    readonly id            : TIngredientId;
 };
 
 export type TIngredientCategory = "bun" | "main" | "sauce";
 
-export type TIngredientGroup = Record<TIngredientCategory, Array<TIngredientInfo>>;
+export type TIngredientGroup = Record<TIngredientCategory, Array<TIngredient>>;
 
 export type TInitialIngredient = {
     data: TIngredientGroup | null;
@@ -51,16 +47,16 @@ export type TIngredientAction =
 
 export type TBunComponent = {
     position: "top" | "bottom";
-    data: TIngredientInfo;
+    data: TIngredient;
 };
 
 export type TCartComponent = {
-    ingredient: TIngredientInfo;
+    ingredient: TIngredient;
 };
 
 export type TIngredientComponent = {
-    data: Array<TIngredientInfo>;
-    bun: TIngredientInfo;
+    data: Array<TIngredient>;
+    bun: TIngredient;
 };
 
 export type TBurgerIngredientComponent = {

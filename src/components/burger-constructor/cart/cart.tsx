@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { delIngredient, moveIngredient } from '../../../services/constructor/actions';
 import { useDrag, useDrop } from 'react-dnd';
 import styles from './cart.module.css';
-import { TCartComponent, TIngredientInfo } from '../../../types/ingredient';
+import { TCartComponent, TIngredient } from '../../../types/ingredient';
 import { FC } from 'react';
 
 const Cart: FC<TCartComponent> = ({ ingredient }) => {
@@ -19,7 +19,7 @@ const Cart: FC<TCartComponent> = ({ ingredient }) => {
 
     const [, dropTarget] = useDrop({
         accept: "constructor-ingredient",
-        hover: (ingredientOne: TIngredientInfo) => {
+        hover: (ingredientOne: TIngredient) => {
             const ingredientTwo = ingredient;
             dispatch(moveIngredient(ingredientOne.id, ingredientTwo.id));
         }

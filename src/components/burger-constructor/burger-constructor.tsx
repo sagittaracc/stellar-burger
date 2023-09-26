@@ -11,12 +11,12 @@ import useModal from '../../hooks/useModal';
 import { getOrder, getOrderRequest, orderReadySelector } from '../../services/order/selectors';
 import { createOrder } from '../../services/order/actions';
 import { useNavigate } from 'react-router-dom';
-import { TIngredientId, TIngredientInfo } from '../../types/ingredient';
+import { TIngredientId, TIngredient } from '../../types/ingredient';
 import { IModalHook } from '../../types/modal';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
-    const ingredients: Array<TIngredientInfo> = useSelector(getIngredients);
+    const ingredients: Array<TIngredient> = useSelector(getIngredients);
     const order = useSelector(getOrder);
     const orderHasItems = useSelector(orderHasItemsSelector);
     const inProcess = useSelector(getOrderRequest);
@@ -28,7 +28,7 @@ const BurgerConstructor = ({  }) => {
 
     const [, dropTarget] = useDrop({
         accept: "ingredient",
-        drop: (ingredient: TIngredientInfo) => {
+        drop: (ingredient: TIngredient) => {
             dispatch(addIngredient(ingredient));
         }
     })
