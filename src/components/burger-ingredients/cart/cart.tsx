@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { ingredientPropTypes } from '../../types/ingredient';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag } from 'react-dnd';
 import { getIngredientCounts } from '../../../services/ingredients/selectors';
