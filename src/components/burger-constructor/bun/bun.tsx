@@ -1,14 +1,9 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './bun.module.css';
 import { FC } from 'react';
-import { TIngredientInfo } from '../../../types/ingredient';
+import { TBunComponent } from '../../../types/ingredient';
 
-type TBun = {
-    position: "top" | "bottom";
-    data: TIngredientInfo;
-};
-
-const Bun: FC<TBun> = ({ position, data }) => {
+const Bun: FC<TBunComponent> = ({ position, data }) => {
     return (
         <div className="ml-8 mb-4">
             <div className="ml-9">

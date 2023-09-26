@@ -47,3 +47,12 @@ export type TIngredientAction =
     IIngredientRequest |
     IIngredientSuccess |
     IIngredientFail;
+
+export type TBunComponent = {
+    position: "top" | "bottom";
+    data: TIngredientInfo;
+};
+
+export type TCartComponent = {
+    ingredient: TIngredientInfo;
+};

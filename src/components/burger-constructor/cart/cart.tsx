@@ -3,14 +3,10 @@ import { useDispatch } from 'react-redux';
 import { delIngredient, moveIngredient } from '../../../services/constructor/actions';
 import { useDrag, useDrop } from 'react-dnd';
 import styles from './cart.module.css';
-import { TIngredientInfo } from '../../../types/ingredient';
+import { TCartComponent, TIngredientInfo } from '../../../types/ingredient';
 import { FC } from 'react';
 
-type TCart = {
-    ingredient: TIngredientInfo;
-};
-
-const Cart: FC<TCart> = ({ ingredient }) => {
+const Cart: FC<TCartComponent> = ({ ingredient }) => {
     const dispatch = useDispatch();
 
     const [{isDragging}, dragRef] = useDrag({

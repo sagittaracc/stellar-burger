@@ -1,11 +1,7 @@
 import { FC } from 'react';
+import { TAlertComponent } from '../../types/alert';
 
-type TAlert = {
-    message: string;
-    type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark";
-};
-
-const Alert: FC<TAlert> = ({message, type}) => {
+const Alert: FC<TAlertComponent> = ({message, type}) => {
     return (
         <p className={`alert alert-${type} text_type_main-medium`}>
             {message}
