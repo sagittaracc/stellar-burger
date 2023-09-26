@@ -1,8 +1,9 @@
 import { cloneElement } from "react";
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { FC } from 'react';
+import { TCustomLinkComponent } from "../../types/link";
 
-const CustomLink = ({to, text, icon, size, end}) => {
+const CustomLink: FC<TCustomLinkComponent> = ({to, text, icon, size, end}) => {
     const textSize = size ? `text_type_main-${size}` : 'text_type_main-default';
 
     return (
@@ -20,13 +21,5 @@ const CustomLink = ({to, text, icon, size, end}) => {
         </NavLink>
     )
 }
-
-CustomLink.propTypes = {
-    to: PropTypes.string,
-    text: PropTypes.string.isRequired,
-    icon: PropTypes.node,
-    size: PropTypes.string,
-    end: PropTypes.bool
-};
 
 export default CustomLink;
