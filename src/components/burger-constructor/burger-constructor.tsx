@@ -35,7 +35,7 @@ const BurgerConstructor = ({  }) => {
 
     const doOrder = () => {
         const ids: Array<TIngredientId> = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
-        createOrder(ids, () => navigate('/login'));
+        dispatch(createOrder(ids, () => navigate('/login')));
         openModal();
     }
 

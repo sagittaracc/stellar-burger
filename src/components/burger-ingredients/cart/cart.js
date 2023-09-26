@@ -9,7 +9,7 @@ import styles from './cart.module.css';
 const Cart = ({ ingredient }) => {
     const location = useLocation();
     const ingredientCounts = useSelector(getIngredientCounts);
-    const count = ingredientCounts[ingredient._id];
+    const count = ingredientCounts ? ingredientCounts[ingredient._id] : 0;
 
     const [, dragRef] = useDrag({
         type: "ingredient",

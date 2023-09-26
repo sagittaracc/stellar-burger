@@ -13,13 +13,18 @@ export const ingredientsSelector = createSelector(getData, isLoading, hasError, 
 });
 
 export const getIngredientCounts = createSelector(getBun, getIngredients, (bun, ingredients) => {
-    const counts = {};
+    let counts = null;
 
     if (bun) {
+        counts = {};
         counts[bun._id] = 2;
     }
 
     ingredients.forEach((ingredient) => {
+        if (!counts) {
+            counts = {};
+        }
+
         if (counts[ingredient._id] === undefined) {
             counts[ingredient._id] = 0;
         }
