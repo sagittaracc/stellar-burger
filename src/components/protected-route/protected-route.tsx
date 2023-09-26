@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { getAuthCheckedSelector, getAuthSuccessSelector } from "../../services/auth/selectors";
@@ -7,7 +7,7 @@ import { FC } from 'react';
 
 type TProtectedRoute = {
     anonymous?: boolean;
-    component: any;
+    component: ReactElement;
 };
 
 export const ProtectedRoute: FC<TProtectedRoute> = ({ anonymous = false, component }) => {
