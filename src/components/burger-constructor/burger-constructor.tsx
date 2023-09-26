@@ -12,7 +12,7 @@ import { getOrder, getOrderRequest, orderReadySelector } from '../../services/or
 import { createOrder } from '../../services/order/actions';
 import { useNavigate } from 'react-router-dom';
 import { TIngredientId, TIngredientInfo } from '../../types/ingredient';
-import { TModalHook } from '../../types/modal';
+import { IModalHook } from '../../types/modal';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
@@ -22,7 +22,7 @@ const BurgerConstructor = ({  }) => {
     const inProcess = useSelector(getOrderRequest);
     const orderReady = useSelector(orderReadySelector);
     const cost = useSelector(getCost);
-    const {open: modalShown, openModal, closeModal}: TModalHook = useModal();
+    const {open: modalShown, openModal, closeModal}: IModalHook = useModal();
     const dispatch = useDispatch<any>();
     const navigate = useNavigate();
 

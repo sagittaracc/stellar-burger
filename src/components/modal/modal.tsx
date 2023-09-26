@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import ReactDOM from "react-dom";
 import Overlay from "./overlay/overlay";
 import styles from "./modal.module.css";

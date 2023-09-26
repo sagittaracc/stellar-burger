@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 
 export type TModalCallback = () => void;
 
-export type TModalHook = {
+export interface IModalHook {
     open: boolean;
     openModal: TModalCallback;
     closeModal: TModalCallback;
@@ -10,13 +10,11 @@ export type TModalHook = {
 
 export type TModalHeader = {
     header?: string;
-    onClose: () => void;
+    onClose: TModalCallback;
 };
 
 export type TModalOverlay = {
-    onClose: () => void;
+    onClose: TModalCallback;
 };
 
-export type TModalWindow = TModalHeader & {
-    children: ReactNode;
-};
+export type TModalWindow = PropsWithChildren<TModalHeader>;
