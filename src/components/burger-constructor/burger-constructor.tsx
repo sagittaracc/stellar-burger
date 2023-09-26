@@ -23,7 +23,7 @@ const BurgerConstructor = ({  }) => {
     const orderReady = useSelector(orderReadySelector);
     const cost = useSelector(getCost);
     const {open: modalShown, openModal, closeModal}: TModalHook = useModal();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const navigate = useNavigate();
 
     const [, dropTarget] = useDrop({
