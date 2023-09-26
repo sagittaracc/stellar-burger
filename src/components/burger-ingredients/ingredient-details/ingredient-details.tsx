@@ -1,6 +1,7 @@
-import { ingredientPropTypes } from '../../types/ingredient';
+import { TCartComponent } from '../../../types/ingredient';
+import { FC } from 'react';
 
-const IngredientDetails = ({ ingredient }) => {
+const IngredientDetails: FC<TCartComponent> = ({ ingredient }) => {
     return (
         <div className="text text-center mt-10">
             <div><img src={ingredient.image_large} /></div>
@@ -31,9 +32,5 @@ const IngredientDetails = ({ ingredient }) => {
         </div>
     );
 }
-
-IngredientDetails.propTypes = {
-    ingredient: ingredientPropTypes.isRequired
-};
 
 export default IngredientDetails;
