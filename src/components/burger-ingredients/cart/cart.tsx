@@ -5,11 +5,15 @@ import { useDrag } from 'react-dnd';
 import { getIngredientCounts } from '../../../services/ingredients/selectors';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './cart.module.css';
+import { FC } from 'react';
+import { TCartComponent } from '../../../types/ingredient';
+import { THashMap } from '../../../types';
 
-const Cart = ({ ingredient }) => {
+const Cart: FC<TCartComponent> = ({ ingredient }) => {
     const location = useLocation();
-    const ingredientCounts = useSelector(getIngredientCounts);
-    const count = ingredientCounts ? ingredientCounts[ingredient._id] : 0;
+    const id = ingredient._id as unknown as number;
+    const ingredientCounts: THashMap<number> = useSelector(getIngredientCounts);
+    const count = ingredientCounts ? ingredientCounts[id] : 0;
 
     const [, dragRef] = useDrag({
         type: "ingredient",
@@ -30,10 +34,6 @@ const Cart = ({ ingredient }) => {
             <div>{ingredient.name}</div>
         </Link>
     );
-}
-
-Cart.propTypes = {
-    ingredient: ingredientPropTypes.isRequired
 }
 
 export default Cart;
