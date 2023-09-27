@@ -1,9 +1,10 @@
 import Cookies from 'js-cookie';
 import { post } from './api';
+import { TTokenPair } from '../types/token';
 
 const ACCESS_TOKEN_LIFETIME = 20; // в минутах
 
-export const saveTokens = ({ accessToken, refreshToken }) => {
+export const saveTokens = ({ accessToken, refreshToken }: TTokenPair) => {
     Cookies.set('accessToken', accessToken, { expires: ACCESS_TOKEN_LIFETIME / 1440 });
     localStorage.setItem('refreshToken', refreshToken);
 }
@@ -22,11 +23,12 @@ export const getRefreshToken = () => {
 }
 
 export const refreshTokenIfExpired = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         if (!getAccessToken()) {
             post('/auth/token', { token: getRefreshToken() })
                 .then(response => {
-                    saveTokens(response);
+                    const tokenPair = response as TTokenPair;
+                    saveTokens(tokenPair);
                     resolve();
                 })
                 .catch(error => {
