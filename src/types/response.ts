@@ -1,33 +1,35 @@
 import { TIngredient } from "./ingredient";
 import { TOrderDetails } from "./order";
+import { TTokenPair } from "./token";
 import { TUserInfo } from "./user";
 
-export interface TSuccess {
+export type TSuccess = {
     success: true;
-}
+};
 
-export interface TError {
+export type TError = {
     success: false;
-}
+};
 
-export interface TIngredientResponse extends TSuccess {
+export type TIngredientResponse = TSuccess & {
     data: Array<TIngredient>;
-}
+};
 
-export interface TUserResponse extends TSuccess {
+export type TUserResponse = TSuccess & {
     user: TUserInfo;
-}
+};
 
-export interface TTokenResponse extends TUserResponse {
-    accessToken: string;
-    refreshToken: string;
-}
+export type TTokenResponse = TUserResponse & TTokenPair;
 
 export type TOrderResponse = TOrderDetails;
 
-export type TSuccessResponse = TIngredientResponse | TUserResponse | TTokenResponse | TOrderResponse;
+export type TSuccessResponse =
+    TIngredientResponse |
+    TUserResponse |
+    TTokenResponse |
+    TOrderResponse;
 
-export interface TErrorResponse extends TError {
+export type TErrorResponse = TError & {
     message: string;
 }
 
