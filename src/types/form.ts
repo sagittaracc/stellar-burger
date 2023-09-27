@@ -1,5 +1,7 @@
 import { FORM_FAIL, FORM_REQUEST, FORM_SUCCESS } from "../services/form/actions";
 
+export type TFormData = Record<string, string>;
+
 export type TForgotPasswordForm = {
     email: string;
 };
