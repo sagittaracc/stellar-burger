@@ -7,14 +7,16 @@ import useForm from '../hooks/useForm';
 import { getFormErrorSelector } from "../services/form/selectors";
 import FormInput from "../components/form/form-input";
 import SubmitButton from "../components/form/submit-button";
+import { FC } from 'react';
+import { TFormData } from '../types/form';
 
-const Register = () => {
-    const dispatch = useDispatch();
+const Register: FC = () => {
+    const dispatch = useDispatch<any>();
     const error = useSelector(getFormErrorSelector);
 
     const { field, handleSubmit } = useForm();
 
-    const onSubmit = (form) => {
+    const onSubmit = (form: TFormData) => {
         dispatch(register(form));
     }
 

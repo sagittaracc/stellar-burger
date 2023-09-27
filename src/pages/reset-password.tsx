@@ -10,9 +10,11 @@ import { resetPassword } from '../services/reset-password/actions';
 import { useNavigate } from 'react-router-dom';
 import { isResetingPassword } from '../utils/password';
 import { useEffect } from 'react';
+import { FC } from 'react';
+import { TFormData } from '../types/form';
 
-const ResetPassword = () => {
-    const dispatch = useDispatch();
+const ResetPassword: FC = () => {
+    const dispatch = useDispatch<any>();
     const error = useSelector(getFormErrorSelector);
     const navigate = useNavigate();
 
@@ -24,7 +26,7 @@ const ResetPassword = () => {
 
     const { field, handleSubmit } = useForm();
 
-    const onSubmit = (form) => {
+    const onSubmit = (form: TFormData) => {
         dispatch(resetPassword(form, () => navigate('/')));
     }
 

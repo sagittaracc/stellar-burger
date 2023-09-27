@@ -1,8 +1,9 @@
 import styles from './main.module.css';
 import AppHeader from '../components/app-header/app-header';
 import { Outlet } from 'react-router-dom';
+import { FC } from 'react';
 
-const Main = () => {
+const Main: FC = () => {
     return (
         <>
             <div className={`${styles.header} container-fluid`}>

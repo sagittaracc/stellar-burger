@@ -8,15 +8,17 @@ import Alert from '../components/alert/alert';
 import FormInput from '../components/form/form-input';
 import SubmitButton from '../components/form/submit-button';
 import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
+import { TFormData } from '../types/form';
 
-const Login = () => {
+const Login: FC = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const error = useSelector(getFormErrorSelector);
 
     const { field, handleSubmit } = useForm();
 
-    const onSubmit = (form) => {
+    const onSubmit = (form: TFormData) => {
         dispatch(login(form));
     }
 
