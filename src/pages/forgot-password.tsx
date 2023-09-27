@@ -8,15 +8,17 @@ import { getFormErrorSelector } from '../services/form/selectors';
 import Alert from '../components/alert/alert';
 import { forgotPassword } from '../services/forgot-password/actions';
 import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
+import { TFormData } from '../types/form';
 
-const ForgotPassword = () => {
-    const dispatch = useDispatch();
+const ForgotPassword: FC = () => {
+    const dispatch = useDispatch<any>();
     const error = useSelector(getFormErrorSelector);
     const navigate = useNavigate();
 
     const { field, handleSubmit } = useForm();
 
-    const onSubmit = (form) => {
+    const onSubmit = (form: TFormData) => {
         dispatch(forgotPassword(form, () => navigate('/reset-password')));
     }
 
