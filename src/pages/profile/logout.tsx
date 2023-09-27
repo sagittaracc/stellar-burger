@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { logout } from '../../services/logout/logout';
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
 
-const Logout = () => {
+const Logout: FC = () => {
     const dispatch = useDispatch<any>();
 
     useEffect(() => {

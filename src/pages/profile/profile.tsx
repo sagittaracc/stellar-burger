@@ -4,8 +4,9 @@ import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getFormErrorSelector } from '../../services/form/selectors';
 import Alert from '../../components/alert/alert';
+import { FC } from 'react';
 
-const Profile = () => {
+const Profile: FC = () => {
     const error = useSelector(getFormErrorSelector);
 
     return (

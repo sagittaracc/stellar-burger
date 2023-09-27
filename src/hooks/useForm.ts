@@ -28,7 +28,7 @@ const useForm = () => {
         setForm,
         touched,
         field,
-        handleSubmit: (onSubmit: (form: object) => void) => (e: SyntheticEvent) => {
+        handleSubmit: (onSubmit: (form: TFormData) => void) => (e: SyntheticEvent) => {
             e.preventDefault();
             onSubmit(form);
             setTouched(false);

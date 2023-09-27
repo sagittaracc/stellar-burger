@@ -33,7 +33,7 @@ export const getUser: AppThunk = () => (dispatch: TDispatch) => {
         })
 }
 
-export const updUser = (data: TUserCredentials) => (dispatch: TDispatch) => {
+export const updUser: AppThunk = (data: TUserCredentials) => (dispatch: TDispatch) => {
     dispatch({ type: FORM_REQUEST });
 
     securePatch('/auth/user', data)

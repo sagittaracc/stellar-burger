@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useForm from '../../hooks/useForm';
 import { updUser } from '../../services/auth/actions';
@@ -6,9 +6,10 @@ import SubmitButton from '../../components/form/submit-button';
 import CancelButton from '../../components/form/cancel-button';
 import { getEmailSelector, getNameSelector } from '../../services/auth/selectors';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { TFormData } from '../../types/form';
 
-const Credentials = () => {
-    const dispatch = useDispatch();
+const Credentials: FC = () => {
+    const dispatch = useDispatch<any>();
     const name = useSelector(getNameSelector);
     const email = useSelector(getEmailSelector);
     const { form, setForm, touched, field, handleSubmit, handleReset } = useForm();
@@ -22,7 +23,7 @@ const Credentials = () => {
         })
     }, [name, email]);
 
-    const onSubmit = (form) => {
+    const onSubmit = (form: TFormData) => {
         dispatch(updUser(form));
     }
 
