@@ -1,5 +1,6 @@
 import { AppThunk, TDispatch } from "../../types";
 import { IAuthError, IAuthSuccess } from "../../types/auth";
+import { TUserResponse } from "../../types/response";
 import { TUserCredentials, TUserInfo } from "../../types/user";
 import { secureGet, securePatch } from "../../utils/api";
 import { FORM_FAIL, FORM_REQUEST, FORM_SUCCESS } from "../form/actions";
@@ -26,7 +27,8 @@ export const getUser: AppThunk = () => (dispatch: TDispatch) => {
 
     secureGet('/auth/user')
         .then(response => {
-            dispatch(setUser(response.user));
+            const userInfo = response as TUserResponse;
+            dispatch(setUser(userInfo.user));
         })
         .catch(error => {
             dispatch(unsetUser());
@@ -38,7 +40,8 @@ export const updUser: AppThunk = (data: TUserCredentials) => (dispatch: TDispatc
 
     securePatch('/auth/user', data)
         .then(response => {
-            dispatch(setUser(response.user));
+            const userInfo = response as TUserResponse;
+            dispatch(setUser(userInfo.user));
             dispatch({ type: FORM_SUCCESS });
         })
         .catch(error => {

@@ -12,8 +12,9 @@ export const getIngredients: AppThunk = () => (dispath: TDispatch) => {
     dispath({ type: GET_INGREDIENTS_REQUEST });
 
     get('/ingredients')
-        .then((data: TIngredientResponse) => {
-            const menu: TIngredientGroup = group<TIngredient, TIngredientCategory>(data.data, 'type');
+        .then(response => {
+            const ingredients = response as TIngredientResponse;
+            const menu: TIngredientGroup = group<TIngredient, TIngredientCategory>(ingredients.data, 'type');
             dispath({ type: GET_INGREDIENTS_SUCCESS, payload: menu });
         })
         .catch(error => {
