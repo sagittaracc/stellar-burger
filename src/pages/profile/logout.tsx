@@ -3,7 +3,7 @@ import { logout } from '../../services/logout/logout';
 import { useEffect } from 'react';
 
 const Logout = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
 
     useEffect(() => {
         dispatch(logout());
