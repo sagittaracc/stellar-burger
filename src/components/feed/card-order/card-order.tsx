@@ -26,7 +26,7 @@ const CardOrder: FC<TCardOrder> = ({ data }) => {
             <p className={`${styles.status} text text_type_main-default mb-6`}>Готов</p>
             <div className='flex'>
                 {
-                    data.ingredients.map((img, index, list) => <Ingredient index={index} last={index + 1 === list.length} img={img} />)
+                    data.ingredients.map((img, index, list) => <Ingredient index={index} list={list} img={img} />)
                 }
                 <div className='col'>
                     <p className='text text_type_digits-medium float-right mt-3'>
