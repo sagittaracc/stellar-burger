@@ -10,9 +10,7 @@ export type TCardOrderComponent = {
     }
 };
 
-export type TIngredientComponent = {
-    rest: number;
-    index: number;
-    img: string;
-    list: TIngredientList;
+export type TIngredientsComponent = {
+    list: Array<string>;
+    maxCount: number;
 };
