@@ -11,6 +11,6 @@ export type TCardOrderComponent = {
 };
 
 export type TIngredientsComponent = {
-    list: Array<string>;
+    list: TIngredientList;
     maxCount: number;
 };
