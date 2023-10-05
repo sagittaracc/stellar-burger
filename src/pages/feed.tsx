@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Orders from './orders/orders';
-import Stats from './stats/stats';
+import Orders from '../components/feed/orders/orders';
+import Stats from '../components/feed/stats/stats';
 
 const Feed: FC = () => {
     return (

@@ -17,7 +17,7 @@ import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
 import Logout from '../../pages/profile/logout';
-import Feed from '../feed/feed';
+import Feed from '../../pages/feed';
 
 function App() {
     const location = useLocation();

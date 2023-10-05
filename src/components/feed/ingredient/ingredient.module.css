@@ -1,0 +1,34 @@
+.ingredient
+{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    border: 3px solid #5d5dbd;
+    margin-right: -15px;
+}
+
+.ingredient > img
+{
+    background-color: #1c1c21;
+    border-radius: 100px;
+    height: 60px;
+    margin: auto;
+    object-fit: cover;
+    width: 60px;
+}
+
+.counter {
+    align-items: center;
+    background-color: rgba(28,28,33,.6);
+    border-radius: 100px;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 60px;
+}
