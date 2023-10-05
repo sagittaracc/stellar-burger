@@ -1,7 +1,7 @@
 export const orders = [
     {
         number: "034535",
-        timestamp: "2023-10-04T08:33:32.877Z",
+        timestamp: "2023-10-03T08:33:32.877Z",
         name: "Альфа-сахаридный флюоресцентный бургер",
         price: 3500,
         ingredients: [
@@ -16,7 +16,7 @@ export const orders = [
     },
     {
         number: "034535",
-        timestamp: "2023-10-04T08:33:32.877Z",
+        timestamp: "2023-10-01T08:33:32.877Z",
         name: "Антарианский space традиционный-галактический краторный бургер",
         price: 1438,
         ingredients: [
@@ -30,7 +30,7 @@ export const orders = [
     },
     {
         number: "034535",
-        timestamp: "2023-10-04T08:33:32.877Z",
+        timestamp: "2023-10-05T08:33:32.877Z",
         name: "Антарианский традиционный-галактический краторный бургер",
         price: 1446,
         ingredients: [
