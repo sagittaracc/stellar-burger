@@ -1,17 +1,15 @@
 import { FC } from 'react';
 import styles from './ingredient.module.css';
+import { TIngredientComponent } from '../../../types/feed';
 
-type TIngredientComponent = {
-    index: number;
-    img: string;
-    list: Array<string>;
-};
+const Ingredient: FC<TIngredientComponent> = ({rest, index, list, img}) => {
+    const zIndex = list.length - index;
+    const last = index + 1 === list.length;
 
-const Ingredient: FC<TIngredientComponent> = ({index, list, img}) => {
     return (
-        <div style={{ zIndex: list.length - index }} className={`${styles.ingredient}`}>
+        <div style={{ zIndex }} className={`${styles.ingredient}`}>
             <img src={img} alt="" />
-            {index > 3 && index + 1 === list.length && <div className={`${styles.counter} text text_type_main-default`}>+2</div>}
+            {last && rest > 0 && <div className={`${styles.counter} text text_type_main-default`}>+{rest}</div>}
         </div>
     );
 }

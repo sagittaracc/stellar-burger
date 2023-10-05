@@ -2,18 +2,11 @@ import { FC } from 'react';
 import styles from './card-order.module.css'
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import Ingredient from '../ingredient/ingredient';
+import { TCardOrderComponent } from '../../../types/feed';
 
-type TCardOrder = {
-    data: {
-        number: string,
-        timestamp: string,
-        name: string,
-        price: number,
-        ingredients: Array<string>,
-    }
-};
+const CardOrder: FC<TCardOrderComponent> = ({ data }) => {
+    const maxVisibleIngredientsCount = 5;
 
-const CardOrder: FC<TCardOrder> = ({ data }) => {
     return (
         <div className={`${styles.card} p-6 mb-4`}>
             <div className='mb-6'>
@@ -26,7 +19,15 @@ const CardOrder: FC<TCardOrder> = ({ data }) => {
             <p className={`${styles.status} text text_type_main-default mb-6`}>Готов</p>
             <div className='flex'>
                 {
-                    data.ingredients.map((img, index, list) => <Ingredient index={index} list={list} img={img} />)
+                    data.ingredients.slice(0, maxVisibleIngredientsCount).map(
+                        (img, index, list) =>
+                            <Ingredient
+                                rest={data.ingredients.length - maxVisibleIngredientsCount}
+                                index={index}
+                                list={list}
+                                img={img}
+                            />
+                    )
                 }
                 <div className='col'>
                     <p className='text text_type_digits-medium float-right mt-3'>
