@@ -17,6 +17,7 @@ import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
 import Logout from '../../pages/profile/logout';
+import Feed from '../feed/feed';
 
 function App() {
     const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
                 <Routes location={background || location}>
                     <Route path='/' element={<Main />}>
                         <Route index element={<Constructor />} />
+                        <Route path='feed' element={<Feed />} />
                         <Route path='login' element={<ProtectedRoute anonymous component={<Login />} />} />
                         <Route path='register' element={<ProtectedRoute anonymous component={<Register />} />} />
                         <Route path='forgot-password' element={<ProtectedRoute anonymous component={<ForgotPassword />} />} />
