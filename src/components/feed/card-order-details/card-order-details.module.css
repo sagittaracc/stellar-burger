@@ -1,0 +1,19 @@
+.ingredient
+{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    border: 3px solid #5d5dbd;
+    margin-right: -15px;
+}
+
+.ingredient > img
+{
+    background-color: #1c1c21;
+    border-radius: 100px;
+    height: 60px;
+    margin: auto;
+    object-fit: cover;
+    width: 60px;
+}

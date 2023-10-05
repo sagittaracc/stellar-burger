@@ -1,6 +1,6 @@
 .modal {
     width: 720px;
-    height: 718px;
+    height: auto;
     border-radius: 40px;
     background-color: #1C1C21;
     position: absolute;

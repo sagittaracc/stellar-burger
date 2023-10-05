@@ -23,7 +23,7 @@ const Modal: FC<TModalWindow> = ({ header, onClose, children }) => {
     return ReactDOM.createPortal(
         (
             <>
-                <div className={styles.modal}>
+                <div className={`${styles.modal} pb-10`}>
                     <Header header={header} onClose={onClose} />
                     {children}
                 </div>
