@@ -1,8 +1,17 @@
 import { FC } from 'react';
 import CardOrder from '../card-order/card-order';
 import { feed } from '../../../stubs/orders';
+import { TCard } from '../../../types/feed';
 
-const Orders: FC = () => {
+type TOrderComponent = {
+    feed: {
+        orders: Array<TCard>,
+        total: number,
+        totalToday: number
+    }
+};
+
+const Orders: FC<TOrderComponent> = ({feed}) => {
     return (
         <div className="flex columns text text_type_main-default h-100">
             <h1 className='mb-3'>Лента заказов</h1>

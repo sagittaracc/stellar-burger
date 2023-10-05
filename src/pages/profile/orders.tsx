@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { orders, feed } from '../../stubs/orders';
+import { feed } from '../../stubs/orders';
 import CardOrder from '../../components/feed/card-order/card-order';
 
 const Orders: FC = () => {

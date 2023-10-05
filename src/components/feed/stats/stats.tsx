@@ -1,6 +1,8 @@
 import { FC } from 'react';
+import { TStatsComponent } from '../../../types/stats';
 
-const Stats: FC = () => {
+const Stats: FC<TStatsComponent> = ({ feed }) => {
+    const done = feed.orders.filter(order => order.status === "done");
     return (
         <div className='mt-20 ml-15'>
             <div className='flex'>
@@ -8,17 +10,9 @@ const Stats: FC = () => {
                     <h3 className='text text_type_main-medium mb-6'>Готов:</h3>
                     <div className="flex">
                         <div className="col">
-                            <p className={`text-success text text_type_digits-default`}>22097</p>
-                            <p className={`text-success text text_type_digits-default`}>22097</p>
-                            <p className={`text-success text text_type_digits-default`}>22097</p>
-                            <p className={`text-success text text_type_digits-default`}>22097</p>
-                            <p className={`text-success text text_type_digits-default`}>22097</p>
-                        </div>
-                        <div className="col">
-                            <p className={`text-success text text_type_digits-default`}>22096</p>
-                            <p className={`text-success text text_type_digits-default`}>22096</p>
-                            <p className={`text-success text text_type_digits-default`}>22096</p>
-                            <p className={`text-success text text_type_digits-default`}>22096</p>
+                            {
+                                done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
+                            }
                         </div>
                     </div>
                 </div>
@@ -28,11 +22,11 @@ const Stats: FC = () => {
             </div>
             <div>
                 <h3 className='text text_type_main-medium mt-15'>Выполнено за всё время:</h3>
-                <p className='text text_type_digits-large'>21723</p>
+                <p className='text text_type_digits-large'>{feed.total}</p>
             </div>
             <div>
                 <h3 className='text text_type_main-medium mt-15'>Выполнено за сегодня:</h3>
-                <p className='text text_type_digits-large'>60</p>
+                <p className='text text_type_digits-large'>{feed.totalToday}</p>
             </div>
         </div>
     );
