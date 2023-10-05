@@ -3,6 +3,10 @@ import styles from './ingredients.module.css';
 import { TIngredientsComponent } from '../../../types/feed';
 
 const Ingredients: FC<TIngredientsComponent> = ({ list, maxCount }) => {
+    const isLast = (index: number) => index === maxCount - 1;
+    const hasMore = () => list.length - maxCount > 0;
+    const getRestCount = () => list.length - maxCount;
+
     return (
         <>
             {
@@ -11,9 +15,8 @@ const Ingredients: FC<TIngredientsComponent> = ({ list, maxCount }) => {
                         <div style={{ zIndex: maxCount - index }} className={`${styles.ingredient}`}>
                             <img src={img} alt="" />
                             {
-                                index === maxCount - 1 &&
-                                list.length - maxCount > 0 &&
-                                    <div className={`${styles.counter} text text_type_main-default`}>+{list.length - maxCount}</div>
+                                isLast(index) && hasMore() &&
+                                    <div className={`${styles.counter} text text_type_main-default`}>+{getRestCount()}</div>
                             }
                         </div>
                 )
