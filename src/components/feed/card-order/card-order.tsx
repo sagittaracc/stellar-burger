@@ -1,15 +1,29 @@
 import { FC } from 'react';
 import styles from './card-order.module.css'
-import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
+import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import { TCardOrderComponent } from '../../../types/feed';
 import Ingredients from '../ingredients/ingredients';
 import { IModalHook } from '../../../types/modal';
 import useModal from '../../../hooks/useModal';
 import Modal from '../../modal/modal';
 import CardOrderDetails from '../card-order-details/card-order-details';
+import { useSelector } from 'react-redux';
+import { ingredientsSelector } from '../../../services/ingredients/selectors';
+import { TIngredient } from '../../../types/ingredient';
 
 const CardOrder: FC<TCardOrderComponent> = ({ data }) => {
     const { open: modalShown, openModal, closeModal }: IModalHook = useModal();
+    const [, ingredients] = useSelector(ingredientsSelector);
+    const ingredientsList = ingredients.bun.concat(ingredients.main).concat(ingredients.sauce);
+    const ingredientsInUse = ingredientsList.filter((ingredient: TIngredient) => data.ingredients.includes(ingredient._id as unknown as string));
+    const cost = ingredientsInUse.reduce((total: number, ingredient: TIngredient) => total + ingredient.price, 0);
+
+    const getStatus = (statusCode: string) => {
+        switch (statusCode) {
+            case "done":
+                return "Готово";
+        }
+    };
 
     return (
         <>
@@ -17,25 +31,19 @@ const CardOrder: FC<TCardOrderComponent> = ({ data }) => {
                 <div className='mb-6'>
                     <span className='text text_type_digits-default'>#{data.number}</span>
                     <span className='float-right text text_type_main-default text_color_inactive'>
-                        <FormattedDate date={new Date(data.timestamp)} />
+                        <FormattedDate date={new Date(data.createdAt)} />
                     </span>
                 </div>
                 <p className='text text_type_main-medium mb-6'>{data.name}</p>
-                <p className={`text-success text text_type_main-default mb-6`}>Готов</p>
+                <p className={`text-success text text_type_main-default mb-6`}>{getStatus(data.status)}</p>
                 <div className='flex'>
-                    <Ingredients list={data.ingredients} maxCount={5} />
-                    <div className='col'>
-                        <p className='text text_type_digits-medium float-right mt-3'>
-                            <span className='mr-2'>{data.price}</span>
-                            <CurrencyIcon type="primary" />
-                        </p>
-                    </div>
+                    <Ingredients cost={cost} list={ingredientsInUse} maxCount={5} />
                 </div>
             </div>
             {
                 modalShown &&
                 <Modal onClose={closeModal} header={`#${data.number}`}>
-                    <CardOrderDetails data={data} />
+                    <CardOrderDetails data={data} list={ingredientsInUse} cost={cost} />
                 </Modal>
             }
         </>
