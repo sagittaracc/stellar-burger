@@ -102,6 +102,14 @@ body {
     flex-grow: 1;
 }
 
+.weight-1 {
+    flex-grow: 1;
+}
+
+.weight-2 {
+    flex-grow: 2;
+}
+
 /* Spaces */
 .between-5>* {
     margin-right: 20px;
