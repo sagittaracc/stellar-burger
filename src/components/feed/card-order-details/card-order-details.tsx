@@ -7,7 +7,7 @@ const CardOrderDetails: FC<TCardOrderComponent> = ({ data }) => {
     return (
         <div className="ml-10 mr-10">
             <p className='text text_type_main-medium mb-1'>{data.name}</p>
-            <p className={`text text_type_main-default mb-6`}>Готов</p>
+            <p className={`text-success text text_type_main-default mb-6`}>Готов</p>
             <p className='text text_type_main-medium mb-6 mt-10'>Состав:</p>
             <div className="custom-scroll overflow-auto" style={{ height: 300 }}>
                 {

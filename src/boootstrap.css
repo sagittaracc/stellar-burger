@@ -28,6 +28,10 @@ body {
     text-align: right;
 }
 
+.text-success {
+    color: #0cc;
+}
+
 /* Float */
 .float-right {
     float: right;

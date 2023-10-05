@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import styles from './stats.module.css';
 
 const Stats: FC = () => {
     return (
@@ -9,17 +8,17 @@ const Stats: FC = () => {
                     <h3 className='text text_type_main-medium mb-6'>Готов:</h3>
                     <div className="flex">
                         <div className="col">
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22097</p>
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22097</p>
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22097</p>
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22097</p>
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22097</p>
+                            <p className={`text-success text text_type_digits-default`}>22097</p>
+                            <p className={`text-success text text_type_digits-default`}>22097</p>
+                            <p className={`text-success text text_type_digits-default`}>22097</p>
+                            <p className={`text-success text text_type_digits-default`}>22097</p>
+                            <p className={`text-success text text_type_digits-default`}>22097</p>
                         </div>
                         <div className="col">
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22096</p>
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22096</p>
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22096</p>
-                            <p className={`${styles.orderNumber} text text_type_digits-default`}>22096</p>
+                            <p className={`text-success text text_type_digits-default`}>22096</p>
+                            <p className={`text-success text text_type_digits-default`}>22096</p>
+                            <p className={`text-success text text_type_digits-default`}>22096</p>
+                            <p className={`text-success text text_type_digits-default`}>22096</p>
                         </div>
                     </div>
                 </div>

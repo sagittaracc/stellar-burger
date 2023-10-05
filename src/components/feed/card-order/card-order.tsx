@@ -21,7 +21,7 @@ const CardOrder: FC<TCardOrderComponent> = ({ data }) => {
                     </span>
                 </div>
                 <p className='text text_type_main-medium mb-6'>{data.name}</p>
-                <p className={`${styles.status} text text_type_main-default mb-6`}>Готов</p>
+                <p className={`text-success text text_type_main-default mb-6`}>Готов</p>
                 <div className='flex'>
                     <Ingredients list={data.ingredients} maxCount={5} />
                     <div className='col'>
