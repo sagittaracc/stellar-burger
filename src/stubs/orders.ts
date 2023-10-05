@@ -2,8 +2,8 @@ export const orders = [
     {
         number: "034535",
         timestamp: "2023-10-04T08:33:32.877Z",
-        name: "Death Star Starship Main бургер",
-        price: 480,
+        name: "Альфа-сахаридный флюоресцентный бургер",
+        price: 3500,
         ingredients: [
             'https://code.s3.yandex.net/react/code/bun-02.png',
             'https://code.s3.yandex.net/react/code/sauce-04.png',
@@ -17,8 +17,8 @@ export const orders = [
     {
         number: "034535",
         timestamp: "2023-10-04T08:33:32.877Z",
-        name: "Death Star Starship Main бургер",
-        price: 480,
+        name: "Антарианский space традиционный-галактический краторный бургер",
+        price: 1438,
         ingredients: [
             'https://code.s3.yandex.net/react/code/bun-02.png',
             'https://code.s3.yandex.net/react/code/sauce-04.png',
@@ -31,8 +31,8 @@ export const orders = [
     {
         number: "034535",
         timestamp: "2023-10-04T08:33:32.877Z",
-        name: "Death Star Starship Main бургер",
-        price: 480,
+        name: "Антарианский традиционный-галактический краторный бургер",
+        price: 1446,
         ingredients: [
             'https://code.s3.yandex.net/react/code/bun-02.png',
             'https://code.s3.yandex.net/react/code/sauce-04.png',
@@ -44,8 +44,8 @@ export const orders = [
     {
         number: "034535",
         timestamp: "2023-10-04T08:33:32.877Z",
-        name: "Death Star Starship Main бургер",
-        price: 480,
+        name: "Space традиционный-галактический краторный spicy бургер",
+        price: 1440,
         ingredients: [
             'https://code.s3.yandex.net/react/code/bun-02.png',
             'https://code.s3.yandex.net/react/code/sauce-04.png',
