@@ -5,7 +5,7 @@ import { TBunComponent } from '../../../types/ingredient';
 
 const Bun: FC<TBunComponent> = ({ position, data }) => {
     return (
-        <div className="ml-8 mb-4">
+        <div className="ml-8 mb-4 pr-5">
             <div className="ml-9">
                 {
                     <ConstructorElement

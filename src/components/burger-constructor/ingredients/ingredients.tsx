@@ -4,7 +4,7 @@ import { TIngredientComponent } from '../../../types/ingredient';
 
 const Ingredients: FC<TIngredientComponent> = ({ data, bun }) => {
     return (
-        <div className="full-space ml-8 custom-scroll overflow-auto">
+        <div className="full-space ml-8 custom-scroll overflow-auto pr-3">
             {
                 bun && data.length === 0 &&
                     <div className='h-100 flex align-center justify-center'>
