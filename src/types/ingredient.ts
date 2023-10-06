@@ -71,5 +71,5 @@ export type TIngredientBoxComponent = TBurgerIngredientComponent & {
 
 export type TIngredientListComponent = {
     list: Array<TIngredient>;
-    maxCount?: number | null;
+    maxCount?: number;
 };

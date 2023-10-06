@@ -1,9 +1,18 @@
 import { FC } from 'react';
-import styles from './ingredients.module.css';
+import styles from './ingredient-list.module.css';
 import { TIngredient, TIngredientListComponent } from '../../../types/ingredient';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-const Ingredients: FC<TIngredientListComponent> = ({ list, maxCount = null }) => {
+const IngredientList: FC<TIngredientListComponent> = ({ list, maxCount }) => {
+    return (
+        <>
+            { maxCount && <ShortList list={list} maxCount={maxCount} /> }
+            { !maxCount && <FullList list={list} /> }
+        </>
+    );
+}
+
+const ShortList: FC<TIngredientListComponent> = ({ list, maxCount }) => {
     const isLast = (index: number) => maxCount ? index === maxCount - 1 : false;
     const hasMore = () => maxCount ? list.length - maxCount > 0 : false;
     const getRestCount = () => maxCount ? list.length - maxCount : 0;
@@ -11,10 +20,9 @@ const Ingredients: FC<TIngredientListComponent> = ({ list, maxCount = null }) =>
     return (
         <>
             {
-                maxCount &&
                 list.slice(0, maxCount).map(
                     (ingredient: TIngredient, index: number) =>
-                        <div style={{ zIndex: maxCount - index }} className={`${styles.ingredient}`}>
+                        <div style={{ zIndex: maxCount ? maxCount - index : 0 }} className={`${styles.ingredient}`}>
                             <img src={ingredient.image} alt="" />
                             {
                                 isLast(index) && hasMore() &&
@@ -23,8 +31,14 @@ const Ingredients: FC<TIngredientListComponent> = ({ list, maxCount = null }) =>
                         </div>
                 )
             }
+        </>
+    );
+};
+
+const FullList: FC<TIngredientListComponent> = ({ list }) => {
+    return (
+        <>
             {
-                !maxCount &&
                 list.map(
                     ingredient =>
                         <div className='flex align-center space-between pr-5'>
@@ -45,4 +59,4 @@ const Ingredients: FC<TIngredientListComponent> = ({ list, maxCount = null }) =>
     );
 }
 
-export default Ingredients;
+export default IngredientList;

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { TCardOrderDetailsComponent } from '../../types/feed';
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './card-order-details.module.css';
-import Ingredients from '../card-order/ingredients/ingredients';
+import IngredientList from '../card-order/ingredient-list/ingredient-list';
 
 const CardOrderDetails: FC<TCardOrderDetailsComponent> = ({ data, list, cost }) => {
     return (
@@ -11,7 +11,7 @@ const CardOrderDetails: FC<TCardOrderDetailsComponent> = ({ data, list, cost }) 
             <p className={`text-success text text_type_main-default mb-6`}>Готов</p>
             <p className='text text_type_main-medium mb-6 mt-10'>Состав:</p>
             <div className={`custom-scroll overflow-auto ${styles.details}`}>
-                <Ingredients list={list} />
+                <IngredientList list={list} />
             </div>
             <div className='mt-10'>
                 <span className='text text_type_main-default text_color_inactive'>
