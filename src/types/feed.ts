@@ -1,8 +1,13 @@
 import { TIngredient } from "./ingredient";
+import { TOrder } from "./order";
 
 export type TIngredientList = Array<string>;
 
-export type TStatus = "done";
+export type TFeed = {
+    orders: Array<TOrder>,
+    total: number,
+    totalToday: number
+};
 
 export type TCard = {
     _id: string,

@@ -2,6 +2,12 @@ import { CREATE_ORDER_FAIL, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS } from ".
 
 export type TOrder = {
     number: number;
+    _id: string,
+    ingredients: Array<string>,
+    status: TStatus,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
 };
 
 export type TOrderDetails = {
@@ -33,3 +39,5 @@ export type TOrderAction =
     IOrderRequest |
     IOrderSuccess |
     IOrderFail;
+
+export type TStatus = "created" | "pending" | "done";

@@ -1,9 +1,11 @@
 import { FC } from 'react';
-import { TStatsComponent } from '../../../types/stats';
 import styles from './stats.module.css';
+import { TFeed } from '../../../types/feed';
 
-const Stats: FC<TStatsComponent> = ({ orders, total, totalToday }) => {
+const Stats: FC<TFeed> = ({ orders, total, totalToday }) => {
     const done = orders.filter(order => order.status === "done");
+    const pending = orders.filter(order => order.status === "pending");
+
     return (
         <div className='mt-20 ml-15'>
             <div className='flex'>
@@ -15,19 +17,6 @@ const Stats: FC<TStatsComponent> = ({ orders, total, totalToday }) => {
                                 {
                                     done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
                                 }
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
-                                <div className={`text-success text text_type_digits-default`}>11111</div>
                             </div>
                         </div>
                     </div>
@@ -38,7 +27,7 @@ const Stats: FC<TStatsComponent> = ({ orders, total, totalToday }) => {
                         <div className="col">
                             <div className={`flex columns wrap ${styles.stats}`}>
                                 {
-                                    done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
+                                    pending.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
                                 }
                             </div>
                         </div>

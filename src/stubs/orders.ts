@@ -1,4 +1,6 @@
-export const feed = {
+import { TFeedResponse } from "../types/response";
+
+export const feed: TFeedResponse = {
     success: true,
     orders: [
         {
@@ -55,7 +57,7 @@ export const feed = {
                 "643d69a5c3f7b9001cfa0944",
                 "643d69a5c3f7b9001cfa093c"
             ],
-            "status": "done",
+            "status": "pending",
             "name": "Бессмертный астероидный фалленианский экзо-плантаго минеральный традиционный-галактический краторный бургер",
             "createdAt": "2023-10-05T12:16:48.886Z",
             "updatedAt": "2023-10-05T12:16:49.075Z",
