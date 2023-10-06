@@ -32,6 +32,18 @@ body {
     color: #0cc;
 }
 
+.text-primary {
+    color: #007bff;
+}
+
+.text-warning {
+    color: #ffc107;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
 /* Float */
 .float-right {
     float: right;

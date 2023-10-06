@@ -18,12 +18,14 @@ const CardOrder: FC<TOrder> = (order) => {
     const ingredientsInUse = ingredientsList.filter((ingredient: TIngredient) => order.ingredients.includes(ingredient._id as unknown as string));
     const cost = ingredientsInUse.reduce((total: number, ingredient: TIngredient) => total + ingredient.price, 0);
 
-    const getStatus = (statusCode: string) => {
+    const renderStatus = (statusCode: string) => {
         switch (statusCode) {
             case "done":
-                return "Готово";
+                return <p className={`text-success text text_type_main-default mb-6`}>Готово</p>;
+            case "pending":
+                return <p className={`text-danger text text_type_main-default mb-6`}>В работе</p>;
         }
-    };
+    }
 
     return (
         <>
@@ -35,7 +37,7 @@ const CardOrder: FC<TOrder> = (order) => {
                     </span>
                 </div>
                 <p className='text text_type_main-medium mb-6'>{order.name}</p>
-                <p className={`text-success text text_type_main-default mb-6`}>{getStatus(order.status)}</p>
+                { renderStatus(order.status) }
                 <div className='flex'>
                     <IngredientList list={ingredientsInUse} maxCount={5} />
                     <div className='col'>
