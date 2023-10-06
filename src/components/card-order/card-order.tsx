@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from './card-order.module.css'
-import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
+import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import Ingredients from './ingredients/ingredients';
 import { IModalHook } from '../../types/modal';
 import useModal from '../../hooks/useModal';
@@ -37,7 +37,13 @@ const CardOrder: FC<TOrder> = (order) => {
                 <p className='text text_type_main-medium mb-6'>{order.name}</p>
                 <p className={`text-success text text_type_main-default mb-6`}>{getStatus(order.status)}</p>
                 <div className='flex'>
-                    <Ingredients cost={cost} list={ingredientsInUse} maxCount={5} />
+                    <Ingredients list={ingredientsInUse} maxCount={5} />
+                    <div className='col'>
+                        <p className='text text_type_digits-medium float-right mt-3'>
+                            <span className='mr-2'>{cost}</span>
+                            <CurrencyIcon type="primary" />
+                        </p>
+                    </div>
                 </div>
             </div>
             {
