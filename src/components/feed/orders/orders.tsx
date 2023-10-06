@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import CardOrder from '../card-order/card-order';
-import { feed } from '../../../stubs/orders';
+import CardOrder from '../../card-order/card-order';
 import { TCard } from '../../../types/feed';
 
 type TOrderComponent = {

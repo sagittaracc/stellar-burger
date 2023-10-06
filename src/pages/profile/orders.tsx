@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { feed } from '../../stubs/orders';
-import CardOrder from '../../components/feed/card-order/card-order';
+import CardOrder from '../../components/card-order/card-order';
 
 const Orders: FC = () => {
     return (

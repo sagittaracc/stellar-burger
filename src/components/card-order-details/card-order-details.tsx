@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TCardOrderDetailsComponent } from '../../../types/feed';
+import { TCardOrderDetailsComponent } from '../../types/feed';
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './card-order-details.module.css';
 
