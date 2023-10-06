@@ -14,9 +14,7 @@ const Stats: FC<TFeed> = ({ orders, total, totalToday }) => {
                     <div className="flex">
                         <div className="col">
                             <div className={`flex columns wrap ${styles.stats}`}>
-                                {
-                                    done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
-                                }
+                                {done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)}
                             </div>
                         </div>
                     </div>
@@ -26,9 +24,7 @@ const Stats: FC<TFeed> = ({ orders, total, totalToday }) => {
                     <div className="flex">
                         <div className="col">
                             <div className={`flex columns wrap ${styles.stats}`}>
-                                {
-                                    pending.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
-                                }
+                                {pending.map(order => <p className={`text-danger text text_type_digits-default`}>{order.number}</p>)}
                             </div>
                         </div>
                     </div>
