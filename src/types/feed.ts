@@ -9,28 +9,6 @@ export type TFeed = {
     totalToday: number
 };
 
-export type TCard = {
-    _id: string,
-    ingredients: TIngredientList,
-    status: string,
-    name: string,
-    createdAt: string,
-    updatedAt: string,
-    number: number
-};
-
-export type TCardOrderComponent = {
-    data: {
-        _id: string,
-        ingredients: TIngredientList,
-        status: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-        number: number
-    },
-};
-
 export type TCardOrderDetailsComponent = {
     data: {
         _id: string,
