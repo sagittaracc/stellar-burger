@@ -12,8 +12,3 @@ export type TCardOrderDetailsComponent = {
     cost: number,
     list: Array<TIngredient>,
 };
-
-export type TIngredientsComponent = {
-    list: Array<TIngredient>;
-    maxCount: number;
-};
