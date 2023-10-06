@@ -6,9 +6,3 @@ export type TFeed = {
     total: number,
     totalToday: number
 };
-
-export type TCardOrderDetailsComponent = {
-    data: TOrder,
-    cost: number,
-    list: Array<TIngredient>,
-};

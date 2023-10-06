@@ -1,4 +1,5 @@
 import { CREATE_ORDER_FAIL, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS } from "../services/order/actions";
+import { TIngredient } from "./ingredient";
 
 export type TOrder = {
     number: number;
@@ -15,6 +16,12 @@ export type TOrderDetails = {
 };
 
 export type TOrderNumberComponent = TOrder;
+
+export type TOrderDetailsComponent = {
+    data: TOrder,
+    cost: number,
+    list: Array<TIngredient>,
+};
 
 export type TInitialOrder = {
     orderRequest: boolean;

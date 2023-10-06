@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { TCardOrderDetailsComponent } from '../../types/feed';
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-details.module.css';
 import IngredientList from '../order/ingredient-list/ingredient-list';
+import { TOrderDetailsComponent } from '../../types/order';
 
-const OrderDetails: FC<TCardOrderDetailsComponent> = ({ data, list, cost }) => {
+const OrderDetails: FC<TOrderDetailsComponent> = ({ data, list, cost }) => {
     return (
         <div className="ml-10 mr-10">
             <p className='text text_type_main-medium mb-1'>{data.name}</p>
