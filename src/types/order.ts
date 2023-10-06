@@ -18,9 +18,10 @@ export type TOrderDetails = {
 export type TOrderNumberComponent = TOrder;
 
 export type TOrderDetailsComponent = {
-    data: TOrder,
+    order: TOrder,
     cost: number,
-    list: Array<TIngredient>,
+    ingredients: Array<TIngredient>,
+    status: string,
 };
 
 export type TInitialOrder = {

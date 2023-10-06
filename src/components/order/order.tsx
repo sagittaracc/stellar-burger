@@ -51,7 +51,7 @@ const Order: FC<TOrder> = (order) => {
             {
                 modalShown &&
                 <Modal onClose={closeModal} header={`#${order.number}`}>
-                    <OrderDetails data={order} list={ingredientsInUse} cost={cost} />
+                    <OrderDetails order={order} ingredients={ingredientsInUse} cost={cost} status='Готов' />
                 </Modal>
             }
         </>
