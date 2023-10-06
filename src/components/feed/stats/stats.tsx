@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { TStatsComponent } from '../../../types/stats';
 import styles from './stats.module.css';
 
-const Stats: FC<TStatsComponent> = ({ feed }) => {
-    const done = feed.orders.filter(order => order.status === "done");
+const Stats: FC<TStatsComponent> = ({ orders, total, totalToday }) => {
+    const done = orders.filter(order => order.status === "done");
     return (
         <div className='mt-20 ml-15'>
             <div className='flex'>
@@ -47,11 +47,11 @@ const Stats: FC<TStatsComponent> = ({ feed }) => {
             </div>
             <div>
                 <h3 className='text text_type_main-medium mt-15'>Выполнено за всё время:</h3>
-                <p className='text text_type_digits-large'>{feed.total}</p>
+                <p className='text text_type_digits-large'>{total}</p>
             </div>
             <div>
                 <h3 className='text text_type_main-medium mt-15'>Выполнено за сегодня:</h3>
-                <p className='text text_type_digits-large'>{feed.totalToday}</p>
+                <p className='text text_type_digits-large'>{totalToday}</p>
             </div>
         </div>
     );

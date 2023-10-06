@@ -7,10 +7,10 @@ const Feed: FC = () => {
     return (
         <div className="h-100 pt-10 flex">
             <div className="col">
-                <Orders feed={feed} />
+                <Orders {...feed} />
             </div>
             <div className="col">
-                <Stats feed={feed} />
+                <Stats {...feed} />
             </div>
         </div>
     );

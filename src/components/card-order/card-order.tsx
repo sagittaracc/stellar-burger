@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styles from './card-order.module.css'
 import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import { TCardOrderComponent } from '../../types/feed';
-import Ingredients from '../feed/ingredients/ingredients';
+import Ingredients from './ingredients/ingredients';
 import { IModalHook } from '../../types/modal';
 import useModal from '../../hooks/useModal';
 import Modal from '../modal/modal';
