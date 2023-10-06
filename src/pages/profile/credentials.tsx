@@ -43,7 +43,7 @@ const Credentials: FC = () => {
             <Input {...field("password")} type="password" placeholder="Пароль" icon="EditIcon" extraClass="mb-6" />
             {
                 touched && (
-                    <div className='text-right'>
+                    <div>
                         <SubmitButton>Сохранить</SubmitButton>
                         <CancelButton>Отмена</CancelButton>
                     </div>
