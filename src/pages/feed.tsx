@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Orders from '../components/feed/orders/orders';
 import Stats from '../components/feed/stats/stats';
-import { feed } from '../stubs/orders';
+import { feed } from '../stubs/feed';
 
 const Feed: FC = () => {
     return (

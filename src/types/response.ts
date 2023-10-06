@@ -26,12 +26,17 @@ export type TOrderResponse = TOrderDetails;
 
 export type TFeedResponse = TSuccess & TFeed;
 
+export type TAllOrdersResponse = TSuccess & {
+    orders: Array<TOrder>;
+}
+
 export type TSuccessResponse =
     TIngredientResponse |
     TUserResponse |
     TTokenResponse |
     TOrderResponse |
-    TFeedResponse;
+    TFeedResponse |
+    TAllOrdersResponse;
 
 export type TErrorResponse = TError & {
     message: string;
