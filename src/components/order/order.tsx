@@ -8,8 +8,17 @@ import OrderDetails from '../order-details/order-details';
 import { useSelector } from 'react-redux';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { TIngredient } from '../../types/ingredient';
-import { TOrder } from '../../types/order';
+import { TOrder, TOrderStatusComponent } from '../../types/order';
 import IngredientList from '../ingredient-list/ingredient-list';
+
+const OrderStatus: FC<TOrderStatusComponent> = ({ status }) => {
+    return (
+        <>
+            {status === "done" && <p className={`text-success text text_type_main-default mb-6`}>Готово</p>}
+            {status === "pending" && <p className={`text-danger text text_type_main-default mb-6`}>В работе</p>}
+        </>
+    );
+}
 
 const Order: FC<TOrder> = (order) => {
     const { open: modalShown, openModal, closeModal }: IModalHook = useModal();
@@ -17,15 +26,6 @@ const Order: FC<TOrder> = (order) => {
     const ingredientsList = ingredients.bun.concat(ingredients.main).concat(ingredients.sauce);
     const ingredientsInUse = ingredientsList.filter((ingredient: TIngredient) => order.ingredients.includes(ingredient._id as unknown as string));
     const cost = ingredientsInUse.reduce((total: number, ingredient: TIngredient) => total + ingredient.price, 0);
-
-    const renderStatus = (statusCode: string) => {
-        switch (statusCode) {
-            case "done":
-                return <p className={`text-success text text_type_main-default mb-6`}>Готово</p>;
-            case "pending":
-                return <p className={`text-danger text text_type_main-default mb-6`}>В работе</p>;
-        }
-    }
 
     return (
         <>
@@ -37,7 +37,7 @@ const Order: FC<TOrder> = (order) => {
                     </span>
                 </div>
                 <p className='text text_type_main-medium mb-6'>{order.name}</p>
-                { renderStatus(order.status) }
+                <OrderStatus status={order.status} />
                 <div className='flex'>
                     <IngredientList list={ingredientsInUse} maxCount={5} />
                     <div className='col'>
@@ -51,7 +51,12 @@ const Order: FC<TOrder> = (order) => {
             {
                 modalShown &&
                 <Modal onClose={closeModal} header={`#${order.number}`}>
-                    <OrderDetails order={order} ingredients={ingredientsInUse} cost={cost} status='Готов' />
+                    <OrderDetails
+                        order={order}
+                        ingredients={ingredientsInUse}
+                        cost={cost}
+                        status={<OrderStatus status={order.status} />}
+                    />
                 </Modal>
             }
         </>

@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { CREATE_ORDER_FAIL, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS } from "../services/order/actions";
 import { TIngredient } from "./ingredient";
 
@@ -21,7 +22,11 @@ export type TOrderDetailsComponent = {
     order: TOrder,
     cost: number,
     ingredients: Array<TIngredient>,
-    status: string,
+    status: ReactElement;
+};
+
+export type TOrderStatusComponent = {
+    status: TStatus;
 };
 
 export type TInitialOrder = {
