@@ -21,11 +21,30 @@ const OrderStatus: FC<TOrderStatusComponent> = ({ status }) => {
 }
 
 const Order: FC<TOrder> = (order) => {
-    const { open: modalShown, openModal, closeModal }: IModalHook = useModal();
+    const {
+        open: modalShown,
+        openModal,
+        closeModal
+    }: IModalHook = useModal();
+
     const [, ingredients] = useSelector(ingredientsSelector);
-    const ingredientsList = ingredients.bun.concat(ingredients.main).concat(ingredients.sauce);
-    const ingredientsInUse = ingredientsList.filter((ingredient: TIngredient) => order.ingredients.includes(ingredient._id as unknown as string));
-    const cost = ingredientsInUse.reduce((total: number, ingredient: TIngredient) => total + ingredient.price, 0);
+
+    const ingredientsList =
+        ingredients.bun
+            .concat(ingredients.main)
+            .concat(ingredients.sauce);
+
+    const ingredientsInUse =
+        ingredientsList.filter(
+            (ingredient: TIngredient) =>
+                order.ingredients.includes(ingredient._id as unknown as string)
+        );
+
+    const cost =
+        ingredientsInUse.reduce(
+            (total: number, ingredient: TIngredient) =>
+                total + ingredient.price, 0
+        );
 
     return (
         <>
