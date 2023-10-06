@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-details.module.css';
-import IngredientList from '../order/ingredient-list/ingredient-list';
+import IngredientList from '../ingredient-list/ingredient-list';
 import { TOrderDetailsComponent } from '../../types/order';
 
 const OrderDetails: FC<TOrderDetailsComponent> = ({ order, ingredients, cost, status }) => {

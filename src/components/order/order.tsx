@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { TIngredient } from '../../types/ingredient';
 import { TOrder } from '../../types/order';
-import IngredientList from './ingredient-list/ingredient-list';
+import IngredientList from '../ingredient-list/ingredient-list';
 
 const Order: FC<TOrder> = (order) => {
     const { open: modalShown, openModal, closeModal }: IModalHook = useModal();

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from './ingredient-list.module.css';
-import { TIngredient, TIngredientListComponent } from '../../../types/ingredient';
+import { TIngredient, TIngredientListComponent } from '../../types/ingredient';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const IngredientList: FC<TIngredientListComponent> = ({ list, maxCount }) => {
