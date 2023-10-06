@@ -1,17 +1,17 @@
 import { FC } from 'react';
-import styles from './card-order.module.css'
+import styles from './order.module.css'
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import { IModalHook } from '../../types/modal';
 import useModal from '../../hooks/useModal';
 import Modal from '../modal/modal';
-import CardOrderDetails from '../card-order-details/card-order-details';
+import OrderDetails from '../order-details/order-details';
 import { useSelector } from 'react-redux';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { TIngredient } from '../../types/ingredient';
 import { TOrder } from '../../types/order';
 import IngredientList from './ingredient-list/ingredient-list';
 
-const CardOrder: FC<TOrder> = (order) => {
+const Order: FC<TOrder> = (order) => {
     const { open: modalShown, openModal, closeModal }: IModalHook = useModal();
     const [, ingredients] = useSelector(ingredientsSelector);
     const ingredientsList = ingredients.bun.concat(ingredients.main).concat(ingredients.sauce);
@@ -51,11 +51,11 @@ const CardOrder: FC<TOrder> = (order) => {
             {
                 modalShown &&
                 <Modal onClose={closeModal} header={`#${order.number}`}>
-                    <CardOrderDetails data={order} list={ingredientsInUse} cost={cost} />
+                    <OrderDetails data={order} list={ingredientsInUse} cost={cost} />
                 </Modal>
             }
         </>
     );
 }
 
-export default CardOrder;
+export default Order;
