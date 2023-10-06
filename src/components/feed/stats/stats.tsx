@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { TStatsComponent } from '../../../types/stats';
+import styles from './stats.module.css';
 
 const Stats: FC<TStatsComponent> = ({ feed }) => {
     const done = feed.orders.filter(order => order.status === "done");
@@ -10,14 +11,38 @@ const Stats: FC<TStatsComponent> = ({ feed }) => {
                     <h3 className='text text_type_main-medium mb-6'>Готов:</h3>
                     <div className="flex">
                         <div className="col">
-                            {
-                                done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
-                            }
+                            <div className={`flex columns wrap ${styles.stats}`}>
+                                {
+                                    done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
+                                }
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                                <div className={`text-success text text_type_digits-default`}>11111</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="col">
                     <h3 className='text text_type_main-medium mb-6'>В работе:</h3>
+                    <div className="flex">
+                        <div className="col">
+                            <div className={`flex columns wrap ${styles.stats}`}>
+                                {
+                                    done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div>

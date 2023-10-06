@@ -5,7 +5,6 @@
     height: 60px;
     border-radius: 60px;
     border: 3px solid #5d5dbd;
-    margin-right: -15px;
 }
 
 .ingredient > img
@@ -16,4 +15,9 @@
     margin: auto;
     object-fit: cover;
     width: 60px;
+}
+
+.details
+{
+    height: 300px;
 }
