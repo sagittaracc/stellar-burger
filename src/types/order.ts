@@ -14,7 +14,7 @@ export type TOrderDetails = {
     order: TOrder;
 };
 
-export type TOrderDetailsComponent = TOrderDetails;
+export type TOrderNumberComponent = TOrder;
 
 export type TInitialOrder = {
     orderRequest: boolean;

@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
-import OrderDetails from "./order-details/order-details";
 import Bun from "./bun/bun";
 import { getBun, getCost, getIngredients, orderHasItemsSelector } from '../../services/constructor/selectors';
 import { addIngredient } from '../../services/constructor/actions';
@@ -13,6 +12,7 @@ import { createOrder } from '../../services/order/actions';
 import { useNavigate } from 'react-router-dom';
 import { TIngredientId, TIngredient } from '../../types/ingredient';
 import { IModalHook } from '../../types/modal';
+import OrderNumber from './order-number/order-number';
 
 const BurgerConstructor = ({  }) => {
     const bun = useSelector(getBun);
@@ -59,7 +59,7 @@ const BurgerConstructor = ({  }) => {
             {
                 modalShown && orderReady &&
                 <Modal onClose={closeModal}>
-                    <OrderDetails order={order} />
+                    <OrderNumber {...order} />
                 </Modal>
             }
         </div>
