@@ -40,6 +40,7 @@ function App() {
                     <Route path='/' element={<Main />}>
                         <Route index element={<Constructor />} />
                         <Route path='feed' element={<Feed />} />
+                        <Route path='feed/:id' element={<>feed</>} />
                         <Route path='login' element={<ProtectedRoute anonymous component={<Login />} />} />
                         <Route path='register' element={<ProtectedRoute anonymous component={<Register />} />} />
                         <Route path='forgot-password' element={<ProtectedRoute anonymous component={<ForgotPassword />} />} />
@@ -49,6 +50,7 @@ function App() {
                             <Route path='orders' element={<Orders />} />
                             <Route path='logout' element={<Logout />} />
                         </Route>
+                        <Route path='profile/orders/:id' element={<ProtectedRoute component={<>orders</>} />} />
                         <Route path='ingredients/:id' element={<Ingredient />} />
                         <Route path='*' element={<NotFound />} />
                     </Route>
