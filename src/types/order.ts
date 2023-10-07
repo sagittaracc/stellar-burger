@@ -18,12 +18,19 @@ export type TOrderDetails = {
 
 export type TOrderNumberComponent = TOrder;
 
-export type TOrderDetailsComponent = {
+export type TOrderComponent = {
+    order: TOrder;
+    preview?: boolean;
+}
+
+export type TOrderPreviewComponent = {
     order: TOrder,
     cost: number,
     ingredients: Array<TIngredient>,
     status: ReactElement;
 };
+
+export type TOrderDetailsComponent = TOrderPreviewComponent;
 
 export type TOrderStatusComponent = {
     status: TStatus;
