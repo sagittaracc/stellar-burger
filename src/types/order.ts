@@ -27,7 +27,6 @@ export type TOrderPreviewComponent = {
     order: TOrder,
     cost: number,
     ingredients: Array<TIngredient>,
-    status: ReactElement;
 };
 
 export type TOrderDetailsComponent = TOrderPreviewComponent;

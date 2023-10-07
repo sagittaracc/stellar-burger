@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { TIngredient } from '../../types/ingredient';
 import { TOrderComponent } from '../../types/order';
-import OrderStatus from './order-status/order-status';
 import OrderPreview from './order-preview/order-preview';
 import OrderDetails from './order-details/order-details';
 
@@ -31,7 +30,6 @@ const Order: FC<TOrderComponent> = ({ order, preview = false }) => {
         order: order,
         ingredients: ingredientsInUse,
         cost: cost,
-        status: <OrderStatus status={order.status} />,
     };
 
     return (

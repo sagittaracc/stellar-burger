@@ -7,8 +7,9 @@ import IngredientList from "../../ingredient-list/ingredient-list";
 import { IModalHook } from "../../../types/modal";
 import useModal from "../../../hooks/useModal";
 import { TOrderPreviewComponent } from "../../../types/order";
+import OrderStatus from '../order-status/order-status';
 
-const OrderPreview: FC<TOrderPreviewComponent> = ({ order, ingredients, cost, status }) => {
+const OrderPreview: FC<TOrderPreviewComponent> = ({ order, ingredients, cost }) => {
     const {
         open: modalShown,
         openModal,
@@ -25,7 +26,7 @@ const OrderPreview: FC<TOrderPreviewComponent> = ({ order, ingredients, cost, st
                     </span>
                 </div>
                 <p className='text text_type_main-medium mb-6'>{order.name}</p>
-                {status}
+                <OrderStatus status={order.status} />
                 <div className='flex'>
                     <IngredientList list={ingredients} maxCount={5} />
                     <div className='col'>

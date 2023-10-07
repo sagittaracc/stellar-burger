@@ -3,12 +3,15 @@ import IngredientList from "../../ingredient-list/ingredient-list";
 import styles from './order-details.module.css';
 import { FC } from 'react';
 import { TOrderDetailsComponent } from "../../../types/order";
+import OrderStatus from "../order-status/order-status";
 
-const OrderDetails: FC<TOrderDetailsComponent> = ({ order, ingredients, cost, status }) => {
+const OrderDetails: FC<TOrderDetailsComponent> = ({ order, ingredients, cost }) => {
     return (
         <div className="ml-10 mr-10">
             <p className='text text_type_main-medium mb-1'>{order.name}</p>
-            <p className={`text-success text text_type_main-default mb-6`}>{status}</p>
+            <p className={`text-success text text_type_main-default mb-6`}>
+                <OrderStatus status={order.status} />
+            </p>
             <p className='text text_type_main-medium mb-6 mt-10'>Состав:</p>
             <div className={`custom-scroll overflow-auto ${styles.details}`}>
                 <IngredientList list={ingredients} />
