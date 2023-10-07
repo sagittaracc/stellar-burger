@@ -18,11 +18,13 @@ import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
 import Logout from '../../pages/profile/logout';
 import Feed from '../../pages/feed';
+import Order from '../order/order';
 
 function App() {
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state.background;
+    const foreground = location.state && location.state.foreground;
     const dispatch = useDispatch<any>();
     const [loaded,] = useSelector(ingredientsSelector);
 
@@ -58,6 +60,16 @@ function App() {
                     <Route path='/ingredients/:id' element={
                         <Modal header="Детали ингредиента" onClose={() => navigate(-1)}>
                             <Ingredient />
+                        </Modal>
+                    } />
+                    <Route path='/feed/:id' element={
+                        <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
+                            <Order order={foreground} />
+                        </Modal>
+                    } />
+                    <Route path='/profile/orders/:id' element={
+                        <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
+                            <Order order={foreground} />
                         </Modal>
                     } />
                 </Routes>

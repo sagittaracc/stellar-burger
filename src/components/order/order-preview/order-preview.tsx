@@ -1,24 +1,17 @@
 import { FC } from 'react';
 import styles from './order-preview.module.css';
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
-import Modal from "../../modal/modal";
-import Order from "../order";
 import IngredientList from "../../ingredient-list/ingredient-list";
-import { IModalHook } from "../../../types/modal";
-import useModal from "../../../hooks/useModal";
 import { TOrderPreviewComponent } from "../../../types/order";
 import OrderStatus from '../order-status/order-status';
+import { Link, useLocation } from 'react-router-dom';
 
-const OrderPreview: FC<TOrderPreviewComponent> = ({ order, ingredients, cost }) => {
-    const {
-        open: modalShown,
-        openModal,
-        closeModal
-    }: IModalHook = useModal();
+const OrderPreview: FC<TOrderPreviewComponent> = ({ link, order, ingredients, cost }) => {
+    const location = useLocation();
 
     return (
-        <>
-            <div onClick={openModal} className={`${styles.card} p-6 mb-4`}>
+        <Link to={`${link}/${order._id}`} state={{background: location, foreground: order}} className='text-decoration-none'>
+            <div className={`${styles.card} p-6 mb-4`}>
                 <div className='mb-6'>
                     <span className='text text_type_digits-default'>#{order.number}</span>
                     <span className='float-right text text_type_main-default text_color_inactive'>
@@ -37,13 +30,7 @@ const OrderPreview: FC<TOrderPreviewComponent> = ({ order, ingredients, cost }) 
                     </div>
                 </div>
             </div>
-            {
-                modalShown &&
-                <Modal onClose={closeModal} header={`#${order.number}`}>
-                    <Order order={order} preview={false} />
-                </Modal>
-            }
-        </>
+        </Link>
     );
 }
 

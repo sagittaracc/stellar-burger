@@ -6,7 +6,7 @@ import { TOrderComponent } from '../../types/order';
 import OrderPreview from './order-preview/order-preview';
 import OrderDetails from './order-details/order-details';
 
-const Order: FC<TOrderComponent> = ({ order, preview = false }) => {
+const Order: FC<TOrderComponent> = ({ link = '#', order, preview = false }) => {
     const [,, ingredientList] = useSelector(ingredientsSelector);
 
     const ingredientsInUse =
@@ -29,7 +29,7 @@ const Order: FC<TOrderComponent> = ({ order, preview = false }) => {
 
     return (
         <>
-            { preview && <OrderPreview {...orderData} /> }
+            { preview && <OrderPreview link={link} {...orderData} /> }
             { !preview && <OrderDetails {...orderData} /> }
         </>
     );
