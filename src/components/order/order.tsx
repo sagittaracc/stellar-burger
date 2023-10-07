@@ -7,15 +7,10 @@ import OrderPreview from './order-preview/order-preview';
 import OrderDetails from './order-details/order-details';
 
 const Order: FC<TOrderComponent> = ({ order, preview = false }) => {
-    const [, ingredients] = useSelector(ingredientsSelector);
-
-    const ingredientsList =
-        ingredients.bun
-            .concat(ingredients.main)
-            .concat(ingredients.sauce);
+    const [,, ingredientList] = useSelector(ingredientsSelector);
 
     const ingredientsInUse =
-        ingredientsList.filter(
+        ingredientList.filter(
             (ingredient: TIngredient) =>
                 order.ingredients.includes(ingredient._id as unknown as string)
         );
