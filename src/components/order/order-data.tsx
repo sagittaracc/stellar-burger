@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { TIngredient } from '../../types/ingredient';
-import { TOrderComponent } from '../../types/order';
 import OrderPreview from './order-preview/order-preview';
 import OrderDetails from './order-details/order-details';
+import { TOrderDataComponent } from '../../types/order';
 
-const Order: FC<TOrderComponent> = ({ link = '#', order, preview = false }) => {
+const OrderData: FC<TOrderDataComponent> = ({ link = '#', order, preview = false }) => {
     const [,, ingredientList] = useSelector(ingredientsSelector);
 
     const ingredientsInUse =
@@ -35,4 +35,4 @@ const Order: FC<TOrderComponent> = ({ link = '#', order, preview = false }) => {
     );
 }
 
-export default Order;
+export default OrderData;

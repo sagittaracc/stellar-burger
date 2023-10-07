@@ -18,7 +18,7 @@ export type TOrderDetails = {
 
 export type TOrderNumberComponent = TOrder;
 
-export type TOrderComponent = {
+export type TOrderDataComponent = {
     link?: string;
     order: TOrder;
     preview?: boolean;

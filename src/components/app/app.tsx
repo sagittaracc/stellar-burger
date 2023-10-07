@@ -18,7 +18,7 @@ import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
 import Logout from '../../pages/profile/logout';
 import Feed from '../../pages/feed';
-import Order from '../order/order';
+import OrderData from '../order/order-data';
 
 function App() {
     const location = useLocation();
@@ -66,12 +66,12 @@ function App() {
                     } />
                     <Route path='/feed/:id' element={
                         <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
-                            <Order order={foreground} />
+                            <OrderData order={foreground} />
                         </Modal>
                     } />
                     <Route path='/profile/orders/:id' element={
                         <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
-                            <Order order={foreground} />
+                            <OrderData order={foreground} />
                         </Modal>
                     } />
                 </Routes>
