@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
 import Logout from '../../pages/profile/logout';
 import Feed from '../../pages/feed';
+import Order from '../../pages/order';
 import OrderData from '../order/order-data';
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
                     <Route path='/' element={<Main />}>
                         <Route index element={<Constructor />} />
                         <Route path='feed' element={<Feed />} />
-                        <Route path='feed/:id' element={<>feed</>} />
+                        <Route path='feed/:id' element={<Order />} />
                         <Route path='login' element={<ProtectedRoute anonymous component={<Login />} />} />
                         <Route path='register' element={<ProtectedRoute anonymous component={<Register />} />} />
                         <Route path='forgot-password' element={<ProtectedRoute anonymous component={<ForgotPassword />} />} />
@@ -50,7 +51,7 @@ function App() {
                             <Route path='orders' element={<Orders />} />
                             <Route path='logout' element={<Logout />} />
                         </Route>
-                        <Route path='profile/orders/:id' element={<ProtectedRoute component={<>orders</>} />} />
+                        <Route path='profile/orders/:id' element={<ProtectedRoute component={<Order />} />} />
                         <Route path='ingredients/:id' element={<Ingredient />} />
                         <Route path='*' element={<NotFound />} />
                     </Route>
@@ -64,6 +65,11 @@ function App() {
                             <Ingredient />
                         </Modal>
                     } />
+                </Routes>
+            }
+            {
+                background && foreground && loaded &&
+                <Routes>
                     <Route path='/feed/:id' element={
                         <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
                             <OrderData order={foreground} />
