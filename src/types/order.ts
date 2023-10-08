@@ -17,23 +17,11 @@ export type TOrderDetails = {
 
 export type TOrderNumberComponent = TOrder;
 
-export type TOrderDataComponent = {
-    link?: string;
+export type TOrderComponent = {
     order: TOrder;
-    preview?: boolean;
-}
-
-export type TOrderPreviewComponent = {
-    link: string,
-    order: TOrder,
-    cost: number,
-    ingredients: Array<TIngredient>,
-};
-
-export type TOrderDetailsComponent = {
-    order: TOrder,
-    cost: number,
-    ingredients: Array<TIngredient>,
+    link?: string;
+    cost?: number;
+    ingredients?: Array<TIngredient>;
 };
 
 export type TOrderStatusComponent = {

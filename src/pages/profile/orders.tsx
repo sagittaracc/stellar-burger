@@ -1,11 +1,14 @@
 import { FC } from 'react';
 import { all } from '../../stubs/orders';
-import OrderData from '../../components/order/order-data';
+import withCost from '../../hocs/with-cost';
+import OrderPreview from '../../components/order/order-preview/order-preview';
 
 const Orders: FC = () => {
+    const OrderPreviewWithCost = withCost(OrderPreview);
+
     return (
         <div className="custom-scroll full-space overflow-auto pr-3 h-100">
-            {all.orders.map(order => <OrderData link='/profile/orders' order={order} preview />)}
+            {all.orders.map(order => <OrderPreviewWithCost link='/profile/orders' order={order} />)}
         </div>
     );
 }

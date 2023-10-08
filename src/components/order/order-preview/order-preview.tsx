@@ -2,11 +2,11 @@ import { FC } from 'react';
 import styles from './order-preview.module.css';
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientList from "../../ingredient-list/ingredient-list";
-import { TOrderPreviewComponent } from "../../../types/order";
+import { TOrderComponent } from "../../../types/order";
 import OrderStatus from '../order-status/order-status';
 import { Link, useLocation } from 'react-router-dom';
 
-const OrderPreview: FC<TOrderPreviewComponent> = ({ link, order, ingredients, cost }) => {
+const OrderPreview: FC<TOrderComponent> = ({ link, order, ingredients, cost }) => {
     const location = useLocation();
 
     return (
@@ -21,13 +21,16 @@ const OrderPreview: FC<TOrderPreviewComponent> = ({ link, order, ingredients, co
                 <p className='text text_type_main-medium mb-6'>{order.name}</p>
                 <OrderStatus status={order.status} />
                 <div className='flex'>
-                    <IngredientList list={ingredients} maxCount={5} />
-                    <div className='col'>
-                        <p className='text text_type_digits-medium float-right mt-3'>
-                            <span className='mr-2'>{cost}</span>
-                            <CurrencyIcon type="primary" />
-                        </p>
-                    </div>
+                    {ingredients && <IngredientList list={ingredients} maxCount={5} />}
+                    {
+                        cost &&
+                        <div className='col'>
+                            <p className='text text_type_digits-medium float-right mt-3'>
+                                <span className='mr-2'>{cost}</span>
+                                <CurrencyIcon type="primary" />
+                            </p>
+                        </div>
+                    }
                 </div>
             </div>
         </Link>

@@ -19,7 +19,7 @@ import { getIngredients } from '../../services/ingredients/actions';
 import Logout from '../../pages/profile/logout';
 import Feed from '../../pages/feed';
 import Order from '../../pages/order';
-import OrderData from '../order/order-data';
+import OrderDetails from '../order/order-details/order-details';
 
 function App() {
     const location = useLocation();
@@ -72,12 +72,12 @@ function App() {
                 <Routes>
                     <Route path='/feed/:id' element={
                         <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
-                            <OrderData order={foreground} />
+                            <OrderDetails order={foreground} />
                         </Modal>
                     } />
                     <Route path='/profile/orders/:id' element={
                         <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
-                            <OrderData order={foreground} />
+                            <OrderDetails order={foreground} />
                         </Modal>
                     } />
                 </Routes>

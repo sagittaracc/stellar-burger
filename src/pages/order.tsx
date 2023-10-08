@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import { get } from '../utils/api';
 import { TAllOrdersResponse } from '../types/response';
 import { TOrder } from '../types/order';
-import OrderData from '../components/order/order-data';
 import styles from './order.module.css';
 import NotFound from './not-found';
+import OrderDetails from '../components/order/order-details/order-details';
 
 const Order: FC = () => {
     const { id } = useParams();
@@ -24,7 +24,7 @@ const Order: FC = () => {
 
     return (
         <div className={`pt-30 ${styles.order}`}>
-            {order && <OrderData order={order} />}
+            {order && <OrderDetails order={order} />}
             {!order && <NotFound />}
         </div>
     );
