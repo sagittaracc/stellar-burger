@@ -13,16 +13,19 @@ import { useNavigate } from 'react-router-dom';
 import { TIngredientId, TIngredient } from '../../types/ingredient';
 import { IModalHook } from '../../types/modal';
 import OrderNumber from './order-number/order-number';
+import { ingredientsSelector } from '../../services/ingredients/selectors';
+import IngredientList from '../ingredient-list/ingredient-list';
 
-const BurgerConstructor = ({  }) => {
+const BurgerConstructor = ({ }) => {
     const bun = useSelector(getBun);
     const ingredients: Array<TIngredient> = useSelector(getIngredients);
+    const [, , ingredientList] = useSelector(ingredientsSelector);
     const order = useSelector(getOrder);
     const orderHasItems = useSelector(orderHasItemsSelector);
     const inProcess = useSelector(getOrderRequest);
     const orderReady = useSelector(orderReadySelector);
     const cost = useSelector(getCost);
-    const {open: modalShown, openModal, closeModal}: IModalHook = useModal();
+    const { open: modalShown, openModal, closeModal }: IModalHook = useModal();
     const dispatch = useDispatch<any>();
     const navigate = useNavigate();
 
@@ -40,29 +43,45 @@ const BurgerConstructor = ({  }) => {
     }
 
     return (
-        <div ref={dropTarget} className="flex columns h-100">
-            <Bun position="top" data={bun} />
-            <Ingredients data={ingredients} bun={bun} />
-            <Bun position="bottom" data={bun} />
-            {
-                orderHasItems &&
-                <div className="ml-8 mb-4">
-                    <div className="float-right">
-                        <span className="mr-2 text_type_main-large">{cost}</span>
-                        <CurrencyIcon type="primary" />
-                        <Button extraClass="ml-6" htmlType="button" type="primary" size="large" disabled={inProcess} onClick={doOrder}>
-                            {inProcess ? 'Формируется...' : 'Оформить заказ'}
-                        </Button>
+        <>
+            <div ref={dropTarget} className="flex columns h-100">
+                {
+                    bun &&
+                    <>
+                        <Bun position="top" data={bun} />
+                        <Ingredients data={ingredients} bun={bun} />
+                        <Bun position="bottom" data={bun} />
+                        {
+                            orderHasItems &&
+                            <div className="ml-8 mb-4">
+                                <div className="float-right">
+                                    <span className="mr-2 text_type_main-large">{cost}</span>
+                                    <CurrencyIcon type="primary" />
+                                    <Button extraClass="ml-6" htmlType="button" type="primary" size="large" disabled={inProcess} onClick={doOrder}>
+                                        {inProcess ? 'Формируется...' : 'Оформить заказ'}
+                                    </Button>
+                                </div>
+                            </div>
+                        }
+                    </>
+                }
+                {
+                    !bun &&
+                    <div className='ml-20 mt-10 p-10' style={{ background: "#1c1c21", borderRadius: 30 }}>
+                        <p className='text text_type_main-medium'>Перетащите сюда булку, а потом ингредиенты</p>
+                        <div className='flex'>
+                            <IngredientList list={ingredientList} maxCount={5} />
+                        </div>
                     </div>
-                </div>
-            }
-            {
-                modalShown && orderReady &&
-                <Modal onClose={closeModal}>
-                    <OrderNumber {...order} />
-                </Modal>
-            }
-        </div>
+                }
+                {
+                    modalShown && orderReady &&
+                    <Modal onClose={closeModal}>
+                        <OrderNumber {...order} />
+                    </Modal>
+                }
+            </div>
+        </>
     );
 }
 
