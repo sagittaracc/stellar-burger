@@ -7,14 +7,14 @@ import OrderStatus from "../order-status/order-status";
 import withCost from "../../../hocs/with-cost";
 
 const OrderDetails: FC<TOrderComponent> = ({ order, ingredients, cost }) => {
-    const OrderCardWithCost = withCost(OrderCard);
+    const OrderWithCost = withCost(Order);
 
     return (
-        <OrderCardWithCost order={order} ingredients={ingredients} cost={cost} />
+        <OrderWithCost order={order} ingredients={ingredients} cost={cost} />
     );
 };
 
-const OrderCard: FC<TOrderComponent> = ({ order, ingredients, cost }) => {
+const Order: FC<TOrderComponent> = ({ order, ingredients, cost }) => {
     return (
         <div className="ml-10 mr-10">
             <p className='text text_type_main-medium mb-1'>{order.name}</p>
