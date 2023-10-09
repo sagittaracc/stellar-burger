@@ -4,7 +4,7 @@ import rootReducer from './rootReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { socketMiddleware } from './middleware/socketMiddleware';
 import { wsUrl } from '../constants/api';
-import { WSStoreActions } from './ws/actions';
+import { WSStoreActions } from '../types';
 
 const store = createStore(
     rootReducer,

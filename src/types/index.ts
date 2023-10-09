@@ -2,6 +2,7 @@ import { Action, ActionCreator, AnyAction } from "redux";
 import rootReducer from "../services/rootReducer";
 import store from "../services/store";
 import { ThunkAction } from "redux-thunk";
+import { feedStoreActions } from "./feed";
 
 export type TDispatch = typeof store.dispatch;
 
@@ -12,3 +13,5 @@ export type AppThunk<T = void> = ActionCreator<
 >;
 
 export type THashMap<T> = Record<string, T> | null;
+
+export const WSStoreActions = feedStoreActions; // | any;

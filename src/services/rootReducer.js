@@ -4,7 +4,7 @@ import { constructorReducer } from "./constructor/reducer";
 import { orderReducer } from "./order/reducer";
 import { formReducer } from "./form/reducer";
 import { authReducer } from "./auth/reducer";
-import { wsReducer } from "./ws/reducer";
+import { feedReducer } from "./feed/reducer";
 
 const rootReducer = combineReducers({
     ingredients: ingredientsReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     order: orderReducer,
     form: formReducer,
     auth: authReducer,
-    ws: wsReducer,
+    feed: feedReducer,
 });
 
 export default rootReducer;

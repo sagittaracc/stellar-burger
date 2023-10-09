@@ -1,35 +1,35 @@
-import { TWsActions, TWsState } from "../../types/ws";
-import { WS_CONNECTION_CLOSED, WS_CONNECTION_ERROR, WS_CONNECTION_SUCCESS, WS_GET_MESSAGE } from "./actions";
+import { TFeedActions, TFeedInitialState } from "../../types/feed";
+import { CONNECTION_CLOSED, CONNECTION_ERROR, CONNECTION_SUCCESS, GET_FEED } from "./actions";
 
-const initialState: TWsState = {
+const initialState: TFeedInitialState = {
     connected: false,
-    data: null,
+    feed: null,
 }
 
-export const wsReducer = (state = initialState, action: TWsActions) => {
+export const feedReducer = (state = initialState, action: TFeedActions) => {
     switch (action.type) {
-        case WS_CONNECTION_SUCCESS:
+        case CONNECTION_SUCCESS:
             return {
                 ...state,
                 connected: true,
                 error: undefined,
             }
-        case WS_CONNECTION_ERROR:
+        case CONNECTION_ERROR:
             return {
                 ...state,
                 connected: false,
                 error: action.payload,
             }
-        case WS_CONNECTION_CLOSED:
+        case CONNECTION_CLOSED:
             return {
                 ...state,
                 connected: false,
                 error: undefined,
             }
-        case WS_GET_MESSAGE:
+        case GET_FEED:
             return {
                 ...state,
-                data: action.payload,
+                feed: action.payload,
                 error: undefined,
             }
         default:

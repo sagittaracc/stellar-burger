@@ -1,17 +1,16 @@
 import { FC, useEffect } from 'react';
 import Orders from '../components/feed/orders/orders';
 import Stats from '../components/feed/stats/stats';
-import { feed } from '../stubs/feed';
 import { useDispatch, useSelector } from 'react-redux';
-import { WS_CONNECTION_START } from '../services/ws/actions';
-import { hasData } from '../services/ws/selectors';
+import { getData } from '../services/feed/selectors';
+import { CONNECTION_START } from '../services/feed/actions';
 
 const Feed: FC = () => {
     const dispath = useDispatch<any>();
-    const loaded = useSelector(hasData);
+    const [loaded, ] = useSelector(getData);
 
     useEffect(() => {
-        dispath({ type: WS_CONNECTION_START });
+        dispath({ type: CONNECTION_START });
     }, []);
 
     return (

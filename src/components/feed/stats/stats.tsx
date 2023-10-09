@@ -1,11 +1,13 @@
 import { FC } from 'react';
 import styles from './stats.module.css';
 import { useSelector } from 'react-redux';
-import { getData } from '../../../services/ws/selectors';
 import { TFeed } from '../../../types/feed';
+import { getData } from '../../../services/feed/selectors';
+import { TOrder } from '../../../types/order';
 
 const Stats: FC = () => {
-    const { orders, total, totalToday } = useSelector(getData) as TFeed;
+    const [ , orderList, total, totalToday ] = useSelector(getData);
+    const orders = orderList as Array<TOrder>;
     const done = orders.filter(order => order.status === "done");
     const pending = orders.filter(order => order.status === "pending");
 
