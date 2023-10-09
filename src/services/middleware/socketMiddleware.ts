@@ -1,8 +1,9 @@
 import type { Middleware, MiddlewareAPI } from 'redux';
 import { RootState, TDispatch } from '../../types';
 import { TWSStoreActions } from '../../types/ws';
+import { getAccessTokenWithoutBearer } from '../../utils/token';
 
-export const socketMiddleware = (url: string, wsActions: TWSStoreActions): Middleware => {
+export const socketMiddleware = (url: string, wsActions: TWSStoreActions, guest = true): Middleware => {
     return ((store: MiddlewareAPI<TDispatch, RootState>) => {
         let socket: WebSocket | null = null;
 
@@ -12,7 +13,12 @@ export const socketMiddleware = (url: string, wsActions: TWSStoreActions): Middl
             const { wsInit, onOpen, onClose, onError, onMessage } = wsActions;
 
             if (type === wsInit) {
-                socket = new WebSocket(url);
+                if (guest) {
+                    socket = new WebSocket(url);
+                }
+                else {
+                    socket = new WebSocket(`${url}?token=${getAccessTokenWithoutBearer()}`);
+                }
             }
 
             if (socket) {
