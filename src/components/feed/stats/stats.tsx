@@ -1,20 +1,25 @@
 import { FC } from 'react';
 import styles from './stats.module.css';
-import { TFeed } from '../../../types/feed';
+import { useSelector } from 'react-redux';
+import { getOrderListSelector, getOrderTotal, getOrderTotalToday } from '../../../services/ws/selectors';
+import { TOrder } from '../../../types/order';
 
-const Stats: FC<TFeed> = ({ orders, total, totalToday }) => {
+const Stats: FC = () => {
+    const orders = useSelector(getOrderListSelector) as unknown as Array<TOrder>;
+    const total = useSelector(getOrderTotal);
+    const totalToday = useSelector(getOrderTotalToday);
     const done = orders.filter(order => order.status === "done");
     const pending = orders.filter(order => order.status === "pending");
 
     return (
         <div className='mt-20 ml-15'>
             <div className='flex'>
-                <div className="col">
+                <div className="col mr-5">
                     <h3 className='text text_type_main-medium mb-6'>Готов:</h3>
                     <div className="flex">
                         <div className="col">
                             <div className={`flex columns wrap ${styles.stats}`}>
-                                {done.map(order => <p className={`text-success text text_type_digits-default`}>{order.number}</p>)}
+                                {done.slice(0, 30).map(order => <p className={`m-1 text-success text text_type_digits-default`}>{order.number}</p>)}
                             </div>
                         </div>
                     </div>
@@ -24,7 +29,7 @@ const Stats: FC<TFeed> = ({ orders, total, totalToday }) => {
                     <div className="flex">
                         <div className="col">
                             <div className={`flex columns wrap ${styles.stats}`}>
-                                {pending.map(order => <p className={`text-danger text text_type_digits-default`}>{order.number}</p>)}
+                                {pending.slice(0, 30).map(order => <p className={`m-1 text-danger text text_type_digits-default`}>{order.number}</p>)}
                             </div>
                         </div>
                     </div>
