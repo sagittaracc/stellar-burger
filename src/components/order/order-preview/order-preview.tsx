@@ -10,7 +10,7 @@ const OrderPreview: FC<TOrderComponent> = ({ link, order, ingredients, cost }) =
     const location = useLocation();
 
     return (
-        <Link to={`${link}/${order._id}`} state={{background: location, foreground: order}} className='text-decoration-none'>
+        <Link to={`${link}/${order.number}`} state={{background: location, foreground: order}} className='text-decoration-none'>
             <div className={`${styles.card} p-6 mb-4`}>
                 <div className='mb-6'>
                     <span className='text text_type_digits-default'>#{order.number}</span>
