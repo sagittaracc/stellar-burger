@@ -1,4 +1,4 @@
-export type TSocketStoreActions<T, U, Z, X, Y> = {
+export type TSocketActions<T, U, Z, X, Y> = {
     wsInit: T;
     onOpen: U;
     onClose: Z;
@@ -28,7 +28,7 @@ interface IGetDataAction<T, U> {
     payload: U;
 }
 
-export type TSocketActions<T, U, Z, X, Y, M> =
+export type TSocketStoreActions<T, U, Z, X, Y, M> =
     IConnectionStartAction<T> |
     IConnectionSuccessAction<U> |
     IConnectionClosedAction<Z> |

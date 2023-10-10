@@ -23,7 +23,7 @@ export type TProfileOrdersInitialState = {
     error?: Event;
 };
 
-export type TProfileOrdersStoreActions = TSocketStoreActions<
+export type TProfileOrdersStoreActions = TSocketActions<
     typeof CONNECTION_START,
     typeof CONNECTION_SUCCESS,
     typeof CONNECTION_CLOSED,
@@ -31,7 +31,7 @@ export type TProfileOrdersStoreActions = TSocketStoreActions<
     typeof GET_PROFILE_ORDERS
 >;
 
-export type TProfileOrdersActions = TSocketActions<
+export type TProfileOrdersActions = TSocketStoreActions<
     typeof CONNECTION_START,
     typeof CONNECTION_SUCCESS,
     typeof CONNECTION_CLOSED,

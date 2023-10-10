@@ -22,7 +22,7 @@ export type TFeedInitialState = {
     error?: Event;
 };
 
-export type TFeedStoreActions = TSocketStoreActions<
+export type TFeedStoreActions = TSocketActions<
     typeof CONNECTION_START,
     typeof CONNECTION_SUCCESS,
     typeof CONNECTION_CLOSED,
@@ -30,7 +30,7 @@ export type TFeedStoreActions = TSocketStoreActions<
     typeof GET_FEED
 >;
 
-export type TFeedActions = TSocketActions<
+export type TFeedActions = TSocketStoreActions<
     typeof CONNECTION_START,
     typeof CONNECTION_SUCCESS,
     typeof CONNECTION_CLOSED,
