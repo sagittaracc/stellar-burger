@@ -7,7 +7,7 @@ import {
 
 const initialState: TInitialForm = {
     isRequest: false,
-    error: false,
+    error: '',
 }
 
 export const formReducer = (state = initialState, action: TFormAction) => {
@@ -16,13 +16,13 @@ export const formReducer = (state = initialState, action: TFormAction) => {
             return {
                 ...state,
                 isRequest: true,
-                error: null
+                error: ''
             };
         case FORM_SUCCESS:
             return {
                 ...state,
                 isRequest: false,
-                error: null
+                error: ''
             };
         case FORM_FAIL:
             return {
