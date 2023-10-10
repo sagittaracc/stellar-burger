@@ -1,5 +1,4 @@
 import { FC, useEffect } from 'react';
-import { all } from '../../stubs/orders';
 import withCost from '../../hocs/with-cost';
 import OrderPreview from '../../components/order/order-preview/order-preview';
 import { useDispatch, useSelector } from 'react-redux';
