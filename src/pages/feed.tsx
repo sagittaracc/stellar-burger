@@ -8,7 +8,7 @@ import { useDispatch } from '../types';
 
 const Feed: FC = () => {
     const dispatch = useDispatch();
-    const feedLoaded = useSelector(feedLoadedSelector);
+    const loaded = useSelector(feedLoadedSelector);
 
     useEffect(() => {
         dispatch({ type: CONNECTION_START });
@@ -18,7 +18,7 @@ const Feed: FC = () => {
     return (
         <>
             {
-                feedLoaded &&
+                loaded &&
                 <div className="h-100 pt-10 flex">
                     <div className="col">
                         <Orders />
