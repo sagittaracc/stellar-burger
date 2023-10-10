@@ -1,12 +1,13 @@
 import { FC, useEffect } from 'react';
 import Orders from '../components/feed/orders/orders';
 import Stats from '../components/feed/stats/stats';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getData } from '../services/feed/selectors';
 import { CONNECTION_CLOSE, CONNECTION_START } from '../services/feed/actions';
+import { useDispatch } from '../types';
 
 const Feed: FC = () => {
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     const [loaded,] = useSelector(getData);
 
     useEffect(() => {

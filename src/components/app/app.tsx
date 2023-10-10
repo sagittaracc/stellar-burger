@@ -12,7 +12,7 @@ import NotFound from '../../pages/not-found';
 import Orders from '../../pages/profile/orders';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import Modal from '../modal/modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
@@ -20,13 +20,14 @@ import Logout from '../../pages/profile/logout';
 import Feed from '../../pages/feed';
 import Order from '../../pages/order';
 import OrderDetails from '../order/order-details/order-details';
+import { useDispatch } from '../../types';
 
 function App() {
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state.background;
     const foreground = location.state && location.state.foreground;
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     const [loaded,] = useSelector(ingredientsSelector);
 
     useEffect(() => {

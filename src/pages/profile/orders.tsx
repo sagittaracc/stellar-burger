@@ -1,14 +1,15 @@
 import { FC, useEffect } from 'react';
 import withCost from '../../hocs/with-cost';
 import OrderPreview from '../../components/order/order-preview/order-preview';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { CONNECTION_CLOSE, CONNECTION_START } from '../../services/profile-orders/actions';
 import { getData } from '../../services/profile-orders/selectors';
 import { TOrder } from '../../types/order';
+import { useDispatch } from '../../types';
 
 const Orders: FC = () => {
     const OrderPreviewWithCost = withCost(OrderPreview);
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     const [loaded, allList] = useSelector(getData);
     const all = allList as Array<TOrder>;
 

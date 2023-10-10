@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
@@ -15,6 +15,7 @@ import { IModalHook } from '../../types/modal';
 import OrderNumber from './order-number/order-number';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import IngredientList from '../ingredient-list/ingredient-list';
+import { useDispatch } from '../../types';
 
 const BurgerConstructor = ({ }) => {
     const bun = useSelector(getBun);
@@ -26,7 +27,7 @@ const BurgerConstructor = ({ }) => {
     const orderReady = useSelector(orderReadySelector);
     const cost = useSelector(getCost);
     const { open: modalShown, openModal, closeModal }: IModalHook = useModal();
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [, dropTarget] = useDrop({

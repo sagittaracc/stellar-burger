@@ -3,16 +3,17 @@ import styles from './form.module.css';
 import useForm from '../hooks/useForm';
 import FormInput from '../components/form/form-input';
 import SubmitButton from '../components/form/submit-button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getFormErrorSelector } from '../services/form/selectors';
 import Alert from '../components/alert/alert';
 import { forgotPassword } from '../services/forgot-password/actions';
 import { useNavigate } from 'react-router-dom';
 import { FC } from 'react';
 import { TFormData } from '../types/form';
+import { useDispatch } from '../types';
 
 const ForgotPassword: FC = () => {
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     const error = useSelector(getFormErrorSelector);
     const navigate = useNavigate();
 

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './form.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getFormErrorSelector } from '../services/form/selectors';
 import useForm from '../hooks/useForm';
 import { login } from '../services/login/actions';
@@ -10,10 +10,11 @@ import SubmitButton from '../components/form/submit-button';
 import { useNavigate } from 'react-router-dom';
 import { FC } from 'react';
 import { TFormData } from '../types/form';
+import { useDispatch } from '../types';
 
 const Login: FC = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     const error = useSelector(getFormErrorSelector);
 
     const { field, handleSubmit } = useForm();
