@@ -8,7 +8,7 @@ import { TConstructorAction } from "./constructor";
 import { TIngredientAction } from "./ingredient";
 import { TFormAction } from "./form";
 import { TOrderAction } from "./order";
-import { useDispatch as dispatchHook } from "react-redux";
+import { TypedUseSelectorHook, useDispatch as dispatchHook, useSelector as selectorHook } from "react-redux";
 import { TProfileOrdersActions } from "./profile-orders";
 
 export type TDispatch = typeof store.dispatch;
@@ -30,6 +30,7 @@ export type AppThunk<T = void> = ActionCreator<
 
 type AppDispatchFunc = () => TDispatch | AppThunk;
 export const useDispatch: AppDispatchFunc = dispatchHook;
+export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
 
 export type THashMap<T> = Record<string, T> | null;
 
