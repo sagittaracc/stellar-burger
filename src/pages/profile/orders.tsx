@@ -22,7 +22,7 @@ const Orders: FC = () => {
             {
                 loaded &&
                 <div className="custom-scroll full-space overflow-auto pr-3 h-100">
-                    {all.map(order => <OrderPreviewWithCost link='/profile/orders' order={order} />)}
+                    {all.map(order => <OrderPreviewWithCost key={order._id} link='/profile/orders' order={order} />)}
                 </div>
             }
         </>

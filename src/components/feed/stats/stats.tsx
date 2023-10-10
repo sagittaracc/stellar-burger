@@ -19,7 +19,7 @@ const Stats: FC = () => {
                     <div className="flex">
                         <div className="col">
                             <div className={`flex columns wrap ${styles.stats}`}>
-                                {done.slice(0, 30).map(order => <p className={`m-1 text-success text text_type_digits-default`}>{order.number}</p>)}
+                                {done.slice(0, 30).map(order => <p key={order._id} className={`m-1 text-success text text_type_digits-default`}>{order.number}</p>)}
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@ const Stats: FC = () => {
                     <div className="flex">
                         <div className="col">
                             <div className={`flex columns wrap ${styles.stats}`}>
-                                {pending.slice(0, 30).map(order => <p className={`m-1 text-danger text text_type_digits-default`}>{order.number}</p>)}
+                                {pending.slice(0, 30).map(order => <p key={order._id} className={`m-1 text-danger text text_type_digits-default`}>{order.number}</p>)}
                             </div>
                         </div>
                     </div>

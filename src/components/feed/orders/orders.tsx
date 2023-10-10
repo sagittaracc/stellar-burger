@@ -14,7 +14,7 @@ const Orders: FC = () => {
         <div className="flex columns text text_type_main-default h-100">
             <h1 className='mb-3'>Лента заказов</h1>
             <div className="custom-scroll full-space overflow-auto pr-3">
-                {orderList.map(order => <OrderPreviewWithCost link='/feed' order={order} />)}
+                {orderList.map(order => <OrderPreviewWithCost key={order._id} link='/feed' order={order} />)}
             </div>
         </div>
     );
