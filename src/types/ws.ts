@@ -1,4 +1,4 @@
-import { TFeedStoreActions } from "./feed";
-import { TProfileOrdersStoreActions } from "./profile-orders";
+import { TFeedSocketActions } from "./feed";
+import { TProfileOrdersSocketActions } from "./profile-orders";
 
-export type TWSStoreActions = TFeedStoreActions | TProfileOrdersStoreActions;
+export type TWSActions = TFeedSocketActions | TProfileOrdersSocketActions;

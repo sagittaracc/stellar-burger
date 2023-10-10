@@ -1,9 +1,9 @@
 import type { Middleware, MiddlewareAPI } from 'redux';
 import { RootState, TDispatch } from '../../types';
-import { TWSStoreActions } from '../../types/ws';
+import { TWSActions } from '../../types/ws';
 import { getAccessTokenWithoutBearer } from '../../utils/token';
 
-export const socketMiddleware = (url: string, wsActions: TWSStoreActions, guest = true): Middleware => {
+export const socketMiddleware = (url: string, wsActions: TWSActions, guest = true): Middleware => {
     return ((store: MiddlewareAPI<TDispatch, RootState>) => {
         let socket: WebSocket | null = null;
 

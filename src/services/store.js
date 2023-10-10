@@ -4,16 +4,16 @@ import rootReducer from './rootReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { socketMiddleware } from './middleware/socketMiddleware';
 import { wsUrl } from '../constants/api';
-import { feedStoreActions } from '../types/feed';
-import { ProfileOrdersActions } from './profile-orders/actions';
+import { profileOrdersActions } from './profile-orders/actions';
+import { feedActions } from './feed/actions';
 
 const store = createStore(
     rootReducer,
     composeWithDevTools(
         applyMiddleware(
             thunk,
-            socketMiddleware(`${wsUrl}/orders/all`, feedStoreActions),
-            socketMiddleware(`${wsUrl}/orders`, ProfileOrdersActions, false)
+            socketMiddleware(`${wsUrl}/orders/all`, feedActions),
+            socketMiddleware(`${wsUrl}/orders`, profileOrdersActions, false)
         )
     )
 );

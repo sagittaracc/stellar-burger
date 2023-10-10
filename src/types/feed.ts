@@ -8,21 +8,13 @@ export type TFeed = {
     totalToday: number
 };
 
-export const feedStoreActions = {
-    wsInit: CONNECTION_START,
-    onOpen: CONNECTION_SUCCESS,
-    onClose: CONNECTION_CLOSED,
-    onError: CONNECTION_ERROR,
-    onMessage: GET_FEED,
-}
-
 export type TFeedInitialState = {
     connected: boolean;
     feed: TFeed | null;
     error?: Event;
 };
 
-export type TFeedStoreActions = TSocketActions<
+export type TFeedSocketActions = TSocketActions<
     typeof CONNECTION_START,
     typeof CONNECTION_SUCCESS,
     typeof CONNECTION_CLOSED,

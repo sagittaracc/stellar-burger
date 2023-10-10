@@ -9,21 +9,13 @@ export type TProfileOrders = {
     totalToday: number
 };
 
-export const profileOrdersStoreActions = {
-    wsInit: CONNECTION_START,
-    onOpen: CONNECTION_SUCCESS,
-    onClose: CONNECTION_CLOSED,
-    onError: CONNECTION_ERROR,
-    onMessage: GET_PROFILE_ORDERS,
-}
-
 export type TProfileOrdersInitialState = {
     connected: boolean;
     orders: TFeed | null;
     error?: Event;
 };
 
-export type TProfileOrdersStoreActions = TSocketActions<
+export type TProfileOrdersSocketActions = TSocketActions<
     typeof CONNECTION_START,
     typeof CONNECTION_SUCCESS,
     typeof CONNECTION_CLOSED,
