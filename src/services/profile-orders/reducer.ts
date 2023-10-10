@@ -24,6 +24,7 @@ export const profileOrdersReducer = (state = initialState, action: TProfileOrder
             return {
                 ...state,
                 connected: false,
+                orders: null,
                 error: undefined,
             }
         case GET_PROFILE_ORDERS:

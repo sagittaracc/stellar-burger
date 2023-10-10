@@ -39,6 +39,10 @@ export const socketMiddleware = (url: string, wsActions: TWSActions, guest = tru
                 socket.onclose = () => {
                     dispatch({ type: onClose });
                 };
+
+                if (type === onClose) {
+                    socket.close();
+                }
             }
 
             next(action);

@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import withCost from '../../hocs/with-cost';
 import OrderPreview from '../../components/order/order-preview/order-preview';
 import { useDispatch, useSelector } from 'react-redux';
-import { CONNECTION_START } from '../../services/profile-orders/actions';
+import { CONNECTION_CLOSED, CONNECTION_START } from '../../services/profile-orders/actions';
 import { getData } from '../../services/profile-orders/selectors';
 import { TOrder } from '../../types/order';
 
@@ -14,6 +14,7 @@ const Orders: FC = () => {
 
     useEffect(() => {
         dispatch({ type: CONNECTION_START });
+        return () => dispatch({ type: CONNECTION_CLOSED });
     }, []);
 
     return (

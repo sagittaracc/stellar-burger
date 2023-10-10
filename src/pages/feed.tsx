@@ -3,14 +3,15 @@ import Orders from '../components/feed/orders/orders';
 import Stats from '../components/feed/stats/stats';
 import { useDispatch, useSelector } from 'react-redux';
 import { getData } from '../services/feed/selectors';
-import { CONNECTION_START } from '../services/feed/actions';
+import { CONNECTION_CLOSED, CONNECTION_START } from '../services/feed/actions';
 
 const Feed: FC = () => {
-    const dispath = useDispatch<any>();
-    const [loaded, ] = useSelector(getData);
+    const dispatch = useDispatch<any>();
+    const [loaded,] = useSelector(getData);
 
     useEffect(() => {
-        dispath({ type: CONNECTION_START });
+        dispatch({ type: CONNECTION_START });
+        return () => dispatch({ type: CONNECTION_CLOSED });
     }, []);
 
     return (

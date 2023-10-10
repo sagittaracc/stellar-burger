@@ -24,6 +24,7 @@ export const feedReducer = (state = initialState, action: TFeedActions) => {
             return {
                 ...state,
                 connected: false,
+                feed: null,
                 error: undefined,
             }
         case GET_FEED:
