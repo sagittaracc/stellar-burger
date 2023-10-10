@@ -3,15 +3,14 @@ import withCost from '../../hocs/with-cost';
 import OrderPreview from '../../components/order/order-preview/order-preview';
 import { useSelector } from 'react-redux';
 import { CONNECTION_CLOSE, CONNECTION_START } from '../../services/profile-orders/actions';
-import { getData } from '../../services/profile-orders/selectors';
-import { TOrder } from '../../types/order';
+import { getProfileOrders, profileOrdersLoadedSelector } from '../../services/profile-orders/selectors';
 import { useDispatch } from '../../types';
 
 const Orders: FC = () => {
     const OrderPreviewWithCost = withCost(OrderPreview);
     const dispatch = useDispatch();
-    const [loaded, allList] = useSelector(getData);
-    const all = allList as Array<TOrder>;
+    const data = useSelector(getProfileOrders);
+    const loaded = useSelector(profileOrdersLoadedSelector);
 
     useEffect(() => {
         dispatch({ type: CONNECTION_START });
@@ -23,7 +22,7 @@ const Orders: FC = () => {
             {
                 loaded &&
                 <div className="custom-scroll full-space overflow-auto pr-3 h-100">
-                    {all.map(order => <OrderPreviewWithCost key={order._id} link='/profile/orders' order={order} />)}
+                    {data?.orders.map(order => <OrderPreviewWithCost key={order._id} link='/profile/orders' order={order} />)}
                 </div>
             }
         </>
