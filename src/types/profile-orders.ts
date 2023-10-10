@@ -11,7 +11,7 @@ export type TProfileOrders = {
 
 export type TProfileOrdersInitialState = {
     connected: boolean;
-    orders: TFeed | null;
+    orders: TProfileOrders | null;
     error?: Event;
 };
 
