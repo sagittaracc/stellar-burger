@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import styles from './stats.module.css';
 import { useSelector } from 'react-redux';
-import { TFeed } from '../../../types/feed';
 import { getData } from '../../../services/feed/selectors';
 import { TOrder } from '../../../types/order';
 

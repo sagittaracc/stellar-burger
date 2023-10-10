@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Key } from 'react';
 import styles from './ingredient-list.module.css';
 import { TIngredient, TIngredientListComponent } from '../../types/ingredient';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -22,7 +22,7 @@ const ShortList: FC<TIngredientListComponent> = ({ list, maxCount }) => {
             {
                 list.slice(0, maxCount).map(
                     (ingredient: TIngredient, index: number) =>
-                        <div key={ingredient._id as unknown as string} style={{ zIndex: maxCount ? maxCount - index : 0 }} className={`${styles.ingredient}`}>
+                        <div key={ingredient._id as unknown as Key} style={{ zIndex: maxCount ? maxCount - index : 0 }} className={`${styles.ingredient}`}>
                             <img src={ingredient.image} alt="" />
                             {
                                 isLast(index) && hasMore() &&
@@ -41,7 +41,7 @@ const FullList: FC<TIngredientListComponent> = ({ list }) => {
             {
                 list.map(
                     ingredient =>
-                        <div key={ingredient._id as unknown as string} className='flex align-center space-between pr-5'>
+                        <div key={ingredient._id as unknown as Key} className='flex align-center space-between pr-5'>
                             <div className='flex align-center'>
                                 <div className={`${styles.ingredient} mt-4 mb-4`}>
                                     <img src={ingredient.image} alt="" />
