@@ -2,13 +2,13 @@ import { FC, useEffect } from 'react';
 import Orders from '../components/feed/orders/orders';
 import Stats from '../components/feed/stats/stats';
 import { useSelector } from 'react-redux';
-import { getData } from '../services/feed/selectors';
+import { feedLoadedSelector } from '../services/feed/selectors';
 import { CONNECTION_CLOSE, CONNECTION_START } from '../services/feed/actions';
 import { useDispatch } from '../types';
 
 const Feed: FC = () => {
     const dispatch = useDispatch();
-    const [loaded,] = useSelector(getData);
+    const feedLoaded = useSelector(feedLoadedSelector);
 
     useEffect(() => {
         dispatch({ type: CONNECTION_START });
@@ -18,7 +18,7 @@ const Feed: FC = () => {
     return (
         <>
             {
-                loaded &&
+                feedLoaded &&
                 <div className="h-100 pt-10 flex">
                     <div className="col">
                         <Orders />
