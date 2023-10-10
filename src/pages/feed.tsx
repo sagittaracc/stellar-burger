@@ -3,7 +3,7 @@ import Orders from '../components/feed/orders/orders';
 import Stats from '../components/feed/stats/stats';
 import { useDispatch, useSelector } from 'react-redux';
 import { getData } from '../services/feed/selectors';
-import { CONNECTION_CLOSED, CONNECTION_START } from '../services/feed/actions';
+import { CONNECTION_CLOSE, CONNECTION_START } from '../services/feed/actions';
 
 const Feed: FC = () => {
     const dispatch = useDispatch<any>();
@@ -11,7 +11,7 @@ const Feed: FC = () => {
 
     useEffect(() => {
         dispatch({ type: CONNECTION_START });
-        return () => dispatch({ type: CONNECTION_CLOSED });
+        return () => dispatch({ type: CONNECTION_CLOSE });
     }, []);
 
     return (

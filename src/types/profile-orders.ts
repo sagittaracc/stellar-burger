@@ -1,4 +1,4 @@
-import { CONNECTION_CLOSED, CONNECTION_ERROR, CONNECTION_START, CONNECTION_SUCCESS, GET_PROFILE_ORDERS } from "../services/profile-orders/actions";
+import { CONNECTION_CLOSE, CONNECTION_CLOSED, CONNECTION_ERROR, CONNECTION_START, CONNECTION_SUCCESS, GET_PROFILE_ORDERS } from "../services/profile-orders/actions";
 import { TFeed } from "./feed";
 import { TOrder } from "./order";
 import { TSocketActions, TSocketStoreActions } from "./socket-actions";
@@ -17,6 +17,7 @@ export type TProfileOrdersInitialState = {
 
 export type TProfileOrdersSocketActions = TSocketActions<
     typeof CONNECTION_START,
+    typeof CONNECTION_CLOSE,
     typeof CONNECTION_SUCCESS,
     typeof CONNECTION_CLOSED,
     typeof CONNECTION_ERROR,
@@ -25,6 +26,7 @@ export type TProfileOrdersSocketActions = TSocketActions<
 
 export type TProfileOrdersActions = TSocketStoreActions<
     typeof CONNECTION_START,
+    typeof CONNECTION_CLOSE,
     typeof CONNECTION_SUCCESS,
     typeof CONNECTION_CLOSED,
     typeof CONNECTION_ERROR,

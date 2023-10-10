@@ -10,7 +10,7 @@ export const socketMiddleware = (url: string, wsActions: TWSActions, guest = tru
         return next => (action: any) => {
             const { dispatch, getState } = store;
             const { type } = action;
-            const { wsInit, onOpen, onClose, onError, onMessage } = wsActions;
+            const { wsInit, wsClose, onOpen, onClose, onError, onMessage } = wsActions;
 
             if (type === wsInit) {
                 if (guest) {
@@ -40,7 +40,7 @@ export const socketMiddleware = (url: string, wsActions: TWSActions, guest = tru
                     dispatch({ type: onClose });
                 };
 
-                if (type === onClose) {
+                if (type === wsClose && socket) {
                     socket.close();
                 }
             }

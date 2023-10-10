@@ -1,5 +1,5 @@
 import { TFeedActions, TFeedInitialState } from "../../types/feed";
-import { CONNECTION_CLOSED, CONNECTION_ERROR, CONNECTION_SUCCESS, GET_FEED } from "./actions";
+import { CONNECTION_CLOSE, CONNECTION_CLOSED, CONNECTION_ERROR, CONNECTION_SUCCESS, GET_FEED } from "./actions";
 
 const initialState: TFeedInitialState = {
     connected: false,
@@ -8,6 +8,13 @@ const initialState: TFeedInitialState = {
 
 export const feedReducer = (state = initialState, action: TFeedActions) => {
     switch (action.type) {
+        case CONNECTION_CLOSE:
+            return {
+                ...state,
+                connected: false,
+                feed: null,
+                error: undefined
+            }
         case CONNECTION_SUCCESS:
             return {
                 ...state,
