@@ -30,6 +30,12 @@ export type TAllOrdersResponse = TSuccess & {
     orders: Array<TOrder>;
 }
 
+export type TWsOrdersResponse = TSuccess & {
+    orders: Array<TOrder>;
+    total: number;
+    totalToday: number;
+}
+
 export type TSuccessResponse =
     TIngredientResponse |
     TUserResponse |
@@ -42,4 +48,12 @@ export type TErrorResponse = TError & {
     message: string;
 }
 
+export type TWsSuccessResponse = TWsOrdersResponse;
+
+export type TWsErrorResponse = TError & {
+    message: string;
+}
+
 export type TResponse = TSuccessResponse | TErrorResponse;
+
+export type TWsResponse = TWsSuccessResponse | TWsErrorResponse;

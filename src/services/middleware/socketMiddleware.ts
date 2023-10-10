@@ -2,6 +2,7 @@ import type { Middleware, MiddlewareAPI } from 'redux';
 import { RootState, TDispatch } from '../../types';
 import { TWSActions } from '../../types/ws';
 import { getAccessTokenWithoutBearer } from '../../utils/token';
+import { TWsResponse } from '../../types/response';
 
 export const socketMiddleware = (url: string, wsActions: TWSActions, guest = true): Middleware => {
     return ((store: MiddlewareAPI<TDispatch, RootState>) => {
@@ -32,7 +33,7 @@ export const socketMiddleware = (url: string, wsActions: TWSActions, guest = tru
 
                 socket.onmessage = event => {
                     const { data } = event;
-                    const parsedData: any = JSON.parse(data);
+                    const parsedData: TWsResponse = JSON.parse(data);
                     dispatch({ type: onMessage, payload: parsedData });
                 };
 
