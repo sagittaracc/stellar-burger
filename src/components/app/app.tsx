@@ -12,17 +12,22 @@ import NotFound from '../../pages/not-found';
 import Orders from '../../pages/profile/orders';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import Modal from '../modal/modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ingredientsSelector } from '../../services/ingredients/selectors';
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
 import Logout from '../../pages/profile/logout';
+import Feed from '../../pages/feed';
+import Order from '../../pages/order';
+import OrderDetails from '../order/order-details/order-details';
+import { useDispatch } from '../../types';
 
 function App() {
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state.background;
-    const dispatch = useDispatch<any>();
+    const foreground = location.state && location.state.foreground;
+    const dispatch = useDispatch();
     const [loaded,] = useSelector(ingredientsSelector);
 
     useEffect(() => {
@@ -36,6 +41,8 @@ function App() {
                 <Routes location={background || location}>
                     <Route path='/' element={<Main />}>
                         <Route index element={<Constructor />} />
+                        <Route path='feed' element={<Feed />} />
+                        <Route path='feed/:id' element={<Order />} />
                         <Route path='login' element={<ProtectedRoute anonymous component={<Login />} />} />
                         <Route path='register' element={<ProtectedRoute anonymous component={<Register />} />} />
                         <Route path='forgot-password' element={<ProtectedRoute anonymous component={<ForgotPassword />} />} />
@@ -45,6 +52,7 @@ function App() {
                             <Route path='orders' element={<Orders />} />
                             <Route path='logout' element={<Logout />} />
                         </Route>
+                        <Route path='profile/orders/:id' element={<ProtectedRoute component={<Order />} />} />
                         <Route path='ingredients/:id' element={<Ingredient />} />
                         <Route path='*' element={<NotFound />} />
                     </Route>
@@ -56,6 +64,21 @@ function App() {
                     <Route path='/ingredients/:id' element={
                         <Modal header="Детали ингредиента" onClose={() => navigate(-1)}>
                             <Ingredient />
+                        </Modal>
+                    } />
+                </Routes>
+            }
+            {
+                background && foreground && loaded &&
+                <Routes>
+                    <Route path='/feed/:id' element={
+                        <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
+                            <OrderDetails order={foreground} />
+                        </Modal>
+                    } />
+                    <Route path='/profile/orders/:id' element={
+                        <Modal header={`#${foreground.number}`} onClose={() => navigate(-1)}>
+                            <OrderDetails order={foreground} />
                         </Modal>
                     } />
                 </Routes>

@@ -24,7 +24,7 @@ export type TResetPasswordForm = {
 
 export type TInitialForm = {
     isRequest: boolean;
-    error: boolean;
+    error: string;
 };
 
 export interface IFormRequest {

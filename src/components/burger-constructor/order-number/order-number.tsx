@@ -1,9 +1,9 @@
-import styles from './order-details.module.css';
+import styles from './order-number.module.css';
 import checkMark from "../../../images/done.png";
 import { FC } from 'react';
-import { TOrderDetailsComponent } from '../../../types/order';
+import { TOrderNumberComponent } from '../../../types/order';
 
-const OrderDetails: FC<TOrderDetailsComponent> = ({ order }) => {
+const OrderNumber: FC<TOrderNumberComponent> = (order) => {
     return (
         <div className="text text-center">
             <div className={`text_type_digits-large ${styles.number}`}>{order.number}</div>
@@ -15,4 +15,4 @@ const OrderDetails: FC<TOrderDetailsComponent> = ({ order }) => {
     );
 }
 
-export default OrderDetails;
+export default OrderNumber;

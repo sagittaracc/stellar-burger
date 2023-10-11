@@ -28,6 +28,22 @@ body {
     text-align: right;
 }
 
+.text-success {
+    color: #0cc;
+}
+
+.text-primary {
+    color: #007bff;
+}
+
+.text-warning {
+    color: #ffc107;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
 /* Float */
 .float-right {
     float: right;
@@ -100,6 +116,14 @@ body {
 
 .full-space {
     flex-grow: 1;
+}
+
+.weight-1 {
+    flex-grow: 1;
+}
+
+.weight-2 {
+    flex-grow: 2;
 }
 
 /* Spaces */

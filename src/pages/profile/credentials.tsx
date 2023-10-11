@@ -1,5 +1,5 @@
 import { useEffect, FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useForm from '../../hooks/useForm';
 import { updUser } from '../../services/auth/actions';
 import SubmitButton from '../../components/form/submit-button';
@@ -7,9 +7,10 @@ import CancelButton from '../../components/form/cancel-button';
 import { getEmailSelector, getNameSelector } from '../../services/auth/selectors';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { TFormData } from '../../types/form';
+import { useDispatch } from '../../types';
 
 const Credentials: FC = () => {
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     const name = useSelector(getNameSelector);
     const email = useSelector(getEmailSelector);
     const { form, setForm, touched, field, handleSubmit, handleReset } = useForm();
@@ -43,7 +44,7 @@ const Credentials: FC = () => {
             <Input {...field("password")} type="password" placeholder="Пароль" icon="EditIcon" extraClass="mb-6" />
             {
                 touched && (
-                    <div className='text-right'>
+                    <div>
                         <SubmitButton>Сохранить</SubmitButton>
                         <CancelButton>Отмена</CancelButton>
                     </div>

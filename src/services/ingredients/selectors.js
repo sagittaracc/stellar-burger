@@ -6,9 +6,12 @@ export const isLoading = (store) => store.ingredients.loading;
 export const hasError = (store) => store.ingredients.error;
 
 export const ingredientsSelector = createSelector(getData, isLoading, hasError, (data, loading, error) => {
+    const loaded = !loading && !error && data !== null;
+
     return [
-        !loading && !error && data !== null,
-        data
+        loaded,
+        data,
+        loaded ? data.bun.concat(data.main).concat(data.sauce) : [],
     ];
 });
 

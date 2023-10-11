@@ -1,5 +1,6 @@
+import { TFeed } from "./feed";
 import { TIngredient } from "./ingredient";
-import { TOrderDetails } from "./order";
+import { TOrder, TOrderDetails } from "./order";
 import { TTokenPair } from "./token";
 import { TUserInfo } from "./user";
 
@@ -23,14 +24,36 @@ export type TTokenResponse = TUserResponse & TTokenPair;
 
 export type TOrderResponse = TOrderDetails;
 
+export type TFeedResponse = TSuccess & TFeed;
+
+export type TAllOrdersResponse = TSuccess & {
+    orders: Array<TOrder>;
+}
+
+export type TWsOrdersResponse = TSuccess & {
+    orders: Array<TOrder>;
+    total: number;
+    totalToday: number;
+}
+
 export type TSuccessResponse =
     TIngredientResponse |
     TUserResponse |
     TTokenResponse |
-    TOrderResponse;
+    TOrderResponse |
+    TFeedResponse |
+    TAllOrdersResponse;
 
 export type TErrorResponse = TError & {
     message: string;
 }
 
+export type TWsSuccessResponse = TWsOrdersResponse;
+
+export type TWsErrorResponse = TError & {
+    message: string;
+}
+
 export type TResponse = TSuccessResponse | TErrorResponse;
+
+export type TWsResponse = TWsSuccessResponse | TWsErrorResponse;

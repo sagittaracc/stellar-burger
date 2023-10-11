@@ -1,11 +1,11 @@
 .modal {
     width: 720px;
-    height: 718px;
+    height: auto;
     border-radius: 40px;
     background-color: #1C1C21;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 99999;
 }

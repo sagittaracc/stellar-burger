@@ -18,6 +18,11 @@ export const getAccessToken = () => {
     return Cookies.get('accessToken');
 }
 
+export const getAccessTokenWithoutBearer = () => {
+    const token = getAccessToken();
+    return token ? token.split('Bearer ')[1] : null;
+}
+
 export const getRefreshToken = () => {
     return localStorage.getItem('refreshToken');
 }
