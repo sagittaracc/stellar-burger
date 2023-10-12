@@ -45,7 +45,7 @@ const BurgerConstructor = ({ }) => {
 
     return (
         <>
-            <div ref={dropTarget} className="flex columns h-100">
+            <div ref={dropTarget} className="flex columns h-100" id='constructor'>
                 {
                     bun &&
                     <>
