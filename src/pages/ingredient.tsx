@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getData } from '../services/ingredients/selectors';
+import { getIngredientGroupData } from '../services/ingredients/selectors';
 import IngredientDetails from '../components/burger-ingredients/ingredient-details/ingredient-details';
 import { FC } from 'react';
 import { TIngredientGroup, TIngredientId } from '../types/ingredient';
 
 const Ingredient: FC = () => {
     const { id } = useParams();
-    const ingredients: TIngredientGroup = useSelector(getData);
+    const ingredients: TIngredientGroup = useSelector(getIngredientGroupData);
     const data =
         ingredients.bun
             .concat(ingredients.main)

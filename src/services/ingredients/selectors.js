@@ -1,18 +1,16 @@
 import { createSelector } from "reselect";
 import { getBun, getIngredients } from "../constructor/selectors";
 
-export const getData = (store) => store.ingredients.data;
+export const getIngredientGroupData = (store) => store.ingredients.data;
 export const isLoading = (store) => store.ingredients.loading;
 export const hasError = (store) => store.ingredients.error;
 
-export const ingredientsSelector = createSelector(getData, isLoading, hasError, (data, loading, error) => {
-    const loaded = !loading && !error && data !== null;
+export const isIngredientsloadedSelector = createSelector(getIngredientGroupData, isLoading, hasError, (data, loading, error) => {
+    return !loading && !error && data !== null;
+});
 
-    return [
-        loaded,
-        data,
-        loaded ? data.bun.concat(data.main).concat(data.sauce) : [],
-    ];
+export const getIngredientListSelector = createSelector(getIngredientGroupData, (data) => {
+    return data.bun.concat(data.main).concat(data.sauce);
 });
 
 export const getIngredientCounts = createSelector(getBun, getIngredients, (bun, ingredients) => {

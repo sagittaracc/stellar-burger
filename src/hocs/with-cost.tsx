@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { TOrderComponent } from "../types/order";
-import { ingredientsSelector } from "../services/ingredients/selectors";
+import { getIngredientListSelector } from "../services/ingredients/selectors";
 import { TIngredient } from "../types/ingredient";
 
 const withCost = (OrderComponent: React.FC<TOrderComponent>) => ({order, link = '#'}: TOrderComponent) => {
-    const [,, ingredientList] = useSelector(ingredientsSelector);
+    const ingredientList = useSelector(getIngredientListSelector);
 
     const ingredientsInUse =
         ingredientList.filter(
