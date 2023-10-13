@@ -31,7 +31,7 @@ export type TOrderStatusComponent = {
 export type TInitialOrder = {
     orderRequest: boolean;
     orderError: boolean;
-    order: TOrderDetails | null;
+    order: TOrder | null;
 };
 
 export interface IOrderRequest {
@@ -40,7 +40,7 @@ export interface IOrderRequest {
 
 export interface IOrderSuccess {
     readonly type: typeof CREATE_ORDER_SUCCESS;
-    payload: TOrderDetails;
+    payload: TOrder;
 }
 
 export interface IOrderFail {
