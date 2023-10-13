@@ -1,5 +1,5 @@
-import { AUTH_REQUEST, setUser, unsetUser } from "../services/auth/actions";
-import { authReducer, initialAuth } from "../services/auth/reducer";
+import { AUTH_REQUEST, setUser, unsetUser } from "../../services/auth/actions";
+import { authReducer, initialAuth } from "../../services/auth/reducer";
 
 describe('test auth', () => {
     it('should send an auth request', () => {

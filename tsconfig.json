@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "src/tests/auth.test.ts"  ]
+, "src/tests/reducers/auth.test.ts"  ]
 }

@@ -1,6 +1,6 @@
-import { addIngredient, constructorReset, delIngredient, moveIngredient } from "../services/constructor/actions";
-import { constructorReducer, initialState } from "../services/constructor/reducer";
-import { bun, main, sauce } from "./stubs/ingredient";
+import { addIngredient, constructorReset, delIngredient, moveIngredient } from "../../services/constructor/actions";
+import { constructorReducer, initialState } from "../../services/constructor/reducer";
+import { bun, main, sauce } from "../stubs/ingredient";
 
 describe('test constructor', () => {
     it('should add an ingredient', () => {
