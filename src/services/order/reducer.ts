@@ -5,7 +5,7 @@ import {
     CREATE_ORDER_FAIL,
 } from './actions';
 
-const initialState: TInitialOrder = {
+export const initialState: TInitialOrder = {
     orderRequest: false,
     orderError: false,
     order: null,
