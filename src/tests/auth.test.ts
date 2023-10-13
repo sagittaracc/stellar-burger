@@ -1,7 +1,19 @@
-import { setUser, unsetUser } from "../services/auth/actions";
+import { AUTH_REQUEST, setUser, unsetUser } from "../services/auth/actions";
 import { authReducer, initialAuth } from "../services/auth/reducer";
 
 describe('test auth', () => {
+    it('should send an auth request', () => {
+        expect(authReducer(initialAuth, {
+            type: AUTH_REQUEST
+        })).toEqual({
+            authRequest: true,
+            authChecked: false,
+            authSuccess: false,
+            email: '',
+            name: ''
+        });
+    });
+
     it('should set user', () => {
         expect(authReducer(initialAuth, setUser({
             name: 'sagittaracc',
