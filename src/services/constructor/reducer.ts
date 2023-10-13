@@ -6,7 +6,7 @@ import {
     MOVE_INGREDIENT
 } from './actions';
 
-const initialState: TInitialConstructor = {
+export const initialState: TInitialConstructor = {
     bun: null,
     ingredients: [],
 };
