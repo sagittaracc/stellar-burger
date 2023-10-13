@@ -5,7 +5,7 @@ import {
     UNSET_AUTH
 } from './actions';
 
-const initialAuth: TInitialAuth = {
+export const initialAuth: TInitialAuth = {
     authRequest: false,
     authChecked: false,
     authSuccess: false,
