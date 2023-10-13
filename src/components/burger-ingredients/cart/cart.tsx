@@ -6,12 +6,11 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './cart.module.css';
 import { FC } from 'react';
 import { TCartComponent } from '../../../types/ingredient';
-import { THashMap } from '../../../types';
 
 const Cart: FC<TCartComponent> = ({ ingredient }) => {
     const location = useLocation();
     const id = ingredient._id as unknown as number;
-    const ingredientCounts: THashMap<number> = useSelector(getIngredientCounts);
+    const ingredientCounts = useSelector(getIngredientCounts);
     const count = ingredientCounts ? ingredientCounts[id] : 0;
 
     const [, dragRef] = useDrag({

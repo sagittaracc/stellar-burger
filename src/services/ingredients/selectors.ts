@@ -1,24 +1,26 @@
 import { createSelector } from "reselect";
 import { getBun, getIngredients } from "../constructor/selectors";
+import { RootState, THashMap } from "../../types";
 
-export const getIngredientGroupData = (store) => store.ingredients.data;
-export const isLoading = (store) => store.ingredients.loading;
-export const hasError = (store) => store.ingredients.error;
+export const getIngredientGroupData = (store: RootState) => store.ingredients.data;
+export const isLoading = (store: RootState) => store.ingredients.loading;
+export const hasError = (store: RootState) => store.ingredients.error;
 
 export const isIngredientsloadedSelector = createSelector(getIngredientGroupData, isLoading, hasError, (data, loading, error) => {
     return !loading && !error && data !== null;
 });
 
 export const getIngredientListSelector = createSelector(getIngredientGroupData, (data) => {
-    return data.bun.concat(data.main).concat(data.sauce);
+    return data ? data.bun.concat(data.main).concat(data.sauce) : [];
 });
 
 export const getIngredientCounts = createSelector(getBun, getIngredients, (bun, ingredients) => {
-    let counts = null;
+    let counts: THashMap<number> = null;
 
     if (bun) {
         counts = {};
-        counts[bun._id] = 2;
+        const bunId = bun._id as unknown as string;
+        counts[bunId] = 2;
     }
 
     ingredients.forEach((ingredient) => {
@@ -26,11 +28,13 @@ export const getIngredientCounts = createSelector(getBun, getIngredients, (bun, 
             counts = {};
         }
 
-        if (counts[ingredient._id] === undefined) {
-            counts[ingredient._id] = 0;
+        const ingredientId = ingredient._id as unknown as string;
+
+        if (counts[ingredientId] === undefined) {
+            counts[ingredientId] = 0;
         }
 
-        counts[ingredient._id]++;
+        counts[ingredientId]++;
     })
 
     return counts;

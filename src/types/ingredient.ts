@@ -60,7 +60,7 @@ export type TIngredientComponent = {
 };
 
 export type TBurgerIngredientComponent = {
-    data: TIngredientGroup;
+    data: TIngredientGroup | null;
 };
 
 export type TIngredientBoxComponent = TBurgerIngredientComponent & {
