@@ -56,4 +56,4 @@ export type TWsErrorResponse = TError & {
 
 export type TResponse = TSuccessResponse | TErrorResponse;
 
-export type TWsResponse = TWsSuccessResponse | TWsErrorResponse;
+export type TWsResponse = TWsSuccessResponse;

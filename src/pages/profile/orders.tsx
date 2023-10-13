@@ -14,7 +14,7 @@ const Orders: FC = () => {
 
     useEffect(() => {
         dispatch({ type: CONNECTION_START });
-        return () => dispatch({ type: CONNECTION_CLOSE });
+        return () => { dispatch({ type: CONNECTION_CLOSE }) };
     }, []);
 
     return (
