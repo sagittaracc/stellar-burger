@@ -19,7 +19,7 @@ import { useDispatch } from '../../types';
 
 const BurgerConstructor = ({ }) => {
     const bun = useSelector(getBun);
-    const ingredients: Array<TIngredient> = useSelector(getIngredients);
+    const ingredients = useSelector(getIngredients);
     const [, , ingredientList] = useSelector(ingredientsSelector);
     const order = useSelector(getOrder);
     const orderHasItems = useSelector(orderHasItemsSelector);
@@ -38,7 +38,11 @@ const BurgerConstructor = ({ }) => {
     })
 
     const doOrder = () => {
-        const ids: Array<TIngredientId> = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
+        if (!bun) {
+            return;
+        }
+
+        const ids = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
         dispatch(createOrder(ids, () => navigate('/login')));
         openModal();
     }

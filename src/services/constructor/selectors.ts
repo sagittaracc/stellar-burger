@@ -1,7 +1,8 @@
 import { createSelector } from "reselect";
+import { RootState } from "../../types";
 
-export const getBun = (store) => store.construct.bun;
-export const getIngredients = (store) => store.construct.ingredients;
+export const getBun = (store: RootState) => store.construct.bun;
+export const getIngredients = (store: RootState) => store.construct.ingredients;
 
 export const orderHasItemsSelector = createSelector(getBun, getIngredients, (bun, ingredients) => {
     return bun !== null && ingredients.length > 0;
