@@ -1,23 +1,79 @@
-import { addIngredient, delIngredient } from "../services/constructor/actions";
+import { addIngredient, constructorReset, delIngredient, moveIngredient } from "../services/constructor/actions";
 import { constructorReducer, initialState } from "../services/constructor/reducer";
-import { TIngredientId } from "../types/ingredient";
-import { bun } from "./stubs/ingredient";
+import { bun, main, sauce } from "./stubs/ingredient";
 
 describe('test constructor', () => {
     it('should add an ingredient', () => {
-        const bunAction = addIngredient(bun);
-        expect(constructorReducer(initialState, bunAction)).toEqual({
-            bun: bunAction.payload,
-            ingredients: [],
-        });
+        const action = addIngredient(bun);
+        const actual = constructorReducer(initialState, action);
+        const expected = {
+            bun: action.payload,
+            ingredients: []
+        }
+
+        expect(actual).toEqual(expected);
     });
 
     it('should del an ingredient', () => {
-        const bunAction = addIngredient(bun);
-        constructorReducer(initialState, bunAction);
-        expect(constructorReducer(initialState, delIngredient(bunAction.payload.id as unknown as TIngredientId))).toEqual({
+        let currentState = initialState;
+
+        const stepOne = addIngredient(bun);
+        currentState = constructorReducer(currentState, stepOne);
+
+        const stepTwo = addIngredient(main);
+        currentState = constructorReducer(currentState, stepTwo);
+
+        const action = delIngredient(stepTwo.payload.id);
+        const actual = constructorReducer(currentState, action);
+        const expected = {
+            bun: stepOne.payload,
+            ingredients: []
+        }
+
+        expect(actual).toEqual(expected);
+    });
+
+    it('should switch two ingredients', () => {
+        let currentState = initialState;
+
+        const stepOne = addIngredient(bun);
+        currentState = constructorReducer(currentState, stepOne);
+        
+        const stepTwo = addIngredient(main);
+        currentState = constructorReducer(currentState, stepTwo);
+
+        const stepThree = addIngredient(sauce);
+        currentState = constructorReducer(currentState, stepThree);
+
+        const action = moveIngredient(stepTwo.payload.id, stepThree.payload.id);
+        const actual = constructorReducer(currentState, action);
+        const expected = {
+            bun: stepOne.payload,
+            ingredients: [stepThree.payload, stepTwo.payload]
+        }
+
+        expect(actual).toEqual(expected);
+    });
+
+    it('should reset the constructor settings', () => {
+        let currentState = initialState;
+
+        const stepOne = addIngredient(bun);
+        currentState = constructorReducer(currentState, stepOne);
+        
+        const stepTwo = addIngredient(main);
+        currentState = constructorReducer(currentState, stepTwo);
+
+        const stepThree = addIngredient(sauce);
+        currentState = constructorReducer(currentState, stepThree);
+
+        const action = constructorReset();
+        const actual = constructorReducer(currentState, action);
+        const expected = {
             bun: null,
             ingredients: []
-        });
+        };
+
+        expect(actual).toEqual(expected);
     });
 });
