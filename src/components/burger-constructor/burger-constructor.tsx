@@ -80,7 +80,7 @@ const BurgerConstructor = ({ }) => {
                     </div>
                 }
                 {
-                    modalShown && orderReady &&
+                    modalShown && orderReady && order &&
                     <Modal onClose={closeModal}>
                         <OrderNumber {...order} />
                     </Modal>
