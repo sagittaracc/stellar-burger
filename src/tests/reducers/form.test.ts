@@ -1,7 +1,7 @@
 import { FORM_FAIL, FORM_REQUEST, FORM_SUCCESS } from "../../services/form/actions";
 import { formReducer, initialState } from "../../services/form/reducer";
 
-describe('form constructor', () => {
+describe('test form', () => {
     it('should send form request', () => {
         const actual = formReducer(initialState, { type: FORM_REQUEST });
         const expected = {

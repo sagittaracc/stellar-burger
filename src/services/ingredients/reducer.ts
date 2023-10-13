@@ -5,7 +5,7 @@ import {
     GET_INGREDIENTS_FAIL,
 } from './actions';
 
-const initialState: TInitialIngredient = {
+export const initialState: TInitialIngredient = {
     data: null,
     loading: false,
     error: false,
