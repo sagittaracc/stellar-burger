@@ -14,7 +14,7 @@ describe('test constructor', () => {
   });
 
   it('should create an order', () => {
-    cy.visit("https://sagittaracc.github.io/stellar-burger/");
+    cy.visit("/stellar-burger");
     cy.wait("@getIngredients");
 
     cy.contains("Краторная булка").as("bun");
