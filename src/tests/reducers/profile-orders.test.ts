@@ -17,8 +17,8 @@ describe('test profile orders', () => {
     it('should open socket', () => {
         const actual = profileOrdersReducer(initialState, { type: CONNECTION_SUCCESS });
         const expected = {
+            ...initialState,
             connected: true,
-            orders: null,
             error: undefined
         }
 
@@ -28,8 +28,8 @@ describe('test profile orders', () => {
     it('should not open socket', () => {
         const actual = profileOrdersReducer(initialState, { type: CONNECTION_ERROR, payload: new Event("Aborted") });
         const expected = {
+            ...initialState,
             connected: false,
-            orders: null,
             error: new Event("Aborted")
         };
 
@@ -50,7 +50,7 @@ describe('test profile orders', () => {
     it('should get order profile list', () => {
         const actual = profileOrdersReducer(initialState, { type: GET_PROFILE_ORDERS, payload: profileOrders });
         const expected = {
-            connected: false,
+            ...initialState,
             orders: profileOrders,
             error: undefined
         };

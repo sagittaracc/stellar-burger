@@ -6,7 +6,7 @@ describe('test ingredients data', () => {
     it('should request ingredients', () => {
         const actual = ingredientsReducer(initialState, { type: GET_INGREDIENTS_REQUEST });
         const expected = {
-            data: null,
+            ...initialState,
             loading: true,
             error: false
         }

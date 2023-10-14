@@ -6,11 +6,10 @@ describe('test auth', () => {
         expect(authReducer(initialAuth, {
             type: AUTH_REQUEST
         })).toEqual({
+            ...initialAuth,
             authRequest: true,
             authChecked: false,
             authSuccess: false,
-            email: '',
-            name: ''
         });
     });
 

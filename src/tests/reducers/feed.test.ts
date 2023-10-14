@@ -17,8 +17,8 @@ describe('test feed', () => {
     it('should open socket', () => {
         const actual = feedReducer(initialState, { type: CONNECTION_SUCCESS });
         const expected = {
+            ...initialState,
             connected: true,
-            feed: null,
             error: undefined
         }
 
@@ -28,8 +28,8 @@ describe('test feed', () => {
     it('should not open socket', () => {
         const actual = feedReducer(initialState, { type: CONNECTION_ERROR, payload: new Event("Aborted") });
         const expected = {
+            ...initialState,
             connected: false,
-            feed: null,
             error: new Event("Aborted")
         };
 
@@ -50,7 +50,7 @@ describe('test feed', () => {
     it('should get feed list', () => {
         const actual = feedReducer(initialState, { type: GET_FEED, payload: feed });
         const expected = {
-            connected: false,
+            ...initialState,
             feed: feed,
             error: undefined
         };
