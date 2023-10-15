@@ -1,7 +1,7 @@
 import { TProfileOrdersActions, TProfileOrdersInitialState } from "../../types/profile-orders"
 import { CONNECTION_CLOSE, CONNECTION_CLOSED, CONNECTION_ERROR, CONNECTION_SUCCESS, GET_PROFILE_ORDERS } from "./actions"
 
-const initialState: TProfileOrdersInitialState = {
+export const initialState: TProfileOrdersInitialState = {
     connected: false,
     orders: null,
 }
@@ -12,7 +12,7 @@ export const profileOrdersReducer = (state = initialState, action: TProfileOrder
             return {
                 ...state,
                 connected: false,
-                order: null,
+                orders: null,
                 error: undefined
             }
         case CONNECTION_SUCCESS:

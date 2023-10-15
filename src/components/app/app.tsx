@@ -12,15 +12,14 @@ import NotFound from '../../pages/not-found';
 import Orders from '../../pages/profile/orders';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import Modal from '../modal/modal';
-import { useSelector } from 'react-redux';
-import { ingredientsSelector } from '../../services/ingredients/selectors';
+import { isIngredientsloadedSelector } from '../../services/ingredients/selectors';
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/ingredients/actions';
 import Logout from '../../pages/profile/logout';
 import Feed from '../../pages/feed';
 import Order from '../../pages/order';
 import OrderDetails from '../order/order-details/order-details';
-import { useDispatch } from '../../types';
+import { useDispatch, useSelector } from '../../types';
 
 function App() {
     const location = useLocation();
@@ -28,7 +27,7 @@ function App() {
     const background = location.state && location.state.background;
     const foreground = location.state && location.state.foreground;
     const dispatch = useDispatch();
-    const [loaded,] = useSelector(ingredientsSelector);
+    const loaded = useSelector(isIngredientsloadedSelector);
 
     useEffect(() => {
         dispatch(getIngredients());

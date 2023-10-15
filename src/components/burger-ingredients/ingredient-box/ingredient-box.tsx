@@ -8,7 +8,7 @@ const IngredientBox: FC<TIngredientBoxComponent> = ({tab, title, data, category}
             <h1 className="text-left pt-10">{title}</h1>
             <div className="flex wrap pr-7">
                 {
-                    data[category].map(ingredient => <Cart key={ingredient._id as unknown as Key} ingredient={ingredient} />)
+                    data && data[category].map(ingredient => <Cart key={ingredient._id as unknown as Key} ingredient={ingredient} />)
                 }
             </div>
         </div>

@@ -5,7 +5,7 @@ import {
     FORM_FAIL
 } from './actions';
 
-const initialState: TInitialForm = {
+export const initialState: TInitialForm = {
     isRequest: false,
     error: '',
 }

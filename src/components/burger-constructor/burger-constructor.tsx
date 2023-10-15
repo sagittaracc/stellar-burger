@@ -10,17 +10,17 @@ import useModal from '../../hooks/useModal';
 import { getOrder, getOrderRequest, orderReadySelector } from '../../services/order/selectors';
 import { createOrder } from '../../services/order/actions';
 import { useNavigate } from 'react-router-dom';
-import { TIngredientId, TIngredient } from '../../types/ingredient';
+import { TIngredient } from '../../types/ingredient';
 import { IModalHook } from '../../types/modal';
 import OrderNumber from './order-number/order-number';
-import { ingredientsSelector } from '../../services/ingredients/selectors';
+import { getIngredientListSelector } from '../../services/ingredients/selectors';
 import IngredientList from '../ingredient-list/ingredient-list';
 import { useDispatch } from '../../types';
 
 const BurgerConstructor = ({ }) => {
     const bun = useSelector(getBun);
-    const ingredients: Array<TIngredient> = useSelector(getIngredients);
-    const [, , ingredientList] = useSelector(ingredientsSelector);
+    const ingredients = useSelector(getIngredients);
+    const ingredientList = useSelector(getIngredientListSelector);
     const order = useSelector(getOrder);
     const orderHasItems = useSelector(orderHasItemsSelector);
     const inProcess = useSelector(getOrderRequest);
@@ -38,14 +38,18 @@ const BurgerConstructor = ({ }) => {
     })
 
     const doOrder = () => {
-        const ids: Array<TIngredientId> = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
+        if (!bun) {
+            return;
+        }
+
+        const ids = [bun._id].concat(ingredients.map(ingredient => ingredient._id)).concat(bun._id);
         dispatch(createOrder(ids, () => navigate('/login')));
         openModal();
     }
 
     return (
         <>
-            <div ref={dropTarget} className="flex columns h-100">
+            <div ref={dropTarget} className="flex columns h-100" id='constructor'>
                 {
                     bun &&
                     <>
@@ -76,7 +80,7 @@ const BurgerConstructor = ({ }) => {
                     </div>
                 }
                 {
-                    modalShown && orderReady &&
+                    modalShown && orderReady && order &&
                     <Modal onClose={closeModal}>
                         <OrderNumber {...order} />
                     </Modal>

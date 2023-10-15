@@ -10,9 +10,9 @@ const OrderDetails: FC<TOrderComponent> = withCost(({ order, ingredients, cost }
     return (
         <div className="ml-10 mr-10">
             <p className='text text_type_main-medium mb-1'>{order.name}</p>
-            <p className={`text-success text text_type_main-default mb-6`}>
+            <div className={`text-success text text_type_main-default mb-6`}>
                 <OrderStatus status={order.status} />
-            </p>
+            </div>
             <p className='text text_type_main-medium mb-6 mt-10'>Состав:</p>
             <div className={`custom-scroll overflow-auto ${styles.details}`}>
                 {ingredients && <IngredientList list={ingredients} />}

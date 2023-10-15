@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { ingredientsSelector } from "../services/ingredients/selectors";
-import { getIngredients } from '../services/ingredients/actions';
+import { useSelector } from "react-redux";
+import { getIngredientGroupData } from "../services/ingredients/selectors";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import BurgerIngredients from '../components/burger-ingredients/burger-ingredients';
@@ -9,7 +7,7 @@ import BurgerConstructor from '../components/burger-constructor/burger-construct
 import { FC } from 'react';
 
 const Constructor: FC = () => {
-    const [, ingredients] = useSelector(ingredientsSelector);
+    const ingredients = useSelector(getIngredientGroupData);
 
     return (
         <div className="h-100 pt-10 flex">

@@ -1,7 +1,7 @@
 import { TFeedActions, TFeedInitialState } from "../../types/feed";
 import { CONNECTION_CLOSE, CONNECTION_CLOSED, CONNECTION_ERROR, CONNECTION_SUCCESS, GET_FEED } from "./actions";
 
-const initialState: TFeedInitialState = {
+export const initialState: TFeedInitialState = {
     connected: false,
     feed: null,
 }
