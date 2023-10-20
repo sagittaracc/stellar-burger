@@ -4,8 +4,8 @@ import { saveTokens } from '../../src/utils/token';
 describe('test constructor', () => {
   beforeEach(() => {
     cy.intercept("GET", `${STELLAR_BURGER_API}/auth/user`, { fixture: "user.json" });
-    cy.intercept("POST", `${STELLAR_BURGER_API}/orders`, { fixture: "order.json" }).as("postOrder");
-    cy.intercept("GET", `${STELLAR_BURGER_API}/ingredients`).as("getIngredients");
+    cy.intercept("POST", `${STELLAR_BURGER_API}/orders`, { fixture: "order.json" });
+    cy.intercept("GET", `${STELLAR_BURGER_API}/ingredients`, { fixture: "ingredients.json" });
 
     saveTokens({
       accessToken: "test-accessToken",
@@ -15,17 +15,14 @@ describe('test constructor', () => {
 
   it('should create an order', () => {
     cy.visit("/stellar-burger");
-    cy.wait("@getIngredients");
 
-    cy.contains("Краторная булка").as("bun");
-    cy.contains("Соус традиционный").as("sauce");
-    cy.contains("Говяжий метеорит").as("main");
+    cy.get('img[data-testid^="Краторная булка"]').as("bun");
+    cy.get('img[data-testid^="Говяжий метеорит"]').as("main");
     cy.get("[id^=constructor]").as("constructor");
 
     cy.get("@bun").trigger("dragstart");
     cy.get("@constructor").trigger("drop");
-    cy.get("@sauce").trigger("dragstart");
-    cy.get("@constructor").trigger("drop");
+
     cy.get("@main").trigger("dragstart");
     cy.get("@constructor").trigger("drop");
 

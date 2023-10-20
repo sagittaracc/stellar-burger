@@ -20,7 +20,7 @@ const Cart: FC<TCartComponent> = ({ ingredient }) => {
 
     return (
         <Link to={`/ingredients/${ingredient._id}`} state={{background: location}} className={`${styles.cart} text-decoration-none text-center col pt-10 pb-10 pl-4 pr-4 position-relative`}>
-            <img ref={dragRef} src={ingredient.image} />
+            <img ref={dragRef} src={ingredient.image} data-testid={ingredient.name} />
             {
                 count > 0 &&
                 <Counter count={count} size="default" extraClass="m-1" />
